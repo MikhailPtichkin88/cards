@@ -11,7 +11,7 @@ import {TestComponent} from '../pages/TestComponent';
 export const WhichRouting = () => {
     return (
         <Routes>
-            <Route index element={<Profile/>}/>
+            <Route path="/new-project" element={<Profile/>}/>
             <Route path="/profile" element={<Profile/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/new-password" element={<NewPassword/>}/>
