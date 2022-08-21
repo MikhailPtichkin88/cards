@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import './App.css';
-import {WhichRouting} from './components/WhichRouting';
+import {WhichRouting} from '../common/WhichRouting';
 
 function App() {
     return (

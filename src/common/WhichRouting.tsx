@@ -1,12 +1,12 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
-import {Profile} from '../pages/profile/Profile';
-import {Login} from '../pages/login/Login';
-import {NewPassword} from '../pages/newPassword/NewPassword';
-import {PasswordRecovery} from '../pages/passwordRecovery/PasswordRecovery';
-import {Registration} from '../pages/registration/Registration';
-import {Page404} from '../pages/404/Page404';
-import {TestComponent} from '../pages/TestComponent';
+import {Profile} from '../features/profile/Profile';
+import {Login} from '../features/login/Login';
+import {NewPassword} from '../features/new-password/NewPassword';
+import {PasswordRecovery} from '../features/password-recovery/PasswordRecovery';
+import {Registration} from '../features/registration/Registration';
+import {Page404} from '../features/404/Page404';
+import {TestComponent} from '../features/TestComponent';
 
 export const WhichRouting = () => {
     return (

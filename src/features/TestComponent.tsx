@@ -1,7 +1,7 @@
 import React from 'react';
-import {Checkbox} from "../components/Checkbox/Checkbox";
-import {Button} from "../components/Button/Button";
-import {InputText} from "../components/InputText/inputText";
+import {Checkbox} from "../common/components/checkbox/Checkbox";
+import {Button} from "../common/components/button/Button";
+import {InputText} from "../common/components/input-text/inputText";
 
 export const TestComponent = () => {
     return (

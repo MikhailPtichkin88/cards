@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, compose, legacy_createStore} from "redux";
-import {profileReducer} from "./profileReducer";
+import {profileReducer} from "../features/profile/profile-reducer";
 import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
 
 
