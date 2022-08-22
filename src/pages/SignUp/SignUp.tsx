@@ -12,7 +12,7 @@ import {useCallback, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {ErrorSnackbar} from "../../components/ErrorSnackbar/ErrorSnackbar";
 import {Title} from "./Title/Title";
-import {InputEyeSwitcher} from "./TextField/InputAdornment";
+import {InputEyeSwitcher} from "./TextField/InputEyeSwitcher";
 
 type FormikErrorType = {
     email?: string
