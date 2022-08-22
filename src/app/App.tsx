@@ -14,6 +14,7 @@ function App() {
         <NavLink to={'/registration'}>registration</NavLink>
         <NavLink to={'*'}>404</NavLink>
         <NavLink to={'/test'}>test</NavLink>
+
       </div>
       <WhichRouting />
     </div>

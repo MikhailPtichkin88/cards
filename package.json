@@ -2,7 +2,7 @@
   "name": "new-project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://antont25.github.io/new-project",
+  "homepage": "https://antont25.github.io/cards",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
