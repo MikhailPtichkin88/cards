@@ -8,8 +8,9 @@ import Card from '@mui/material/Card';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import TextField from '@mui/material/TextField';
-import {useAppDispatch, useAppSelector} from '../../common/hooks/useDispatchAndSelector';
 import {updatePassword} from '../password-recovery/password-recovery-reducer';
+import {useAppSelector} from "../../../common/hooks/useAppSelector";
+import {useAppDispatch} from "../../../common/hooks/useAppDispatch";
 
 export const NewPassword = () => {
     const statusSendingPassword = useAppSelector(state => state.passwordRecovery.statusSendingPassword)

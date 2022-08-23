@@ -1,7 +1,5 @@
 import axios from "axios";
 
-export const app = () => {
-}//что бы небыло ошибки
 export const instance = axios.create({
     baseURL: process.env.NODE_ENV === 'development'
         ? 'http://localhost:7542/2.0/'

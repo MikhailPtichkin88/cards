@@ -6,7 +6,10 @@ import {useAppSelector} from '../common/hooks/useAppSelector';
 import {useAppDispatch} from '../common/hooks/useAppDispatch';
 import {initializeAppTC} from '../features/auth/auth-reducer';
 import {LinearProgress} from '@mui/material';
-import {WhichRouting} from '../components/WhichRouting';
+import {WhichRouting} from '../common/components/routes/WhichRouting';
+import {routePath} from "../common/constants/routePath";
+import {ErrorSnackbar} from "../common/components/errorSnackbar/ErrorSnackbar";
+import {AppBar} from "../common/components/appBar/AppBar";
 
 
 function App() {
@@ -20,18 +23,18 @@ function App() {
 
     return (
         <div className="App">
-            {/*<ErrorSnackbar/>*/}
-            {/*<AppBar/>*/}
+            <ErrorSnackbar/>
+            <AppBar/>
             {status === 'loading' && <LinearProgress/>}
             <div className="container">
                 <div className={'navlink'}>
-                    <NavLink to={'/profile'}>Profile</NavLink>
-                    <NavLink to={'/login'}>login</NavLink>
-                    <NavLink to={'/new-password'}>new-password</NavLink>
-                    <NavLink to={'/password-recovery'}>password-recovery</NavLink>
-                    <NavLink to={'/SignUp'}>registration</NavLink>
-                    <NavLink to={'*'}>404</NavLink>
-                    <NavLink to={'/test'}>test</NavLink>
+                    <NavLink to={routePath.profile.main}>Profile</NavLink>
+                    <NavLink to={routePath.auth.login}>login</NavLink>
+                    <NavLink to={routePath.auth.newPass}>new-password</NavLink>
+                    <NavLink to={routePath.auth.passRecovery}>password-recovery</NavLink>
+                    <NavLink to={routePath.auth.signUp} >registration</NavLink>
+                    <NavLink to={routePath.error.notFound}>404</NavLink>
+                    <NavLink to={routePath.tests.test} >test</NavLink>
                 </div>
                 <WhichRouting/>
             </div>

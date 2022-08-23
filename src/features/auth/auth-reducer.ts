@@ -1,8 +1,8 @@
-import {authAPI, AuthResponseType, LoginPostDataType} from "../auth/auth-api";
+import {authAPI, AuthResponseType, LoginPostDataType} from "./auth-api";
 import {AppThunk} from "../../app/store";
 import {AxiosError} from "axios";
 import {setAppStatusAC} from "../../app/app-reducer";
-import {handleServerAppError, handleServerNetworkError} from "../../utils/error-utils";
+import {handleServerAppError, handleServerNetworkError} from "../../common/utils/errorHandler";
 
 
 const initAuthState = {

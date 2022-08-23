@@ -3,9 +3,9 @@ import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {
     ActionPasswordRecoveryType,
     PasswordRecoveryReducer
-} from '../features/password-recovery/password-recovery-reducer';
+} from '../features/auth/password-recovery/password-recovery-reducer';
 import {AppActionsType, appReducer} from './app-reducer';
-import {SignUpActionsType, signUpReducer} from '../pages/SignUp/signUp-reducer';
+import {SignUpActionsType, signUpReducer} from '../features/auth/signUp/signUp-reducer';
 import {AuthActionsType, authReducer} from '../features/auth/auth-reducer';
 
 const rootReducer = combineReducers({

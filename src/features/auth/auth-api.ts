@@ -1,5 +1,24 @@
 import {instance} from "../../app/app-api";
 
+
+export const authAPI = {
+    login(data: LoginPostDataType) {
+        return instance.post<AuthResponseType>('auth/login', data)
+            .then(res => res.data)
+
+    },
+    me() {
+        return instance.post<AuthResponseType>('auth/me', {})
+            .then(res => res.data)
+    },
+    logout() {
+        return instance.delete<LogoutType>('auth/me', {})
+            .then(res => res.data)
+    }
+}
+
+
+//types
 export type LoginPostDataType = {
     email: string
     password: string
@@ -24,21 +43,4 @@ export type AuthResponseType = {
 export type LogoutType = {
     info: string
     error?: string
-}
-
-
-export const authAPI = {
-    login(data: LoginPostDataType) {
-        return instance.post<AuthResponseType>('auth/login', data)
-            .then(res => res.data)
-
-    },
-    me() {
-        return instance.post<AuthResponseType>('auth/me', {})
-            .then(res => res.data)
-    },
-    logout() {
-        return instance.delete<LogoutType>('auth/me', {})
-            .then(res => res.data)
-    }
 }

@@ -1,6 +1,6 @@
-import {AppThunk} from '../../app/store';
+import {AppThunk} from '../../../app/store';
 import {api, DataPasswordRecoveryType} from './api-password-recovery';
-import {handleServerNetworkError} from '../../common/utils/error-utils';
+import {handleServerNetworkError} from '../../../common/utils/error-utils';
 import {AxiosError} from 'axios';
 
 const initialState: PasswordRecoveryType = {

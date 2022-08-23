@@ -4,8 +4,8 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions'
-import {useAppSelector} from '../../common/hooks/useDispatchAndSelector';
-import icon from '../../assets/img/check-email.png'
+import icon from '../../../assets/img/check-email.png'
+import {useAppSelector} from "../../../common/hooks/useAppSelector";
 
 export const CheckEmail = (props: CheckEmailType) => {
     const email = useAppSelector(state => state.passwordRecovery.email)

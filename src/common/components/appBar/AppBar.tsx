@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './AppBar.module.css'
 import logo from '../../../assets/images/logo.svg'
-import {Button} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
- 
+
 import {useAppSelector} from '../../hooks/useAppSelector';
+import {UserInfo} from "./UserInfo/UserInfo";
+import Button from "@mui/material/Button";
 
 
 export const AppBar = () => {
@@ -23,13 +24,13 @@ export const AppBar = () => {
                         <img src={logo} alt="logo"/>
                     </a>
                     <div>
-                        {/*{*/}
-                        {/*    auth.isAuth*/}
-                        {/*        ? <UserInfo name={auth.authData.name} avatar={auth.authData.avatar}/>*/}
-                        {/*        : <Button className={styles.btn}*/}
-                        {/*                  variant={'contained'}*/}
-                        {/*                  onClick={onClickHandler}>Sign In</Button>*/}
-                        {/*}*/}
+                        {
+                            auth.isAuth
+                                ? <UserInfo name={auth.authData.name} avatar={auth.authData.avatar}/>
+                                : <Button className={styles.btn}
+                                          variant={'contained'}
+                                          onClick={onClickHandler}>Sign In</Button>
+                        }
 
                     </div>
                 </div>

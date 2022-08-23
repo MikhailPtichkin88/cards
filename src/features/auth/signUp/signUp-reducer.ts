@@ -1,7 +1,7 @@
 import {signUpApi, SignUpDataType, SignUpErrorType} from "./signUp-api";
 import axios, {AxiosError} from "axios";
-import {AppThunk} from "../../app/store";
-import {setAppErrorAC, setAppStatusAC} from "../../app/app-reducer";
+import {AppThunk} from "../../../app/store";
+import {setAppErrorAC, setAppStatusAC} from "../../../app/app-reducer";
 
 //---Reducer---
 const initState = {

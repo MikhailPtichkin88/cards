@@ -1,6 +1,6 @@
 import {signUpTC} from "./signUp-reducer";
-import {useAppDispatch} from "../../common/hooks/useAppDispatch";
-import {useAppSelector} from "../../common/hooks/useAppSelector";
+import {useAppDispatch} from "../../../common/hooks/useAppDispatch";
+import {useAppSelector} from "../../../common/hooks/useAppSelector";
 import {useFormik} from "formik";
 import Grid from "@mui/material/Grid/Grid";
 import FormControl from "@mui/material/FormControl/FormControl";
@@ -10,23 +10,19 @@ import Button from "@mui/material/Button/Button";
 import Paper from "@mui/material/Paper/Paper";
 import {useCallback, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {ErrorSnackbar} from "../../components/ErrorSnackbar/ErrorSnackbar";
 import {Title} from "./Title/Title";
 import {InputEyeSwitcher} from "./TextField/InputEyeSwitcher";
+import {ErrorSnackbar} from "../../../common/components/errorSnackbar/ErrorSnackbar";
 
 type FormikErrorType = {
     email?: string
     password?: string
     confirmPass?: string
 }
-const isTextFieldError = (error: string | undefined) => {
-    return error !== "" && error !== undefined
-}
 
 export const SignUp = () => {
     const dispatch = useAppDispatch()
     const status = useAppSelector(state => state.app.status)
-    const error = useAppSelector(state => state.app.error)
     const isRegistered = useAppSelector(state => state.signUp.isSignUp)
     const [visible, setVisible] = useState(false)
     let navigate = useNavigate();
@@ -42,13 +38,13 @@ export const SignUp = () => {
         },
         validate: (values) => {
             const errors: FormikErrorType = {};
-            if (formik.touched.email && !values.email) {
+            if (!values.email) {
                 errors.email = 'Required';
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
                 errors.email = 'Invalid email address';
             }
 
-            if (formik.touched.password && !values.password) {
+            if (!values.password) {
                 errors.password = 'Required';
             } else if (formik.values.password.length < 7) {
                 errors.password = "must be more than 7 characters"
@@ -91,7 +87,7 @@ export const SignUp = () => {
 
                         <TextField
                             error={formik.errors.email !== undefined}
-                            helperText={isTextFieldError(formik.errors.email) && formik.errors.email}
+                            helperText={formik.errors.email}
                             disabled={isLoading}
                             label="Email"
                             variant="outlined"
@@ -99,8 +95,8 @@ export const SignUp = () => {
                             {...formik.getFieldProps("email")}
                         />
                         <TextField
-                            error={formik.errors.password !== undefined}
-                            helperText={isTextFieldError(formik.errors.password) && formik.errors.password}
+                            error={formik.touched.password && !!formik.errors.password}
+                            helperText={formik.touched.password && !!formik.errors.password&&formik.errors.password}
                             disabled={isLoading}
                             type={visible ? "text" : "password"}
                             variant="outlined"
@@ -114,8 +110,8 @@ export const SignUp = () => {
                             {...formik.getFieldProps("password")}
                         />
                         <TextField
-                            error={formik.errors.confirmPass !== undefined}
-                            helperText={isTextFieldError(formik.errors.confirmPass) && formik.errors.confirmPass}
+                            error={formik.touched.confirmPass && !!formik.errors.confirmPass}
+                            helperText={formik.touched.confirmPass && !!formik.errors.confirmPass&&formik.errors.confirmPass}
                             disabled={isLoading}
                             type={visible ? "text" : "password"}
                             variant="outlined"
@@ -150,7 +146,7 @@ export const SignUp = () => {
                 </FormControl>
             </form>}
         </Grid>
-        <ErrorSnackbar error={error}/>
+        <ErrorSnackbar />
     </Paper>
 
 

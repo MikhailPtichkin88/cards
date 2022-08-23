@@ -8,10 +8,11 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
-import {useAppDispatch, useAppSelector} from '../../common/hooks/useDispatchAndSelector';
+import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {passwordRecoveryLink, setStatusSendingPassword} from './password-recovery-reducer';
 import {CheckEmail} from './CheckEmail';
 import {useNavigate} from 'react-router-dom';
+import {useAppSelector} from "../../../common/hooks/useAppSelector";
 
 
 export const PasswordRecovery = () => {

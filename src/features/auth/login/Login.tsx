@@ -3,10 +3,10 @@ import {Button, Checkbox, FormControlLabel, FormLabel, Paper, TextField} from '@
 import {useFormik} from 'formik';
 import styles from './Login.module.css';
 import {Navigate, NavLink} from 'react-router-dom';
-import {LoginTC} from '../auth/auth-reducer';
-import {LoginPostDataType} from '../auth/auth-api';
-import {useAppSelector} from '../../common/hooks/useAppSelector';
-import {useAppDispatch} from '../../common/hooks/useAppDispatch';
+import {LoginTC} from '../auth-reducer';
+import {LoginPostDataType} from '../auth-api';
+import {useAppSelector} from '../../../common/hooks/useAppSelector';
+import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 
 export const Login = () => {
     type FormikErrorType = {
