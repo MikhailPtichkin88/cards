@@ -1,8 +1,9 @@
 .App {
-  max-width: 80%;
-  margin: 0 auto;
+    margin: 0 auto;
+    max-width: 80%;
 }
 
 .navlink a {
-  margin-right: 20px;
+    margin-right: 20px;
 }
+
