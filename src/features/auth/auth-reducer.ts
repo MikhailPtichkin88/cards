@@ -1,4 +1,4 @@
-import {authAPI, AuthResponseType, LoginPostDataType} from "./auth-api";
+import {authAPI, AuthResponseType, ChangeNameDataType, LoginPostDataType} from "./auth-api";
 import {AppThunk} from "../../app/store";
 import {AxiosError} from "axios";
 import {setAppStatusAC} from "../../app/app-reducer";
@@ -22,7 +22,7 @@ const initAuthState = {
 }
 
 export type initAuthStateType = typeof initAuthState
-export type AuthActionsType = SetAuthACType | IsAuthACType | LogOutACType
+export type AuthActionsType = SetAuthACType | IsAuthACType | LogOutACType | changeNameACType
 
 export const authReducer = (state: initAuthStateType = initAuthState, action: AuthActionsType): initAuthStateType => {
     switch (action.type) {
@@ -30,6 +30,8 @@ export const authReducer = (state: initAuthStateType = initAuthState, action: Au
             return {...state, isAuth: true, authData: {...action.data}}
         case "auth/LOGOUT":
             return {...state, isAuth: false}
+        case "auth/CHANGE-NAME":
+            return {...state, authData: {...state.authData, name:action.name}}
         default:
             return state
     }
@@ -47,6 +49,10 @@ export const isAuthAC = (isAuth: boolean) => {
 type LogOutACType = ReturnType<typeof logOutAC>
 export const logOutAC = () => {
     return {type: "auth/LOGOUT"} as const
+}
+type changeNameACType = ReturnType<typeof changeNameAC>
+export const changeNameAC = (name:string) => {
+    return {type: "auth/CHANGE-NAME",name} as const
 }
 
 export const LoginTC = (data: LoginPostDataType): AppThunk => {
@@ -91,6 +97,30 @@ export const logoutTC = (): AppThunk => {
             .then(res => {
                 if (res.info) {
                     dispatch(logOutAC())
+                    dispatch(setAppStatusAC("succeeded"))
+                }else if(res.error){
+                    handleServerAppError(res.error, dispatch)
+                }
+            })
+            .catch((err: AxiosError<{ error: string }>) => {
+                handleServerNetworkError(err.response!.data,dispatch)
+            })
+    }
+}
+
+export const changeNameTC = (name:string): AppThunk => {
+    return (dispatch) => {
+        dispatch(setAppStatusAC("loading"))
+
+        let data:ChangeNameDataType = {
+            name,
+            avatar:""
+        }
+
+        authAPI.changeName(data)
+            .then(res => {
+                if (!res.error) {
+                    dispatch(changeNameAC(res.updatedUser.name))
                     dispatch(setAppStatusAC("succeeded"))
                 }else if(res.error){
                     handleServerAppError(res.error, dispatch)

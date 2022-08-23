@@ -14,6 +14,10 @@ export const authAPI = {
     logout() {
         return instance.delete<LogoutType>('auth/me', {})
             .then(res => res.data)
+    },
+    changeName(data: ChangeNameDataType) {
+        return instance.put<ChangeNameResponseType>('auth/me', data)
+            .then(res => res.data)
     }
 }
 
@@ -44,3 +48,13 @@ export type LogoutType = {
     info: string
     error?: string
 }
+
+export type ChangeNameDataType = {
+    name: string
+    avatar: string
+}
+export type ChangeNameResponseType = {
+    updatedUser: AuthResponseType
+    error?: string
+}
+

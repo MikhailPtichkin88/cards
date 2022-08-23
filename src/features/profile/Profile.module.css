@@ -1,0 +1,125 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.packsLink {
+    position: relative;
+    align-self: flex-start;
+    padding-left: 32px;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 12px;
+}
+
+.packsLink::before {
+    position: absolute;
+    content: '';
+    left: 10px;
+    top: calc(50% - 5px);
+    width: 13px;
+    height: 9px;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='11' viewBox='0 0 16 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 5.5H2M2 5.5L6.66667 1M2 5.5L6.66667 10' stroke='black' stroke-width='2'/%3E%3C/svg%3E%0A");
+    background-position: center;
+    background-size: contain;
+}
+
+.profileWrapper {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    min-width: 410px;
+    box-sizing: border-box;
+    padding: 24px 15px 35px;
+}
+
+.title {
+    margin: 0;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    text-align: center;
+}
+
+.avatarBlock {
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.avatarImg {
+    display: inline-block;
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatarBtn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 32px;
+    height: 32px;
+    border: 1px solid white;
+    border-radius: 50%;
+    background-color: #808080;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='12' viewBox='0 0 16 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.00002 8.84441C9.3746 8.84441 10.4889 7.7301 10.4889 6.35552C10.4889 4.98095 9.3746 3.86663 8.00002 3.86663C6.62545 3.86663 5.51113 4.98095 5.51113 6.35552C5.51113 7.7301 6.62545 8.84441 8.00002 8.84441ZM8.00002 8.22219C9.03095 8.22219 9.86669 7.38646 9.86669 6.35552C9.86669 5.32459 9.03095 4.48886 8.00002 4.48886C6.96909 4.48886 6.13336 5.32459 6.13336 6.35552C6.13336 7.38646 6.96909 8.22219 8.00002 8.22219Z' fill='white'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10.9969 1.37775C10.2512 0.692332 9.56425 0.133301 7.97795 0.133301C6.39166 0.133301 5.70468 0.692332 4.95903 1.37775H2.40002C1.36909 1.37775 0.533356 2.21348 0.533356 3.24441V9.46663C0.533356 10.4976 1.36909 11.3333 2.40002 11.3333H13.6C14.631 11.3333 15.4667 10.4976 15.4667 9.46663V3.24441C15.4667 2.21348 14.631 1.37775 13.6 1.37775H10.9969ZM10.7535 1.99997L10.6882 1.93964C10.6261 1.8822 10.566 1.82659 10.5087 1.77441C10.2747 1.56109 10.0669 1.38384 9.84291 1.23658C9.42067 0.959018 8.89216 0.755523 7.97795 0.755523C7.06374 0.755523 6.53523 0.959018 6.113 1.23658C5.88898 1.38384 5.68124 1.56109 5.4472 1.77441C5.38984 1.82669 5.32994 1.88208 5.26768 1.93963L5.2024 1.99997H2.40002C1.71273 1.99997 1.15558 2.55712 1.15558 3.24441V9.46663C1.15558 10.1539 1.71273 10.7111 2.40002 10.7111H13.6C14.2873 10.7111 14.8445 10.1539 14.8445 9.46663V3.24441C14.8445 2.55712 14.2873 1.99997 13.6 1.99997H10.7535Z' fill='white'/%3E%3C/svg%3E%0A");
+    background-size: 15px 12px;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.nameBlock {
+    width: 160px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.email{
+    margin: 0;
+    margin-top: 15px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: rgba(0,0,0,0.5);
+}
+.LogoutBtn{
+    position: relative;
+    padding: 8px 20px 8px 45px;
+    background-color: #FCFCFC;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(109, 109, 109, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 16px;
+    line-height:20px;
+    color: rgba(0,0,0, 0.8);
+    transition: all  0.3s;
+}
+
+.LogoutBtn:hover{
+    box-shadow: 1px 1px 5px rgba(109, 109, 109, 0.25), inset 1px 2px 3px rgba(255, 255, 255, 0.3);
+}
+.LogoutBtn:active{
+    box-shadow: 0 1px 2px rgba(109, 109, 109, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+.LogoutBtn::after{
+    position: absolute;
+    content: '';
+    top: calc(50% - 8px);
+    left: 20px;
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.6267 9.74671L13.3333 8.04004L11.6267 6.33337' stroke='black' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M6.50665 8.04004H13.2867' stroke='black' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M7.83999 13.3333C4.89332 13.3333 2.50665 11.3333 2.50665 7.99996C2.50665 4.66663 4.89332 2.66663 7.83999 2.66663' stroke='black' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

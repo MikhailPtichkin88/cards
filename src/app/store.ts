@@ -33,3 +33,8 @@ export type ActionsType =
 export type RootState = ReturnType<typeof rootReducer>
 export type AppDispatch = ThunkDispatch<RootState, unknown, ActionsType>
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, ActionsType>
+
+
+
+//@ts-ignore
+window.store=store

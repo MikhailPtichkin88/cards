@@ -1,0 +1,98 @@
+.fieldOuter {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.fieldOuter:hover::after {
+    width: 100%;
+}
+
+.fieldOuter::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #000;
+    -webkit-transition: color 0.3s, width 0.3s;
+    -moz-transition: color 0.3s, width 0.3s;
+    -ms-transition: color 0.3s, width 0.3s;
+    -o-transition: color 0.3s, width 0.3s;
+    transition: color 0.3s, width 0.3s;
+}
+
+
+.label {
+    position: absolute;
+    left: 5px;
+    top: 23px;
+    font-size: 12px;
+    line-height: 15px;
+    transition: all 0.5s;
+    overflow: hidden;
+    color: #999;
+    white-space: nowrap;
+    z-index: 1;
+    opacity: 0;
+}
+
+.input {
+    position: relative;
+    display: block;
+    width: calc(100% - 5px);
+    outline-color: transparent;
+    color: #000;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 15px 0 6px 5px;
+    -webkit-transition: color 0.3s, border-color 0.3s;
+    -moz-transition: color 0.3s, border-color 0.3s;
+    -ms-transition: color 0.3s, border-color 0.3s;
+    -o-transition: color 0.3s, border-color 0.3s;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.input:focus + .label {
+    opacity: 1;
+    top: -5px;
+}
+
+.input:focus {
+    outline: none;
+    border-bottom: 2px solid #5096F1;
+}
+
+.input::placeholder {
+    color: #A1A1A1;
+    transition: all 0.4s;
+}
+
+.input:focus.input::placeholder {
+    opacity: 0;
+}
+
+.input:hover::after {
+    width: 100%
+}
+
+.input:active,
+.input:focus {
+    box-shadow: initial;
+}
+
+.saveBtn {
+    position: absolute;
+    left: 105%;
+    top: 30%;
+}
+
+.errorInput {
+    border: 2px solid #DA100B;
+    box-shadow: 0 2px 4px rgba(218, 16, 11, 0.18), 0 4px 8px rgba(218, 16, 11, 0.18);
+}
+
+.error {
+    color: #DA100B;
+}
