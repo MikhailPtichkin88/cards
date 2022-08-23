@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Routes} from 'react-router-dom';
+import {Navigate, Route, Routes} from 'react-router-dom';
 import {Profile} from '../features/profile/Profile';
 import {Login} from '../features/login/Login';
 import {NewPassword} from '../features/new-password/NewPassword';
@@ -14,8 +14,9 @@ export const WhichRouting = () => {
             <Route path="/new-project" element={<Profile/>}/>
             <Route path="/profile" element={<Profile/>}/>
             <Route path="/login" element={<Login/>}/>
+            <Route path="/" element={<Navigate to={"/profile"}/>}/>
             <Route path="/new-password" element={<NewPassword/>}/>
-            <Route path="/password-recovery" element={<PasswordRecovery/>}/>
+            <Route path="/password-recovery/:token" element={<PasswordRecovery/>}/>
             <Route path="/registration" element={<Registration/>}/>
             <Route path="*" element={<Page404/>}/>
             <Route path="/test" element={<TestComponent/>}/>

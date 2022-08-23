@@ -1,0 +1,57 @@
+
+.formWrapper {
+    max-width: 410px;
+    padding: 40px 30px;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+
+.formBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 550px;
+}
+
+.formTitle {
+    font-size: 26px;
+    line-height: 32px;
+    margin: 0;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.forgotPassBlock {
+    text-align: right;
+    margin-bottom: 60px;
+}
+
+.forgotPassLink {
+    text-decoration: none;
+    color: #000;
+}
+
+.checkbox {
+    margin: 20px 0;
+}
+
+.btn {
+    border-radius: 30px;
+}
+
+.footer {
+    text-align: center;
+}
+
+.footerLabel {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.footerLink {
+    font-size: 16px;
+    line-height: 24px;
+    color: #366EFF;
+}

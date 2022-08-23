@@ -1,9 +1,15 @@
 .App {
-    margin: 0 auto;
-    max-width: 80%;
+    background-color: #F9F9FA;
+    height: 100vh;
 }
 
 .navlink a {
     margin-right: 20px;
 }
+.container {
+    margin: 0 auto;
+    max-width: 80%;
+    padding: 0 15px;
+}
+
 
