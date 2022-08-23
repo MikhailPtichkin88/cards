@@ -3,21 +3,22 @@ import styles from './UserInfo.module.css'
 import avatarSvg from '../../../../assets/images/avatar.svg'
 import {Button} from "@mui/material";
 import {NavLink, useNavigate} from "react-router-dom";
-import {useAppDispatch} from "../../../../app/store";
+
 import {logoutTC} from "../../../../features/auth/auth-reducer";
+import {useAppDispatch} from '../../../hooks/useAppDispatch';
 
 type UserInfoPropsType = {
-    name:string
-    avatar?:string
+    name: string
+    avatar?: string
 }
 
-export const UserInfo = (props:UserInfoPropsType) => {
+export const UserInfo = (props: UserInfoPropsType) => {
 
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-    const onClickHandler =  () => {
+    const onClickHandler = () => {
         dispatch(logoutTC())
-        navigate("/login", {replace:true})
+        navigate("/login", {replace: true})
     }
 
     const avatar = props.avatar ? props.avatar : avatarSvg

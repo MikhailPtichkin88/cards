@@ -1,22 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
 import './App.css';
-import {WhichRouting} from '../common/WhichRouting';
+
+import {useAppSelector} from '../common/hooks/useAppSelector';
+import {useAppDispatch} from '../common/hooks/useAppDispatch';
+import {initializeAppTC} from '../features/auth/auth-reducer';
+import {LinearProgress} from '@mui/material';
+import {WhichRouting} from '../components/WhichRouting';
+
 
 function App() {
 
-    const status = useSelector<RootState, RequestStatusType>(state=>state.app.status)
+    const status = useAppSelector(state => state.app.status)
     const dispatch = useAppDispatch()
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(initializeAppTC())
-    },[])
+    }, [])
 
     return (
         <div className="App">
-            <ErrorSnackbar/>
-            <AppBar/>
-            {status==="loading" && <LinearProgress />}
+            {/*<ErrorSnackbar/>*/}
+            {/*<AppBar/>*/}
+            {status === 'loading' && <LinearProgress/>}
             <div className="container">
                 <div className={'navlink'}>
                     <NavLink to={'/profile'}>Profile</NavLink>
@@ -33,4 +39,4 @@ function App() {
     );
 }
 
-export default App;
+export default App

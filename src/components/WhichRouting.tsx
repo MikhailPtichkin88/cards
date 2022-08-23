@@ -1,12 +1,13 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
-import {Profile} from '../pages/profile/Profile';
-import {Login} from '../pages/login/Login';
-import {NewPassword} from '../pages/newPassword/NewPassword';
-import {PasswordRecovery} from '../pages/passwordRecovery/PasswordRecovery';
+import {Page404} from '../features/404/Page404';
+import {Login} from '../features/login/Login';
+import {NewPassword} from '../features/new-password/NewPassword';
+import {PasswordRecovery} from '../features/password-recovery/PasswordRecovery';
+import {Profile} from '../features/profile/Profile';
+import {TestComponent} from '../features/TestComponent';
 import {SignUp} from '../pages/SignUp/SignUp';
-import {Page404} from '../pages/404/Page404';
-import {TestComponent} from '../pages/TestComponent';
+
 
 export const WhichRouting = () => {
     return (
@@ -14,7 +15,7 @@ export const WhichRouting = () => {
             <Route path="/new-project" element={<Profile/>}/>
             <Route path="/profile" element={<Profile/>}/>
             <Route path="/login" element={<Login/>}/>
-            <Route path="/new-password" element={<NewPassword/>}/>
+            <Route path="/set-new-password/:token" element={<NewPassword/>}/>
             <Route path="/password-recovery" element={<PasswordRecovery/>}/>
             <Route path="/signup" element={<SignUp/>}/>
             <Route path="*" element={<Page404/>}/>

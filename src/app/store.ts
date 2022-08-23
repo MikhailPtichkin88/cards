@@ -4,20 +4,14 @@ import {
     ActionPasswordRecoveryType,
     PasswordRecoveryReducer
 } from '../features/password-recovery/password-recovery-reducer';
-import {applyMiddleware, combineReducers, compose, legacy_createStore} from "redux";
-import {profileReducer} from "../redux/profileReducer";
-import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
-import {SignUpActionsType, signUpReducer} from "../pages/SignUp/signUp-reducer";
-import {useDispatch} from "react-redux";
-import {AuthActionsType, authReducer} from "../features/auth/auth-reducer";
-import {AppActionsType, appReducer} from "./app-reducer";
-
+import {AppActionsType, appReducer} from './app-reducer';
+import {SignUpActionsType, signUpReducer} from '../pages/SignUp/signUp-reducer';
+import {AuthActionsType, authReducer} from '../features/auth/auth-reducer';
 
 const rootReducer = combineReducers({
-    // profile:profileReducer
     signUp: signUpReducer,
-    app:appReducer,
-    auth:authReducer,
+    app: appReducer,
+    auth: authReducer,
     passwordRecovery: PasswordRecoveryReducer,
 })
 
@@ -34,9 +28,7 @@ export type ActionsType =
     AppActionsType
     | SignUpActionsType
     | AuthActionsType
-|ActionPasswordRecoveryType
-
-export  type AppActionType = AuthActionsType | AppActionsType
+    | ActionPasswordRecoveryType
 
 export type RootState = ReturnType<typeof rootReducer>
 export type AppDispatch = ThunkDispatch<RootState, unknown, ActionsType>

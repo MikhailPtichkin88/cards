@@ -1,12 +1,12 @@
 import React from 'react';
-import {Button, Checkbox, FormControlLabel, FormLabel, Paper, TextField} from "@mui/material";
-import {useFormik} from "formik";
-import styles from "./Login.module.css";
-import {Navigate, NavLink, useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {LoginTC} from "../auth/auth-reducer";
-import {RootState, useAppDispatch} from "../../app/store";
-import {LoginPostDataType} from "../auth/auth-api";
+import {Button, Checkbox, FormControlLabel, FormLabel, Paper, TextField} from '@mui/material';
+import {useFormik} from 'formik';
+import styles from './Login.module.css';
+import {Navigate, NavLink} from 'react-router-dom';
+import {LoginTC} from '../auth/auth-reducer';
+import {LoginPostDataType} from '../auth/auth-api';
+import {useAppSelector} from '../../common/hooks/useAppSelector';
+import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 
 export const Login = () => {
     type FormikErrorType = {
@@ -14,9 +14,8 @@ export const Login = () => {
         password?: string
         rememberMe?: boolean
     }
-    const isAuth = useSelector<RootState, boolean>(state => state.auth.isAuth)
+    const isAuth = useAppSelector(state => state.auth.isAuth)
     const dispatch = useAppDispatch()
-    let navigate = useNavigate()
 
     const formik = useFormik({
         initialValues: {
@@ -31,9 +30,9 @@ export const Login = () => {
                 errors.email = 'Invalid email address'
             }
             if (!values.password) {
-                errors.password = "Empty field"
+                errors.password = 'Empty field'
             } else if (values.password.length < 5) {
-                errors.password = "Password is too short"
+                errors.password = 'Password is too short'
             }
             return errors
         },
@@ -63,7 +62,7 @@ export const Login = () => {
                            error={formik.touched.email && !!formik.errors.email}
                            helperText={formik.touched.email && formik.errors.email}
                            className={styles.formInput}
-                           margin={"normal"}
+                           margin={'normal'}
                 />
                 <TextField type="password" label="Password"
                            variant="standard"
@@ -72,7 +71,7 @@ export const Login = () => {
                            helperText={formik.touched.password && formik.errors.password}
                            onBlur={formik.handleBlur}
                            className={styles.formInput}
-                           margin={"normal"}
+                           margin={'normal'}
                 />
                 <FormControlLabel label={'Remember me'}
                                   className={styles.checkbox}
@@ -81,19 +80,19 @@ export const Login = () => {
                                       {...formik.getFieldProps('rememberMe')}
                                   />}/>
                 <FormLabel className={styles.forgotPassBlock}>
-                    <NavLink to={"/password-recovery"} className={styles.forgotPassLink}>Forgot password?</NavLink>
+                    <NavLink to={'/password-recovery'} className={styles.forgotPassLink}>Forgot password?</NavLink>
                 </FormLabel>
 
                 <Button type={'submit'}
                         variant={'contained'}
                         color={'primary'}
                         className={styles.btn}
-                disabled={!!formik.errors.email || !!formik.errors.password}>
+                        disabled={!!formik.errors.email || !!formik.errors.password}>
                     Login
                 </Button>
                 <FormLabel className={styles.footer}>
                     <p className={styles.footerLabel}>Already have an account?</p>
-                    <NavLink to={"/registration"} className={styles.footerLink}>Sign Up</NavLink>
+                    <NavLink to={'/registration'} className={styles.footerLink}>Sign Up</NavLink>
                 </FormLabel>
             </form>
         </Paper>
