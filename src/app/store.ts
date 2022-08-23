@@ -1,3 +1,9 @@
+import {applyMiddleware, combineReducers, compose, legacy_createStore} from 'redux'
+import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk'
+import {
+    ActionPasswordRecoveryType,
+    PasswordRecoveryReducer
+} from '../features/password-recovery/password-recovery-reducer';
 import {applyMiddleware, combineReducers, compose, legacy_createStore} from "redux";
 import {profileReducer} from "../redux/profileReducer";
 import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
@@ -12,6 +18,7 @@ const rootReducer = combineReducers({
     signUp: signUpReducer,
     app:appReducer,
     auth:authReducer,
+    passwordRecovery: PasswordRecoveryReducer,
 })
 
 declare global {
@@ -27,6 +34,7 @@ export type ActionsType =
     AppActionsType
     | SignUpActionsType
     | AuthActionsType
+|ActionPasswordRecoveryType
 
 export  type AppActionType = AuthActionsType | AppActionsType
 
