@@ -2,15 +2,12 @@ import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import {NavLink} from 'react-router-dom';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions'
-import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead';
 import {useAppSelector} from '../../common/hooks/useDispatchAndSelector';
+import icon from '../../assets/img/check-email.png'
 
-export const CheckEmail = () => {
+export const CheckEmail = (props: CheckEmailType) => {
     const email = useAppSelector(state => state.passwordRecovery.email)
 
     return (
@@ -19,17 +16,23 @@ export const CheckEmail = () => {
                 <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
                     Check Email
                 </Typography>
-
+                <img src={icon}/>
                 <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
                     {` We’ve sent an Email with instructions to ${email}`}
                 </Typography>
             </CardContent>
             <CardActions>
-                <NavLink to={'/login'}>
-                    <Button size="small">Back to login</Button>
-                </NavLink>
+                <Button size="small"
+                        onClick={props.onClickBackToLogin}
+                >
+                    Back to login
+                </Button>
             </CardActions>
         </Card>
     );
 };
+//type
+type CheckEmailType = {
+    onClickBackToLogin?: () => void
+}
 
