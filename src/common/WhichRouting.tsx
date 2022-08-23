@@ -12,7 +12,7 @@ import {CheckEmail} from '../features/password-recovery/CheckEmail';
 export const WhichRouting = () => {
     return (
         <Routes>
-            <Route path="/new-project" element={<Profile/>}/>
+            <Route index element={<Profile/>}/>
             <Route path="/profile" element={<Profile/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/password-recovery" element={<PasswordRecovery/>}/>
