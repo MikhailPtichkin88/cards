@@ -1,18 +1,18 @@
-import {signUpTC} from "./signUp-reducer";
-import {useAppDispatch} from "../../../common/hooks/useAppDispatch";
-import {useAppSelector} from "../../../common/hooks/useAppSelector";
-import {useFormik} from "formik";
-import Grid from "@mui/material/Grid/Grid";
-import FormControl from "@mui/material/FormControl/FormControl";
-import FormGroup from "@mui/material/FormGroup/FormGroup";
-import TextField from "@mui/material/TextField/TextField";
-import Button from "@mui/material/Button/Button";
-import Paper from "@mui/material/Paper/Paper";
-import {useCallback, useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {Title} from "./Title/Title";
-import {InputEyeSwitcher} from "./TextField/InputEyeSwitcher";
-import {ErrorSnackbar} from "../../../common/components/errorSnackbar/ErrorSnackbar";
+import {signUpTC} from './signUp-reducer';
+import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
+import {useAppSelector} from '../../../common/hooks/useAppSelector';
+import {useFormik} from 'formik';
+import Grid from '@mui/material/Grid/Grid';
+import FormControl from '@mui/material/FormControl/FormControl';
+import FormGroup from '@mui/material/FormGroup/FormGroup';
+import TextField from '@mui/material/TextField/TextField';
+import Button from '@mui/material/Button/Button';
+import Paper from '@mui/material/Paper/Paper';
+import {useCallback, useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {Title} from './Title/Title';
+import {InputEyeSwitcher} from './TextField/InputEyeSwitcher';
+import {ErrorSnackbar} from '../../../common/components/errorSnackbar/ErrorSnackbar';
 
 type FormikErrorType = {
     email?: string
@@ -47,10 +47,10 @@ export const SignUp = () => {
             if (!values.password) {
                 errors.password = 'Required';
             } else if (formik.values.password.length < 7) {
-                errors.password = "must be more than 7 characters"
+                errors.password = 'must be more than 7 characters'
             }
             if (values.confirmPass !== values.password) {
-                errors.confirmPass = "Passwords don't match"
+                errors.confirmPass = 'Passwords don\'t match'
             }
             return errors;
         },
@@ -60,8 +60,8 @@ export const SignUp = () => {
         },
     })
     const paperStyle = {padding: '30px 20px', width: 330, margin: '20px auto'}
-    const typographyText = isRegistered ? "Registration successful!" : "Please fill this form to create an account"
-    const isLoading = status === "loading"
+    const typographyText = isRegistered ? 'Registration successful!' : 'Please fill this form to create an account'
+    const isLoading = status === 'loading'
     const inputEyeSwitcher = useCallback(() => setVisible(!visible), [visible])
 
     useEffect(() => {
@@ -76,9 +76,9 @@ export const SignUp = () => {
 
     }, [isRegistered])
     return <Paper elevation={20} style={paperStyle}>
-        <Grid container direction={"column"} justifyContent={'center'} alignItems={"center"}>
+        <Grid container direction={'column'} justifyContent={'center'} alignItems={'center'}>
 
-            <Title typographyText={typographyText} isRegistered={isRegistered}/>
+            <Title typographyText={typographyText} isRegistered={isRegistered} headerText={'SIGN UP'}/>
 
             {isRegistered ? <h3>You will be redirected to login page</h3> : <form onSubmit={formik.handleSubmit}>
                 <FormControl>
@@ -92,13 +92,13 @@ export const SignUp = () => {
                             label="Email"
                             variant="outlined"
                             margin="normal"
-                            {...formik.getFieldProps("email")}
+                            {...formik.getFieldProps('email')}
                         />
                         <TextField
                             error={formik.touched.password && !!formik.errors.password}
-                            helperText={formik.touched.password && !!formik.errors.password&&formik.errors.password}
+                            helperText={formik.touched.password && !!formik.errors.password && formik.errors.password}
                             disabled={isLoading}
-                            type={visible ? "text" : "password"}
+                            type={visible ? 'text' : 'password'}
                             variant="outlined"
                             label="Password"
                             margin="normal"
@@ -107,13 +107,13 @@ export const SignUp = () => {
                                     <InputEyeSwitcher visible={visible} callback={inputEyeSwitcher}/>
                                 ),
                             }}
-                            {...formik.getFieldProps("password")}
+                            {...formik.getFieldProps('password')}
                         />
                         <TextField
                             error={formik.touched.confirmPass && !!formik.errors.confirmPass}
-                            helperText={formik.touched.confirmPass && !!formik.errors.confirmPass&&formik.errors.confirmPass}
+                            helperText={formik.touched.confirmPass && !!formik.errors.confirmPass && formik.errors.confirmPass}
                             disabled={isLoading}
-                            type={visible ? "text" : "password"}
+                            type={visible ? 'text' : 'password'}
                             variant="outlined"
                             label="Confirm password"
                             margin="normal"
@@ -122,7 +122,7 @@ export const SignUp = () => {
                                     <InputEyeSwitcher visible={visible} callback={inputEyeSwitcher}/>
                                 ),
                             }}
-                            {...formik.getFieldProps("confirmPass")}
+                            {...formik.getFieldProps('confirmPass')}
                         />
                         <Grid container
                               direction="row"
@@ -138,7 +138,7 @@ export const SignUp = () => {
                                     type={'submit'}
                                     variant={'contained'}
                                     color={'primary'}>
-                                {isLoading ? "WAIT" : "SIGN UP"}
+                                {isLoading ? 'WAIT' : 'SIGN UP'}
                             </Button>
                         </Grid>
                     </FormGroup>
@@ -146,7 +146,7 @@ export const SignUp = () => {
                 </FormControl>
             </form>}
         </Grid>
-        <ErrorSnackbar />
+        <ErrorSnackbar/>
     </Paper>
 
 
