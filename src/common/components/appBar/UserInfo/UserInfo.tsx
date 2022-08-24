@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './UserInfo.module.css'
-import avatarSvg from '../../../../assets/images/avatar.svg'
+import avatar from '../../../../assets/images/profileAvatar.jpg'
 import {Button} from "@mui/material";
 import {NavLink, useNavigate} from "react-router-dom";
 
@@ -21,12 +21,12 @@ export const UserInfo = (props: UserInfoPropsType) => {
         navigate("/login", {replace: true})
     }
 
-    const avatar = props.avatar ? props.avatar : avatarSvg
+    const avatarImg = props.avatar ? props.avatar : avatar
 
     return (
         <div className={styles.wrapper}>
             <NavLink to={"/profile"} className={styles.userName}>{props.name}</NavLink>
-            <img className={styles.avatarImg} src={avatar} alt="avatar"/>
+            <img className={styles.avatarImg} src={avatarImg} alt="avatar"/>
             <Button size="small" variant="contained" onClick={onClickHandler}>Log Out</Button>
         </div>
     );

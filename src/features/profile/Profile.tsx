@@ -24,7 +24,6 @@ export const Profile = () => {
         dispatch(changeNameTC(name))
     }
 
-
     if (!isAuth) {
         return <Login/>
     }

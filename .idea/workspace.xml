@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="266bf70a-1116-4ae5-b8bb-059533bdb4f4" name="Changes" comment="Login">
-      <change afterPath="$PROJECT_DIR$/src/assets/images/pen.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/profileAvatar.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/components/editableSpan/EditableSpan.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/components/editableSpan/EditableSpan.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/components/input/CustomInput.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/components/input/CustomInput.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/profile/Profile.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/auth-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/auth-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/auth-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/auth-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/appBar/UserInfo/UserInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/appBar/UserInfo/UserInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/login/Login.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,22 +37,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/projects/cards/src/common/components",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "ts.external.directory.path": "E:\\projects\\cards\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/projects/cards/src/common/components&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;E:\\projects\\cards\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\projects\cards\src\common\components" />
@@ -83,7 +76,8 @@
       <option name="presentableId" value="Default" />
       <updated>1661175753599</updated>
       <workItem from="1661175756347" duration="17833000" />
-      <workItem from="1661229607343" duration="20891000" />
+      <workItem from="1661229607343" duration="21238000" />
+      <workItem from="1661338038861" duration="296000" />
     </task>
     <task id="LOCAL-00001" summary="Login">
       <created>1661242909801</created>
@@ -110,6 +104,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Login" />
     <option name="LAST_COMMIT_MESSAGE" value="Login" />
   </component>

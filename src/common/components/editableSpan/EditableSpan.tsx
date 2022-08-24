@@ -1,7 +1,7 @@
 import React, {DetailedHTMLProps, InputHTMLAttributes, HTMLAttributes, useState, ChangeEvent} from 'react'
 
 import styles from './EditableSpan.module.css'
-import {CustomInput} from "../input/CustomInput";
+import {CustomInput} from "../customInput/CustomInput";
 
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>

@@ -7,6 +7,7 @@ import {LoginTC} from '../auth-reducer';
 import {LoginPostDataType} from '../auth-api';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
+import {routePath} from "../../../common/constants/routePath";
 
 export const Login = () => {
     type FormikErrorType = {
@@ -92,7 +93,7 @@ export const Login = () => {
                 </Button>
                 <FormLabel className={styles.footer}>
                     <p className={styles.footerLabel}>Already have an account?</p>
-                    <NavLink to={'/registration'} className={styles.footerLink}>Sign Up</NavLink>
+                    <NavLink to={routePath.auth.signUp} className={styles.footerLink}>Sign Up</NavLink>
                 </FormLabel>
             </form>
         </Paper>
