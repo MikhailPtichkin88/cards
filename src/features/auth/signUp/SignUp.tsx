@@ -9,10 +9,11 @@ import TextField from "@mui/material/TextField/TextField";
 import Button from "@mui/material/Button/Button";
 import Paper from "@mui/material/Paper/Paper";
 import {useCallback, useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import {Title} from "./Title/Title";
 import {InputEyeSwitcher} from "./TextField/InputEyeSwitcher";
 import {ErrorSnackbar} from "../../../common/components/errorSnackbar/ErrorSnackbar";
+import {routePath} from "../../../common/constants/routePath";
 
 type FormikErrorType = {
     email?: string
@@ -23,6 +24,7 @@ type FormikErrorType = {
 export const SignUp = () => {
     const dispatch = useAppDispatch()
     const status = useAppSelector(state => state.app.status)
+    const isAuth = useAppSelector(state => state.auth.isAuth)
     const isRegistered = useAppSelector(state => state.signUp.isSignUp)
     const [visible, setVisible] = useState(false)
     let navigate = useNavigate();
@@ -75,6 +77,9 @@ export const SignUp = () => {
         }
 
     }, [isRegistered])
+    if (isAuth) {
+        return <Navigate to={routePath.profile.main}/>
+    }
     return <Paper elevation={20} style={paperStyle}>
         <Grid container direction={"column"} justifyContent={'center'} alignItems={"center"}>
 
@@ -96,7 +101,7 @@ export const SignUp = () => {
                         />
                         <TextField
                             error={formik.touched.password && !!formik.errors.password}
-                            helperText={formik.touched.password && !!formik.errors.password&&formik.errors.password}
+                            helperText={formik.touched.password && !!formik.errors.password && formik.errors.password}
                             disabled={isLoading}
                             type={visible ? "text" : "password"}
                             variant="outlined"
@@ -111,7 +116,7 @@ export const SignUp = () => {
                         />
                         <TextField
                             error={formik.touched.confirmPass && !!formik.errors.confirmPass}
-                            helperText={formik.touched.confirmPass && !!formik.errors.confirmPass&&formik.errors.confirmPass}
+                            helperText={formik.touched.confirmPass && !!formik.errors.confirmPass && formik.errors.confirmPass}
                             disabled={isLoading}
                             type={visible ? "text" : "password"}
                             variant="outlined"
@@ -146,7 +151,7 @@ export const SignUp = () => {
                 </FormControl>
             </form>}
         </Grid>
-        <ErrorSnackbar />
+        <ErrorSnackbar/>
     </Paper>
 
 

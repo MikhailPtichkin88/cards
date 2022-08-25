@@ -2,6 +2,7 @@ import {signUpApi, SignUpDataType, SignUpErrorType} from "./signUp-api";
 import axios, {AxiosError} from "axios";
 import {AppThunk} from "../../../app/store";
 import {setAppErrorAC, setAppStatusAC} from "../../../app/app-reducer";
+import {handleServerNetworkError} from "../../../common/utils/error-utils";
 
 //---Reducer---
 const initState = {
@@ -29,16 +30,11 @@ export const signUpTC = (data: SignUpDataType): AppThunk => async (dispatch) => 
 
     dispatch(setAppStatusAC("loading"))
     try {
-        const response = await signUpApi.signUp(data)
+        await signUpApi.signUp(data)
         dispatch(setIsSignUpAC(true))
     } catch (e) {
-        const err = e as Error | AxiosError
-        if (axios.isAxiosError(err)) {
-            const error = err.response?.data ? (err.response.data as SignUpErrorType).error : err.message
-            dispatch(setAppErrorAC(error))
-        } else {
-            dispatch(setAppErrorAC(`Native error ${err.message}`))
-        }
+        const err = e as Error | AxiosError<{ error: string }>
+        handleServerNetworkError(err,dispatch)
     } finally {
         setAppStatusAC("succeeded")
     }
