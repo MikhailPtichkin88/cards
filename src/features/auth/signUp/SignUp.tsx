@@ -81,9 +81,9 @@ export const SignUp = () => {
         return <Navigate to={routePath.profile.main}/>
     }
     return <Paper elevation={20} style={paperStyle}>
-        <Grid container direction={"column"} justifyContent={'center'} alignItems={"center"}>
+        <Grid container direction={'column'} justifyContent={'center'} alignItems={'center'}>
 
-            <Title typographyText={typographyText} isRegistered={isRegistered}/>
+            <Title typographyText={typographyText} isRegistered={isRegistered} headerText={'SIGN UP'}/>
 
             {isRegistered ? <h3>You will be redirected to login page</h3> : <form onSubmit={formik.handleSubmit}>
                 <FormControl>
@@ -101,7 +101,7 @@ export const SignUp = () => {
                         />
                         <TextField
                             error={formik.touched.password && !!formik.errors.password}
-                            helperText={formik.touched.password && !!formik.errors.password && formik.errors.password}
+                            helperText={formik.touched.password && !!formik.errors.password&&formik.errors.password}
                             disabled={isLoading}
                             type={visible ? "text" : "password"}
                             variant="outlined"
@@ -116,7 +116,7 @@ export const SignUp = () => {
                         />
                         <TextField
                             error={formik.touched.confirmPass && !!formik.errors.confirmPass}
-                            helperText={formik.touched.confirmPass && !!formik.errors.confirmPass && formik.errors.confirmPass}
+                            helperText={formik.touched.confirmPass && !!formik.errors.confirmPass&&formik.errors.confirmPass}
                             disabled={isLoading}
                             type={visible ? "text" : "password"}
                             variant="outlined"
@@ -151,7 +151,7 @@ export const SignUp = () => {
                 </FormControl>
             </form>}
         </Grid>
-        <ErrorSnackbar/>
+        <ErrorSnackbar />
     </Paper>
 
 
