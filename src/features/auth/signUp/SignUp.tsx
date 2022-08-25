@@ -1,19 +1,23 @@
-import {signUpTC} from "./signUp-reducer";
-import {useAppDispatch} from "../../../common/hooks/useAppDispatch";
-import {useAppSelector} from "../../../common/hooks/useAppSelector";
-import {useFormik} from "formik";
-import Grid from "@mui/material/Grid/Grid";
-import FormControl from "@mui/material/FormControl/FormControl";
-import FormGroup from "@mui/material/FormGroup/FormGroup";
-import TextField from "@mui/material/TextField/TextField";
-import Button from "@mui/material/Button/Button";
-import Paper from "@mui/material/Paper/Paper";
-import {useCallback, useEffect, useState} from "react";
-import {Navigate, useNavigate} from "react-router-dom";
-import {Title} from "./Title/Title";
-import {InputEyeSwitcher} from "./TextField/InputEyeSwitcher";
-import {ErrorSnackbar} from "../../../common/components/errorSnackbar/ErrorSnackbar";
-import {routePath} from "../../../common/constants/routePath";
+import {signUpTC} from './signUp-reducer';
+import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
+import {useAppSelector} from '../../../common/hooks/useAppSelector';
+import {useFormik} from 'formik';
+import Grid from '@mui/material/Grid/Grid';
+import FormControl from '@mui/material/FormControl/FormControl';
+import FormGroup from '@mui/material/FormGroup/FormGroup';
+import TextField from '@mui/material/TextField/TextField';
+import Button from '@mui/material/Button/Button';
+import Paper from '@mui/material/Paper/Paper';
+import React, {useCallback, useEffect, useState} from 'react';
+import {Navigate, useNavigate} from 'react-router-dom';
+import {Title} from './Title/Title';
+import {InputEyeSwitcher} from './TextField/InputEyeSwitcher';
+import {ErrorSnackbar} from '../../../common/components/errorSnackbar/ErrorSnackbar';
+import {routePath} from '../../../common/constants/routePath';
+import commonStyle from '../../../common/style/style.module.css';
+import Typography from '@mui/material/Typography';
+import {Box} from '@mui/material';
+import {setStatusSendingPassword} from '../password-recovery/password-recovery-reducer';
 
 type FormikErrorType = {
     email?: string
@@ -49,10 +53,10 @@ export const SignUp = () => {
             if (!values.password) {
                 errors.password = 'Required';
             } else if (formik.values.password.length < 7) {
-                errors.password = "must be more than 7 characters"
+                errors.password = 'must be more than 7 characters'
             }
             if (values.confirmPass !== values.password) {
-                errors.confirmPass = "Passwords don't match"
+                errors.confirmPass = 'Passwords don\'t match'
             }
             return errors;
         },
@@ -61,9 +65,8 @@ export const SignUp = () => {
             dispatch(signUpTC(signUpData))
         },
     })
-    const paperStyle = {padding: '30px 20px', width: 330, margin: '20px auto'}
-    const typographyText = isRegistered ? "Registration successful!" : "Please fill this form to create an account"
-    const isLoading = status === "loading"
+    const typographyText = isRegistered ? 'Registration successful!' : 'Please fill this form to create an account'
+    const isLoading = status === 'loading'
     const inputEyeSwitcher = useCallback(() => setVisible(!visible), [visible])
 
     useEffect(() => {
@@ -77,81 +80,85 @@ export const SignUp = () => {
         }
 
     }, [isRegistered])
+
+    const onClickBackToLogin = useCallback(() => {
+        dispatch(setStatusSendingPassword('idle'))
+        navigate('/login')
+    }, [])
+
     if (isAuth) {
         return <Navigate to={routePath.profile.main}/>
     }
-    return <Paper elevation={20} style={paperStyle}>
+    return <Paper elevation={20} className={commonStyle.paperStyle}>
         <Grid container direction={'column'} justifyContent={'center'} alignItems={'center'}>
-
             <Title typographyText={typographyText} isRegistered={isRegistered} headerText={'SIGN UP'}/>
+            {isRegistered
+                ? <h3>You will be redirected to login page</h3>
+                : <form onSubmit={formik.handleSubmit}>
+                    <FormControl>
+                        <FormGroup style={{width: '350px'}}>
+                            <TextField
+                                error={formik.errors.email !== undefined}
+                                helperText={formik.errors.email}
+                                disabled={isLoading}
+                                label="Email"
+                                variant="standard"
+                                margin="normal"
+                                {...formik.getFieldProps('email')}
+                            />
+                            <TextField
+                                error={formik.touched.password && !!formik.errors.password}
+                                helperText={formik.touched.password && !!formik.errors.password && formik.errors.password}
+                                disabled={isLoading}
+                                type={visible ? 'text' : 'password'}
+                                variant="standard"
+                                label="Password"
+                                margin="normal"
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputEyeSwitcher visible={visible} callback={inputEyeSwitcher}/>
+                                    ),
+                                }}
+                                {...formik.getFieldProps('password')}
+                            />
+                            <TextField
+                                error={formik.touched.confirmPass && !!formik.errors.confirmPass}
+                                helperText={formik.touched.confirmPass && !!formik.errors.confirmPass && formik.errors.confirmPass}
+                                disabled={isLoading}
+                                type={visible ? 'text' : 'password'}
+                                variant="standard"
+                                label="Confirm password"
+                                margin="normal"
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputEyeSwitcher visible={visible} callback={inputEyeSwitcher}/>
+                                    ),
+                                }}
+                                {...formik.getFieldProps('confirmPass')}
+                            />
 
-            {isRegistered ? <h3>You will be redirected to login page</h3> : <form onSubmit={formik.handleSubmit}>
-                <FormControl>
-
-                    <FormGroup>
-
-                        <TextField
-                            error={formik.errors.email !== undefined}
-                            helperText={formik.errors.email}
-                            disabled={isLoading}
-                            label="Email"
-                            variant="outlined"
-                            margin="normal"
-                            {...formik.getFieldProps("email")}
-                        />
-                        <TextField
-                            error={formik.touched.password && !!formik.errors.password}
-                            helperText={formik.touched.password && !!formik.errors.password&&formik.errors.password}
-                            disabled={isLoading}
-                            type={visible ? "text" : "password"}
-                            variant="outlined"
-                            label="Password"
-                            margin="normal"
-                            InputProps={{
-                                endAdornment: (
-                                    <InputEyeSwitcher visible={visible} callback={inputEyeSwitcher}/>
-                                ),
-                            }}
-                            {...formik.getFieldProps("password")}
-                        />
-                        <TextField
-                            error={formik.touched.confirmPass && !!formik.errors.confirmPass}
-                            helperText={formik.touched.confirmPass && !!formik.errors.confirmPass&&formik.errors.confirmPass}
-                            disabled={isLoading}
-                            type={visible ? "text" : "password"}
-                            variant="outlined"
-                            label="Confirm password"
-                            margin="normal"
-                            InputProps={{
-                                endAdornment: (
-                                    <InputEyeSwitcher visible={visible} callback={inputEyeSwitcher}/>
-                                ),
-                            }}
-                            {...formik.getFieldProps("confirmPass")}
-                        />
-                        <Grid container
-                              direction="row"
-                              justifyContent="space-between"
-                              alignItems="center">
                             <Button disabled={isLoading}
-                                    onClick={routeChange}
-                                    variant={'contained'}
-                                    color={'primary'}>
-                                Cancel
-                            </Button>
-                            <Button disabled={isLoading}
+                                    className={commonStyle.btnStyle}
                                     type={'submit'}
                                     variant={'contained'}
                                     color={'primary'}>
-                                {isLoading ? "WAIT" : "SIGN UP"}
+                                {isLoading ? 'WAIT' : 'SIGN UP'}
                             </Button>
-                        </Grid>
-                    </FormGroup>
+                        </FormGroup>
+                    </FormControl>
+                </form>}
+            <Typography sx={{fontSize: 14, mt: 4, mb: 2}} color="text.secondary" gutterBottom>
+                Already have an account?
+            </Typography>
 
-                </FormControl>
-            </form>}
+            <Button size="small"
+                    onClick={onClickBackToLogin}
+            ><Box sx={{borderBottom: 2, lineHeight: 1}}>
+                Sign In
+            </Box>
+            </Button>
         </Grid>
-        <ErrorSnackbar />
+        <ErrorSnackbar/>
     </Paper>
 
 

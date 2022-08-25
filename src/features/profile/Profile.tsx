@@ -8,6 +8,7 @@ import {EditableSpan} from "../../common/components/editableSpan/EditableSpan";
 import {useAppDispatch} from "../../common/hooks/useAppDispatch";
 import {changeNameTC, logoutTC} from "../auth/auth-reducer";
 import {Login} from "../auth/login/Login";
+import commonStyle from '../../common/style/style.module.css';
 
 export const Profile = () => {
 
@@ -29,17 +30,19 @@ export const Profile = () => {
     }
     return <div className={styles.wrapper}>
         <NavLink className={styles.packsLink} to={"/packs-list"}>Back to Packs List</NavLink>
-        <Paper className={styles.profileWrapper}>
-            <h3 className={styles.title}>Personal Information</h3>
-            <div className={styles.avatarBlock}>
-                <img className={styles.avatarImg} src={avatarImg} alt="avatar"/>
-                <button className={styles.avatarBtn}/>
+        <Paper  elevation={20} className={commonStyle.paperStyle}>
+            <div className={styles.profileWrapper} >
+                <h3 className={styles.title}>Personal Information</h3>
+                <div className={styles.avatarBlock}>
+                    <img className={styles.avatarImg} src={avatarImg} alt="avatar"/>
+                    <button className={styles.avatarBtn}/>
+                </div>
+                <div className={styles.nameBlock}>
+                    <EditableSpan onChangeText={onChangeName} value={name} label="Nickname" className={styles.name}/>
+                    <p className={styles.email}>{email}</p>
+                </div>
+                <button className={styles.LogoutBtn} onClick={onClickLogout}>Log Out</button>
             </div>
-            <div className={styles.nameBlock}>
-                <EditableSpan onChangeText={onChangeName} value={name} label="Nickname" className={styles.name}/>
-                <p className={styles.email}>{email}</p>
-            </div>
-            <button className={styles.LogoutBtn} onClick={onClickLogout}>Log Out</button>
         </Paper>
     </div>
 }

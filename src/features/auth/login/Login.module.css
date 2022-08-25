@@ -1,10 +1,4 @@
 
-.formWrapper {
-    max-width: 410px;
-    padding: 40px 30px;
-    margin: 0 auto;
-    margin-top: 60px;
-}
 
 .formBlock {
     display: flex;
@@ -23,7 +17,6 @@
 
 .forgotPassBlock {
     text-align: right;
-    margin-bottom: 60px;
 }
 
 .forgotPassLink {
@@ -35,9 +28,7 @@
     margin: 20px 0;
 }
 
-.btn {
-    border-radius: 30px;
-}
+
 
 .footer {
     text-align: center;

@@ -1,8 +1,8 @@
-import {signUpApi, SignUpDataType, SignUpErrorType} from "./signUp-api";
-import axios, {AxiosError} from "axios";
-import {AppThunk} from "../../../app/store";
-import {setAppErrorAC, setAppStatusAC} from "../../../app/app-reducer";
-import {handleServerNetworkError} from "../../../common/utils/error-utils";
+import {signUpApi, SignUpDataType} from './signUp-api';
+import {AxiosError} from 'axios';
+import {AppThunk} from '../../../app/store';
+import {setAppStatusAC} from '../../../app/app-reducer';
+import {handleServerNetworkError} from '../../../common/utils/error-utils';
 
 //---Reducer---
 const initState = {
@@ -33,8 +33,7 @@ export const signUpTC = (data: SignUpDataType): AppThunk => async (dispatch) => 
         await signUpApi.signUp(data)
         dispatch(setIsSignUpAC(true))
     } catch (e) {
-        const err = e as Error | AxiosError<{ error: string }>
-        handleServerNetworkError(err,dispatch)
+        handleServerNetworkError(e as Error | AxiosError<{ error: string }>,dispatch)
     } finally {
         setAppStatusAC("succeeded")
     }

@@ -14,7 +14,7 @@ import Grid from '@mui/material/Grid/Grid';
 import {Title} from '../signUp/Title/Title';
 import FormControl from '@mui/material/FormControl/FormControl';
 import {Box, FormGroup} from '@mui/material';
-import commonStyle from './style.module.css'
+import commonStyle from '../../../common/style/style.module.css'
 
 
 export const PasswordRecovery = () => {
@@ -63,7 +63,7 @@ export const PasswordRecovery = () => {
                                 margin="normal"
                                 {...formik.getFieldProps('email')}
                             />
-                            <Typography sx={{mb: 10, mt: 4}} color="text.secondary">
+                            <Typography sx={{mt: 4}} color="text.secondary">
                                 Enter your email address and we will send you further instructions
                             </Typography>
                             <Button variant="contained"
@@ -76,7 +76,7 @@ export const PasswordRecovery = () => {
                         </FormGroup>
                     </FormControl>
                 </form>
-                <Typography sx={{fontSize: 14, mt: 4, mb: 2}} color="text.secondary" gutterBottom>
+                <Typography sx={{fontSize: 14, mt: 4,}} color="text.secondary" gutterBottom>
                     Did you remember your password?
                 </Typography>
 

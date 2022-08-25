@@ -2,7 +2,8 @@ import {authAPI, AuthResponseType, ChangeNameDataType, LoginPostDataType} from "
 import {AppThunk} from "../../app/store";
 import {AxiosError} from "axios";
 import {setAppStatusAC} from "../../app/app-reducer";
-import {handleServerAppError, handleServerNetworkError} from "../../common/utils/errorHandler";
+import {handleServerNetworkError} from '../../common/utils/error-utils';
+
 
 
 const initAuthState = {
@@ -55,61 +56,40 @@ export const changeNameAC = (name:string) => {
     return {type: "auth/CHANGE-NAME",name} as const
 }
 
-export const LoginTC = (data: LoginPostDataType): AppThunk => {
-    return (dispatch) => {
+export const LoginTC = (data: LoginPostDataType): AppThunk => async dispatch=> {
         dispatch(setAppStatusAC("loading"))
-        authAPI.login(data)
-            .then(res => {
-                if(!res.error){
-                    dispatch(setAuthAC(res))
-                    dispatch(setAppStatusAC("succeeded"))
-                }else{
-                    handleServerAppError(res.error, dispatch)
-                }
-            })
-            .catch((err: AxiosError<{ error: string }>) => {
-                handleServerNetworkError(err.response!.data,dispatch)
-            })
+    try {
+            const res = await  authAPI.login(data)
+        dispatch(setAuthAC(res))
+        dispatch(setAppStatusAC("succeeded"))
+    }catch (e) {
+        handleServerNetworkError(e as Error | AxiosError<{ error: string }>,dispatch)
     }
 }
 
-export const initializeAppTC = (): AppThunk => (dispatch) => {
+export const initializeAppTC = (): AppThunk => async dispatch => {
     dispatch(setAppStatusAC("loading"))
-    authAPI.me()
-        .then(res => {
-
-            if (!res.error) {
-                dispatch(setAuthAC(res));
-                dispatch(setAppStatusAC("succeeded"))
-            }else{
-                handleServerAppError(res.error,dispatch)
-            }
-        })
-        .catch((err: AxiosError<{ error: string }>) => {
-            handleServerNetworkError(err.response!.data,dispatch)
-        })
-}
-
-export const logoutTC = (): AppThunk => {
-    return (dispatch) => {
-        dispatch(setAppStatusAC("loading"))
-        authAPI.logout()
-            .then(res => {
-                if (res.info) {
-                    dispatch(logOutAC())
-                    dispatch(setAppStatusAC("succeeded"))
-                }else if(res.error){
-                    handleServerAppError(res.error, dispatch)
-                }
-            })
-            .catch((err: AxiosError<{ error: string }>) => {
-                handleServerNetworkError(err.response!.data,dispatch)
-            })
+    try {
+        const res = await  authAPI.me()
+        dispatch(setAuthAC(res));
+        dispatch(setAppStatusAC("succeeded"))
+    }catch (e) {
+        handleServerNetworkError(e as Error | AxiosError<{ error: string }>,dispatch)
     }
 }
 
-export const changeNameTC = (name:string): AppThunk => {
-    return (dispatch) => {
+export const logoutTC = (): AppThunk => async dispatch => {
+        dispatch(setAppStatusAC("loading"))
+    try {
+        const res = await authAPI.logout()
+        dispatch(logOutAC())
+        dispatch(setAppStatusAC("succeeded"))
+    }catch (e) {
+        handleServerNetworkError(e as Error | AxiosError<{ error: string }>,dispatch)
+    }
+}
+
+export const changeNameTC = (name:string): AppThunk => async dispatch => {
         dispatch(setAppStatusAC("loading"))
 
         let data:ChangeNameDataType = {
@@ -117,17 +97,11 @@ export const changeNameTC = (name:string): AppThunk => {
             avatar:""
         }
 
-        authAPI.changeName(data)
-            .then(res => {
-                if (!res.error) {
-                    dispatch(changeNameAC(res.updatedUser.name))
-                    dispatch(setAppStatusAC("succeeded"))
-                }else if(res.error){
-                    handleServerAppError(res.error, dispatch)
-                }
-            })
-            .catch((err: AxiosError<{ error: string }>) => {
-                handleServerNetworkError(err.response!.data,dispatch)
-            })
+    try {
+        const res = await authAPI.changeName(data)
+        dispatch(changeNameAC(res.updatedUser.name))
+        dispatch(setAppStatusAC("succeeded"))
+    }catch (e) {
+        handleServerNetworkError(e as Error | AxiosError<{ error: string }>,dispatch)
     }
 }

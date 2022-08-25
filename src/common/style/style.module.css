@@ -1,0 +1,14 @@
+.btnStyle {
+    border-radius: 20px !important;
+    width: 100% !important;
+    margin-top: 60px !important;
+    line-height: 1.75;
+}
+
+.paperStyle {
+    padding: 30px 30px;
+    max-width: 410px;
+    width: 100%;
+    margin: 20px auto;
+    box-sizing: border-box;
+}

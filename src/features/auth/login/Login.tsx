@@ -8,6 +8,7 @@ import {LoginPostDataType} from '../auth-api';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {routePath} from "../../../common/constants/routePath";
+import commonStyle from '../../../common/style/style.module.css';
 
 export const Login = () => {
     type FormikErrorType = {
@@ -53,7 +54,7 @@ export const Login = () => {
     }
 
     return (
-        <Paper className={styles.formWrapper}>
+        <Paper  elevation={20} className={commonStyle.paperStyle}>
             <h3 className={styles.formTitle}>Login</h3>
             <form onSubmit={formik.handleSubmit} className={styles.formBlock}>
                 <TextField label="Email"
@@ -87,7 +88,7 @@ export const Login = () => {
                 <Button type={'submit'}
                         variant={'contained'}
                         color={'primary'}
-                        className={styles.btn}
+                        className={commonStyle.btnStyle}
                         disabled={!!formik.errors.email || !!formik.errors.password}>
                     Login
                 </Button>

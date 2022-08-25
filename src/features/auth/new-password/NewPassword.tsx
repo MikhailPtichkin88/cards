@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 import {updatePassword} from '../password-recovery/password-recovery-reducer';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import commonStyle from '../password-recovery/style.module.css';
+import commonStyle from '../../../common/style/style.module.css';
 import Paper from '@mui/material/Paper/Paper';
 import FormControl from '@mui/material/FormControl/FormControl';
 import {Box, FormGroup} from '@mui/material';
@@ -80,11 +80,10 @@ export const NewPassword = () => {
                                            ),
                                        }}
                             />
-                            <Typography sx={{fontSize: 14, mt: 3, mb: 6}} color="text.secondary" gutterBottom>
+                            <Typography sx={{fontSize: 14, mt: 3,}} color="text.secondary" gutterBottom>
                                 Create new password and we will send you further instructions to email
                             </Typography>
-                            <Button size="small"
-                                    type="submit"
+                            <Button type="submit"
                                     variant="contained"
                                     disabled={disabled}
                                     className={commonStyle.btnStyle}
