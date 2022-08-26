@@ -6,6 +6,7 @@ let startState:initAuthStateType
 
 beforeEach(()=>{
     startState= {
+        initializeApp: false,
         isAuth: false,
         authData: {
             _id: "",
@@ -49,6 +50,7 @@ test('setAuthAC should work correctly', ()=>{
 
 test('logOutAC should work correctly', ()=>{
     startState= {
+        initializeApp: false,
         isAuth: true,
         authData: {}as AuthResponseType
     }
