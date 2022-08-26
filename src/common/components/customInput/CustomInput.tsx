@@ -55,10 +55,10 @@ export const CustomInput: React.FC<SuperInputTextPropsType> = (
             />
             <label className={styles.label} htmlFor={label}>{label}</label>
             {error && <span className={finalSpanClassName}>{error}</span>}
-            <Button size="small"
-                    className={styles.saveBtn}
+            <button className={styles.saveBtn}
                     onClick={onClickSaveHandler}
-            >save</Button>
+            >save
+            </button>
         </div>
     )
 }

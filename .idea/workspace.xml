@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa29b013-ac98-4e76-9ceb-4e4676a001c7" name="Changes" comment="Merged with profile">
-      <change afterPath="$PROJECT_DIR$/src/features/auth/auth-reducer.test.ts" afterDir="false" />
+    <list default="true" id="aa29b013-ac98-4e76-9ceb-4e4676a001c7" name="Changes" comment="auth-reducer tests done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/auth-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/auth-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/auth-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/auth-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/customInput/CustomInput.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/customInput/CustomInput.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/customInput/CustomInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/customInput/CustomInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/editableSpan/EditableSpan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/editableSpan/EditableSpan.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661440949887</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="auth-reducer tests done">
+      <created>1661513951945</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1661513951945</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,6 +190,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Login" />
     <MESSAGE value="update SignUp" />
-    <option name="LAST_COMMIT_MESSAGE" value="update SignUp" />
+    <MESSAGE value="auth-reducer tests done" />
+    <option name="LAST_COMMIT_MESSAGE" value="auth-reducer tests done" />
   </component>
 </project>
