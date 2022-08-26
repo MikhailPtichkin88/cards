@@ -10,15 +10,15 @@ import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {routePath} from "../../../common/constants/routePath";
 import commonStyle from '../../../common/style/style.module.css';
 
+type FormikErrorType = {
+    email?: string
+    password?: string
+    rememberMe?: boolean
+}
 export const Login = () => {
-    type FormikErrorType = {
-        email?: string
-        password?: string
-        rememberMe?: boolean
-    }
+
     const isAuth = useAppSelector(state => state.auth.isAuth)
     const dispatch = useAppDispatch()
-
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -52,9 +52,8 @@ export const Login = () => {
     if (isAuth) {
         return <Navigate to="/profile"/>
     }
-
     return (
-        <Paper  elevation={20} className={commonStyle.paperStyle}>
+        <Paper elevation={20} className={commonStyle.paperStyle}>
             <h3 className={styles.formTitle}>Login</h3>
             <form onSubmit={formik.handleSubmit} className={styles.formBlock}>
                 <TextField label="Email"

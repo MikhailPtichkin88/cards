@@ -1,4 +1,4 @@
-import {signUpTC} from './signUp-reducer';
+import {setIsSignUpAC, signUpTC} from './signUp-reducer';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {useFormik} from 'formik';
@@ -31,11 +31,7 @@ export const SignUp = () => {
     const isAuth = useAppSelector(state => state.auth.isAuth)
     const isRegistered = useAppSelector(state => state.signUp.isSignUp)
     const [visible, setVisible] = useState(false)
-    let navigate = useNavigate();
-    const routeChange = () => {
-        const path = `/login`;
-        navigate(path);
-    }
+    const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -65,14 +61,12 @@ export const SignUp = () => {
             dispatch(signUpTC(signUpData))
         },
     })
-    const typographyText = isRegistered ? 'Registration successful!' : 'Please fill this form to create an account'
-    const isLoading = status === 'loading'
-    const inputEyeSwitcher = useCallback(() => setVisible(!visible), [visible])
 
     useEffect(() => {
         if (isRegistered) {
             const redirect = setTimeout(() => {
-                routeChange()
+                dispatch(setIsSignUpAC(false))
+                navigate(routePath.auth.login)
             }, 2000)
             return () => {
                 clearTimeout(redirect)
@@ -85,7 +79,12 @@ export const SignUp = () => {
         dispatch(setAppStatusAC('idle'))
         navigate('/login')
     }, [])
-
+    const typographyText = isRegistered ? 'Registration successful!' : 'Please fill this form to create an account'
+    const isLoading = status === 'loading'
+    const inputEyeSwitcher = useCallback(() => setVisible(!visible), [visible])
+    const isEmailFieldError = formik.errors.email !== undefined
+    const isPasswordFieldError = formik.touched.password && !!formik.errors.password
+    const isConfirmPassFieldError = formik.touched.confirmPass && !!formik.errors.confirmPass
     if (isAuth) {
         return <Navigate to={routePath.profile.main}/>
     }
@@ -98,7 +97,7 @@ export const SignUp = () => {
                     <FormControl>
                         <FormGroup style={{width: '350px'}}>
                             <TextField
-                                error={formik.errors.email !== undefined}
+                                error={isEmailFieldError}
                                 helperText={formik.errors.email}
                                 disabled={isLoading}
                                 label="Email"
@@ -107,8 +106,8 @@ export const SignUp = () => {
                                 {...formik.getFieldProps('email')}
                             />
                             <TextField
-                                error={formik.touched.password && !!formik.errors.password}
-                                helperText={formik.touched.password && !!formik.errors.password && formik.errors.password}
+                                error={isPasswordFieldError}
+                                helperText={isPasswordFieldError && formik.errors.password}
                                 disabled={isLoading}
                                 type={visible ? 'text' : 'password'}
                                 variant="standard"
@@ -122,8 +121,8 @@ export const SignUp = () => {
                                 {...formik.getFieldProps('password')}
                             />
                             <TextField
-                                error={formik.touched.confirmPass && !!formik.errors.confirmPass}
-                                helperText={formik.touched.confirmPass && !!formik.errors.confirmPass && formik.errors.confirmPass}
+                                error={isConfirmPassFieldError}
+                                helperText={isConfirmPassFieldError && formik.errors.confirmPass}
                                 disabled={isLoading}
                                 type={visible ? 'text' : 'password'}
                                 variant="standard"
@@ -147,9 +146,9 @@ export const SignUp = () => {
                         </FormGroup>
                     </FormControl>
                 </form>}
-            <Typography sx={{fontSize: 14, mt: 4, mb: 2}} color="text.secondary" gutterBottom>
+            {!isRegistered && <Typography sx={{fontSize: 14, mt: 4, mb: 2}} color="text.secondary" gutterBottom>
                 Already have an account?
-            </Typography>
+            </Typography>}
 
             <Button size="small"
                     onClick={onClickBackToLogin}

@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="266bf70a-1116-4ae5-b8bb-059533bdb4f4" name="Changes" comment="Login">
+    <list default="true" id="aa29b013-ac98-4e76-9ceb-4e4676a001c7" name="Changes" comment="update SignUp">
+      <change afterPath="$PROJECT_DIR$/src/features/auth/signUp/signUp.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/components/appBar/UserInfo/UserInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/appBar/UserInfo/UserInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/errorSnackbar/ErrorSnackbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/errorSnackbar/ErrorSnackbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/auth-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/auth-reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/auth/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/signUp/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/signUp/SignUp.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/signUp/signUp-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/signUp/signUp-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/signUp/signUp-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/signUp/signUp-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/Profile.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,25 +43,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/projects/cards/src/common/components&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;E:\\projects\\cards\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Thursday/todo16v2" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/react-scripts" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="ts.external.directory.path" value="E:\Friday\new-project\node_modules\typescript\lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Friday\new-project\src\features\auth\signUp" />
       <recent name="E:\projects\cards\src\common\components" />
       <recent name="E:\projects\cards\src\assets\images" />
     </key>
@@ -67,10 +67,41 @@
       <recent name="E:\projects\cards\src\features\login" />
     </key>
   </component>
+  <component name="RunManager" selected="npm.start">
+    <configuration name="SignUp status should be correct" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/features/auth/signUp/signUp.test.ts" />
+      <test-names>
+        <test-name value="SignUp status should be correct" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+        <item itemvalue="Jest.SignUp status should be correct" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="266bf70a-1116-4ae5-b8bb-059533bdb4f4" name="Changes" comment="" />
+      <changelist id="aa29b013-ac98-4e76-9ceb-4e4676a001c7" name="Changes" comment="update SignUp" />
       <created>1661175753599</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -78,6 +109,9 @@
       <workItem from="1661175756347" duration="17833000" />
       <workItem from="1661229607343" duration="21238000" />
       <workItem from="1661338038861" duration="296000" />
+      <workItem from="1661499553136" duration="1419000" />
+      <workItem from="1661501014973" duration="631000" />
+      <workItem from="1661501799629" duration="7189000" />
     </task>
     <task id="LOCAL-00001" summary="Login">
       <created>1661242909801</created>
@@ -86,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661242909801</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="update SignUp">
+      <created>1661440949887</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1661440949887</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,6 +147,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Login" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login" />
+    <MESSAGE value="update SignUp" />
+    <option name="LAST_COMMIT_MESSAGE" value="update SignUp" />
   </component>
 </project>

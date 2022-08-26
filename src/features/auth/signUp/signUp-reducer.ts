@@ -8,9 +8,9 @@ import {handleServerNetworkError} from '../../../common/utils/error-utils';
 const initState = {
     isSignUp: false
 }
-export const signUpReducer = (state = initState, action: SignUpActionsType): InitStateType => {
+export const signUpReducer = (state = initState, action: SignUpActionsType): SignUpStateType => {
     switch (action.type) {
-        case "SIGN-UP/SET-IS-REGISTER":
+        case "SIGN-UP/SET-IS-SIGNUP":
             return {...state, isSignUp: action.isSignUp}
         default:
             return state
@@ -18,23 +18,21 @@ export const signUpReducer = (state = initState, action: SignUpActionsType): Ini
 }
 
 //actions
-export const setIsSignUpAC = (isSignUp: boolean) => ({type: 'SIGN-UP/SET-IS-REGISTER', isSignUp: isSignUp} as const)
+export const setIsSignUpAC = (isSignUp: boolean) => ({type: "SIGN-UP/SET-IS-SIGNUP", isSignUp: isSignUp} as const)
 //types
-type InitStateType = typeof initState
+export type SignUpStateType = typeof initState
 export type SignUpActionsType =
     ReturnType<typeof setIsSignUpAC>
 
-
 //---Thunks---
-export const signUpTC = (data: SignUpDataType): AppThunk => async (dispatch) => {
+export const signUpTC = (data: SignUpDataType): AppThunk => async dispatch => {
 
     dispatch(setAppStatusAC("loading"))
     try {
         await signUpApi.signUp(data)
         dispatch(setIsSignUpAC(true))
+        dispatch(setAppStatusAC("succeeded"))
     } catch (e) {
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>,dispatch)
-    } finally {
-        setAppStatusAC("succeeded")
     }
 }

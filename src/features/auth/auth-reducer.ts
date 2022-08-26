@@ -5,7 +5,6 @@ import {setAppStatusAC} from "../../app/app-reducer";
 import {handleServerNetworkError} from '../../common/utils/error-utils';
 
 
-
 const initAuthState = {
     isAuth: false,
     authData: {
@@ -32,7 +31,7 @@ export const authReducer = (state: initAuthStateType = initAuthState, action: Au
         case "auth/LOGOUT":
             return {...state, isAuth: false}
         case "auth/CHANGE-NAME":
-            return {...state, authData: {...state.authData, name:action.name}}
+            return {...state, authData: {...state.authData, name: action.name}}
         default:
             return state
     }
@@ -52,56 +51,56 @@ export const logOutAC = () => {
     return {type: "auth/LOGOUT"} as const
 }
 type changeNameACType = ReturnType<typeof changeNameAC>
-export const changeNameAC = (name:string) => {
-    return {type: "auth/CHANGE-NAME",name} as const
+export const changeNameAC = (name: string) => {
+    return {type: "auth/CHANGE-NAME", name} as const
 }
 
-export const LoginTC = (data: LoginPostDataType): AppThunk => async dispatch=> {
-        dispatch(setAppStatusAC("loading"))
+export const LoginTC = (data: LoginPostDataType): AppThunk => async dispatch => {
+    dispatch(setAppStatusAC("loading"))
     try {
-            const res = await  authAPI.login(data)
+        const res = await authAPI.login(data)
         dispatch(setAuthAC(res))
         dispatch(setAppStatusAC("succeeded"))
-    }catch (e) {
-        handleServerNetworkError(e as Error | AxiosError<{ error: string }>,dispatch)
+    } catch (e) {
+        handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
 }
 
 export const initializeAppTC = (): AppThunk => async dispatch => {
     dispatch(setAppStatusAC("loading"))
     try {
-        const res = await  authAPI.me()
+        const res = await authAPI.me()
         dispatch(setAuthAC(res));
         dispatch(setAppStatusAC("succeeded"))
-    }catch (e) {
-        handleServerNetworkError(e as Error | AxiosError<{ error: string }>,dispatch)
+    } catch (e) {
+        handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
 }
 
 export const logoutTC = (): AppThunk => async dispatch => {
-        dispatch(setAppStatusAC("loading"))
+    dispatch(setAppStatusAC("loading"))
     try {
         const res = await authAPI.logout()
         dispatch(logOutAC())
         dispatch(setAppStatusAC("succeeded"))
-    }catch (e) {
-        handleServerNetworkError(e as Error | AxiosError<{ error: string }>,dispatch)
+    } catch (e) {
+        handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
 }
 
-export const changeNameTC = (name:string): AppThunk => async dispatch => {
-        dispatch(setAppStatusAC("loading"))
+export const changeNameTC = (name: string): AppThunk => async dispatch => {
+    dispatch(setAppStatusAC("loading"))
 
-        let data:ChangeNameDataType = {
-            name,
-            avatar:""
-        }
+    let data: ChangeNameDataType = {
+        name,
+        avatar: ""
+    }
 
     try {
         const res = await authAPI.changeName(data)
         dispatch(changeNameAC(res.updatedUser.name))
         dispatch(setAppStatusAC("succeeded"))
-    }catch (e) {
-        handleServerNetworkError(e as Error | AxiosError<{ error: string }>,dispatch)
+    } catch (e) {
+        handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
 }
