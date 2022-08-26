@@ -5,7 +5,6 @@ export const authAPI = {
     login(data: LoginPostDataType) {
         return instance.post<AuthResponseType>('auth/login', data)
             .then(res => res.data)
-
     },
     me() {
         return instance.post<AuthResponseType>('auth/me', {})

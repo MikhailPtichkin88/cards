@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa29b013-ac98-4e76-9ceb-4e4676a001c7" name="Changes" comment="update SignUp">
-      <change afterPath="$PROJECT_DIR$/src/features/auth/signUp/signUp.test.ts" afterDir="false" />
+    <list default="true" id="aa29b013-ac98-4e76-9ceb-4e4676a001c7" name="Changes" comment="Merged with profile">
+      <change afterPath="$PROJECT_DIR$/src/features/auth/auth-reducer.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/components/errorSnackbar/ErrorSnackbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/errorSnackbar/ErrorSnackbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/auth-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/auth-api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/auth/auth-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/auth-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/signUp/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/signUp/SignUp.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/signUp/signUp-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/signUp/signUp-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/signUp/signUp-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/signUp/signUp-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/Profile.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,13 +19,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript JSX File" />
-        <option value="TypeScript File" />
         <option value="CSS File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -43,16 +39,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Thursday/todo16v2" />
-    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/react-scripts" />
-    <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="ts.external.directory.path" value="E:\Friday\new-project\node_modules\typescript\lib" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "E:/projects/cards/node_modules/react-scripts",
+    "ts.external.directory.path": "E:\\projects\\cards\\node_modules\\typescript\\lib"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Friday\new-project\src\features\auth\signUp" />
@@ -67,7 +60,7 @@
       <recent name="E:\projects\cards\src\features\login" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="Jest.setAuthAC should work correctly">
     <configuration name="SignUp status should be correct" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -78,6 +71,45 @@
       <test-file value="$PROJECT_DIR$/src/features/auth/signUp/signUp.test.ts" />
       <test-names>
         <test-name value="SignUp status should be correct" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="changeNameAC should work correctly" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/features/auth/auth-reducer.test.ts" />
+      <test-names>
+        <test-name value="changeNameAC should work correctly" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="logOutAC should work correctly" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/features/auth/auth-reducer.test.ts" />
+      <test-names>
+        <test-name value="logOutAC should work correctly" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="setAuthAC should work correctly" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/features/auth/auth-reducer.test.ts" />
+      <test-names>
+        <test-name value="setAuthAC should work correctly" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -93,6 +125,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.setAuthAC should work correctly" />
+        <item itemvalue="Jest.changeNameAC should work correctly" />
+        <item itemvalue="Jest.logOutAC should work correctly" />
         <item itemvalue="npm.start" />
         <item itemvalue="Jest.SignUp status should be correct" />
       </list>

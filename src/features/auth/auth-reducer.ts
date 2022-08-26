@@ -4,7 +4,6 @@ import {AxiosError} from "axios";
 import {setAppStatusAC} from "../../app/app-reducer";
 import {handleServerNetworkError} from '../../common/utils/error-utils';
 
-
 const initAuthState = {
     isAuth: false,
     authData: {
@@ -22,7 +21,7 @@ const initAuthState = {
 }
 
 export type initAuthStateType = typeof initAuthState
-export type AuthActionsType = SetAuthACType | IsAuthACType | LogOutACType | changeNameACType
+export type AuthActionsType = SetAuthACType  | LogOutACType | changeNameACType
 
 export const authReducer = (state: initAuthStateType = initAuthState, action: AuthActionsType): initAuthStateType => {
     switch (action.type) {
@@ -37,14 +36,9 @@ export const authReducer = (state: initAuthStateType = initAuthState, action: Au
     }
 }
 
-
 type SetAuthACType = ReturnType<typeof setAuthAC>
 export const setAuthAC = (data: AuthResponseType) => {
     return {type: "auth/SET-AUTH", data} as const
-}
-type IsAuthACType = ReturnType<typeof isAuthAC>
-export const isAuthAC = (isAuth: boolean) => {
-    return {type: "auth/SET-IS-AUTH", isAuth} as const
 }
 type LogOutACType = ReturnType<typeof logOutAC>
 export const logOutAC = () => {
