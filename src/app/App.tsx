@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {NavLink} from 'react-router-dom';
 import './App.css';
 
 import {useAppSelector} from '../common/hooks/useAppSelector';
@@ -7,7 +6,6 @@ import {useAppDispatch} from '../common/hooks/useAppDispatch';
 import {initializeAppTC} from '../features/auth/auth-reducer';
 import {LinearProgress} from '@mui/material';
 import {WhichRouting} from '../common/components/routes/WhichRouting';
-import {routePath} from '../common/constants/routePath';
 import {ErrorSnackbar} from '../common/components/errorSnackbar/ErrorSnackbar';
 import {AppBar} from '../common/components/appBar/AppBar';
 

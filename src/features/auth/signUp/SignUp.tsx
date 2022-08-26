@@ -17,7 +17,7 @@ import {routePath} from '../../../common/constants/routePath';
 import commonStyle from '../../../common/style/style.module.css';
 import Typography from '@mui/material/Typography';
 import {Box} from '@mui/material';
-import {setStatusSendingPassword} from '../password-recovery/password-recovery-reducer';
+import {setAppStatusAC} from '../../../app/app-reducer';
 
 type FormikErrorType = {
     email?: string
@@ -82,7 +82,7 @@ export const SignUp = () => {
     }, [isRegistered])
 
     const onClickBackToLogin = useCallback(() => {
-        dispatch(setStatusSendingPassword('idle'))
+        dispatch(setAppStatusAC('idle'))
         navigate('/login')
     }, [])
 

@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import {passwordRecoveryLink, setStatusSendingPassword} from './password-recovery-reducer';
+import {passwordRecoveryLink} from './password-recovery-reducer';
 import {CheckEmail} from './CheckEmail';
 import {useNavigate} from 'react-router-dom';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
@@ -15,12 +15,13 @@ import {Title} from '../signUp/Title/Title';
 import FormControl from '@mui/material/FormControl/FormControl';
 import {Box, FormGroup} from '@mui/material';
 import commonStyle from '../../../common/style/style.module.css'
+import {setAppStatusAC} from '../../../app/app-reducer';
 
 
 export const PasswordRecovery = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
-    const statusSendingPassword = useAppSelector(state => state.passwordRecovery.statusSendingPassword)
+    const status = useAppSelector(state => state.app.status)
     const isRegistered = useAppSelector(state => state.signUp.isSignUp)
     const formik = useFormik({
         initialValues: {
@@ -37,11 +38,11 @@ export const PasswordRecovery = () => {
     const disabled = (formik.touched.email && !!formik.errors.email)
 
     const onClickBackToLogin = useCallback(() => {
-        dispatch(setStatusSendingPassword('idle'))
+        dispatch(setAppStatusAC('idle'))
         navigate('/login')
     }, [])
 
-    if (statusSendingPassword === 'loading') {
+    if (status === 'succeeded') {
         return <CheckEmail onClickBackToLogin={onClickBackToLogin}/>
     }
 

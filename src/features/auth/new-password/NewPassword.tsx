@@ -15,11 +15,12 @@ import {Box, FormGroup} from '@mui/material';
 import Grid from '@mui/material/Grid/Grid';
 import {Title} from '../signUp/Title/Title';
 import {InputEyeSwitcher} from '../signUp/TextField/InputEyeSwitcher';
+import {setAppStatusAC} from '../../../app/app-reducer';
 
 export const NewPassword = () => {
     const [visible, setVisible] = useState(false)
     const isRegistered = useAppSelector(state => state.signUp.isSignUp)
-    const statusSendingPassword = useAppSelector(state => state.passwordRecovery.statusSendingPassword)
+    const status = useAppSelector(state => state.app.status)
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const params = useParams<'token'>()
@@ -41,7 +42,6 @@ export const NewPassword = () => {
             }),
             onSubmit: values => {
                 if (token) {
-                    console.log(token)
                     dispatch(updatePassword(values.password, token))
                 }
                 formik.resetForm()
@@ -51,7 +51,8 @@ export const NewPassword = () => {
     const disabled = (formik.touched.password && !!formik.errors.password)
     const inputEyeSwitcher = useCallback(() => setVisible(!visible), [visible])
 
-    if (statusSendingPassword === 'succeeded') {
+    if (status === 'succeeded') {
+        dispatch(setAppStatusAC('idle'))
         navigate('/login')
     }
 
