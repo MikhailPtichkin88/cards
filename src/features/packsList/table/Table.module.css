@@ -1,0 +1,15 @@
+.btnBlock{
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+.btn{
+    width: 18px;
+    height: 18px;
+    border: none;
+    background-color: #fff;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}

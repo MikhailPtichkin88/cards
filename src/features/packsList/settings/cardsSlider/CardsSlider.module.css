@@ -1,0 +1,26 @@
+.wrapper{
+    margin-right: 24px;
+}
+
+.title{
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.sliderWrapper{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.sliderStartValue,
+.sliderEndValue{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 36px;
+    height: 36px;
+    font-weight: 600;
+    font-size: 16px;
+    border: 1px solid #D9D9D9;
+    border-radius: 2px;
+}

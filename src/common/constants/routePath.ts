@@ -1,3 +1,7 @@
+import {Route} from "react-router-dom";
+import {PasswordRecovery} from "../../features/auth/password-recovery/PasswordRecovery";
+import React from "react";
+
 export const routePath={
     profile:{
         main:"/profile",
@@ -10,6 +14,9 @@ export const routePath={
     },
     error:{
         notFound:"*"
+    },
+    cards:{
+       packList:"/pack-list"
     },
     tests:{
         test:"/test"

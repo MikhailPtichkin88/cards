@@ -28,7 +28,7 @@ export const Profile = () => {
         return <Navigate to={routePath.auth.login}/>
     }
     return <div className={styles.wrapper}>
-        <NavLink className={styles.packsLink} to={"/packs-list"}>Back to Packs List</NavLink>
+        <NavLink className={styles.packsLink} to={routePath.cards.packList}>Back to Packs List</NavLink>
         <Paper elevation={20} className={commonStyle.paperStyle}>
             <div className={styles.profileWrapper}>
                 <h3 className={styles.title}>Personal Information</h3>
