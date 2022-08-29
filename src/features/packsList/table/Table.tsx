@@ -7,9 +7,13 @@ import study from '../../../assets/images/cardPackBtns/study.svg';
 import edit from '../../../assets/images/cardPackBtns/edit.svg';
 import deleteImg from '../../../assets/images/cardPackBtns/delete.svg';
 import styles from './Table.module.css'
+import {useAppSelector} from "../../../common/hooks/useAppSelector";
+import {useAppDispatch} from "../../../common/hooks/useAppDispatch";
+import {getPacksTC, setPacksAC} from "../packs-reducer";
 
 export const CardsTable = () => {
-
+    const cards = useAppSelector(state => state.packs.cardPacks)
+    const dispatch = useAppDispatch()
     function createData(
         name: string,
         calories: number,
@@ -30,9 +34,22 @@ export const CardsTable = () => {
 
     const isMy = true
 
-
+    const onClickHandler = ()=>{
+        dispatch(getPacksTC({page:2}))
+    }
+    const cardsJSX = cards.map(el=>
+        <>
+            <div>{el.name}</div>
+            <div>{el.cardsCount}</div>
+            <div>{el.updated.toString()}</div>
+            <div>{el.user_name}</div>
+        </>)
     return (
         <TableContainer component={Paper}>
+            <div>
+                {cardsJSX}
+                <button onClick={onClickHandler}>getCards</button>
+            </div>
             <Table sx={{minWidth: 650}} aria-label="simple table">
                 <TableHead>
                     <TableRow>

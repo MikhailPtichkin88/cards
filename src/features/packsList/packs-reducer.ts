@@ -1,10 +1,7 @@
-import {packsAPI, PacksGetParamsType, PacksType, PackType} from "./packs-api";
+import {packsAPI, PacksGetParamsType, PacksType} from "./packs-api";
 import {AppThunk} from "../../app/store";
-import {setAppStatusAC} from "../../app/app-reducer";
-import {authAPI} from "../auth/auth-api";
 import {handleServerNetworkError} from "../../common/utils/error-utils";
 import {AxiosError} from "axios";
-import {logOutAC} from "../auth/auth-reducer";
 /*---Reducer---*/
 const initState:PacksType = {
     cardPacks: [],
