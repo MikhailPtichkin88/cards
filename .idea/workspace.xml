@@ -5,32 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa29b013-ac98-4e76-9ceb-4e4676a001c7" name="Changes" comment="Changing name styles bug fixed">
-      <change afterPath="$PROJECT_DIR$/src/assets/images/cardPackBtns/delete.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/cardPackBtns/edit.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/cardPackBtns/study.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/filter.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/PackList.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/PacksList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/packsTitle/PacksTitle.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/packsTitle/PacksTitle.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/pagination/Pagination.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/pagination/PaginationActions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/settings/Settings.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/settings/Settings.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/settings/cardsSlider/CardsSlider.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/settings/cardsSlider/CardsSlider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/settings/disableFilter/DisableFilter.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/settings/disableFilter/DisableFilter.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/settings/ownerSwitcher/OwnerSwitcher.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/settings/ownerSwitcher/OwnerSwitcher.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/settings/search/Search.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/settings/search/Search.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/table/Table.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packsList/table/Table.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/components/BackToPacksLink/BackToPacksLink.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/components/BackToPacksLink/BackToPacksLink.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/Pack/NewPack.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/Pack/NewPack.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/components/routes/WhichRouting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/routes/WhichRouting.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/constants/routePath.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/constants/routePath.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/packsList/PacksList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packsList/PacksList.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,12 +23,17 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
-        <option value="CSS File" />
         <option value="TypeScript JSX File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="packList_task" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
@@ -61,19 +48,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs.jest.jest_package": "E:/projects/cards/node_modules/react-scripts",
-    "nodejs_package_manager_path": "yarn",
-    "ts.external.directory.path": "E:\\projects\\cards\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;E:/projects/cards/node_modules/react-scripts&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;E:\\projects\\cards\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Friday\new-project\src\features\auth\signUp" />
@@ -81,11 +68,11 @@
       <recent name="E:\projects\cards\src\assets\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\projects\cards\src\features\Pack" />
+      <recent name="E:\projects\cards\src\features\Pack\NewPack" />
       <recent name="E:\projects\cards\src\assets\images\cardPackBtns" />
       <recent name="E:\projects\cards\src\assets\images" />
       <recent name="E:\projects\cards\src\features\packsList\settings\disableFilter" />
-      <recent name="E:\projects\cards\src\features\auth\auth-api.ts" />
-      <recent name="E:\projects\cards\src\features\auth" />
     </key>
   </component>
   <component name="RunManager" selected="Jest.setAuthAC should work correctly">

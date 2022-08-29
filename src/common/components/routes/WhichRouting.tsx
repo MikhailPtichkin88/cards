@@ -9,6 +9,8 @@ import {SignUp} from '../../../features/auth/signUp/SignUp';
 import {routePath} from '../../constants/routePath';
 import {PacksList} from '../../../features/packsList/PacksList';
 import {Cards} from '../../../features/packsList/Cards/Cards';
+import {PacksList} from "../../../features/packsList/PacksList";
+import {NewPack} from "../../../features/Pack/NewPack";
 
 
 export const WhichRouting = () => {
@@ -22,6 +24,7 @@ export const WhichRouting = () => {
             <Route path={routePath.auth.signUp} element={<SignUp/>}/>
             <Route path={routePath.cards.packList} element={<PacksList/>}/>
             <Route path={routePath.cards.card} element={<Cards/>}/>
+            <Route path={routePath.cards.newPack} element={<NewPack/>}/>
             <Route path={routePath.error.notFound} element={<Page404/>}/>
         </Routes>
     );
