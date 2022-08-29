@@ -2,23 +2,24 @@ import {Route} from "react-router-dom";
 import {PasswordRecovery} from "../../features/auth/password-recovery/PasswordRecovery";
 import React from "react";
 
-export const routePath={
-    profile:{
-        main:"/profile",
+export const routePath = {
+    profile: {
+        main: "/profile",
     },
-    auth:{
-        login:"/login",
-        passRecovery:"/password-recovery",
-        signUp:"/signup",
-        newPass:"/set-new-password/:token",
+    auth: {
+        login: "/login",
+        passRecovery: "/password-recovery",
+        signUp: "/signup",
+        newPass: "/set-new-password/:token",
     },
-    error:{
-        notFound:"*"
+    error: {
+        notFound: "*"
     },
-    cards:{
-       packList:"/pack-list"
+    cards: {
+        packList: "/pack-list",
+        newPack: "/new-pack"
     },
-    tests:{
-        test:"/test"
+    tests: {
+        test: "/test"
     }
 }
