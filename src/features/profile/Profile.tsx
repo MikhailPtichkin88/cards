@@ -1,14 +1,15 @@
 import React from 'react'
-import styles from "./Profile.module.css"
-import {Navigate, NavLink} from "react-router-dom";
-import Paper from "@mui/material/Paper/Paper";
-import img from "../../assets/images/profileAvatar.jpg"
-import {useAppSelector} from "../../common/hooks/useAppSelector";
-import {EditableSpan} from "../../common/components/editableSpan/EditableSpan";
-import {useAppDispatch} from "../../common/hooks/useAppDispatch";
-import {changeNameTC, logoutTC} from "../auth/auth-reducer";
+import styles from './Profile.module.css'
+import {Navigate, NavLink} from 'react-router-dom';
+import Paper from '@mui/material/Paper/Paper';
+import img from '../../assets/images/profileAvatar.jpg'
+import {useAppSelector} from '../../common/hooks/useAppSelector';
+import {EditableSpan} from '../../common/components/editableSpan/EditableSpan';
+import {useAppDispatch} from '../../common/hooks/useAppDispatch';
+import {changeNameTC, logoutTC} from '../auth/auth-reducer';
 import commonStyle from '../../common/style/style.module.css';
-import {routePath} from "../../common/constants/routePath";
+import {routePath} from '../../common/constants/routePath';
+import {fetchCards} from '../packsList/Cards/card-reducer';
 
 export const Profile = () => {
 
@@ -17,7 +18,8 @@ export const Profile = () => {
     const dispatch = useAppDispatch()
     const avatarImg = avatar ? avatar : img
     const onClickLogout = () => {
-        dispatch(logoutTC())
+        // dispatch(logoutTC())
+        dispatch(fetchCards())
     }
 
     const onChangeName = (name: string) => {

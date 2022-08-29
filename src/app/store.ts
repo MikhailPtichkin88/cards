@@ -8,13 +8,15 @@ import {AppActionsType, appReducer} from './app-reducer';
 import {SignUpActionsType, signUpReducer} from '../features/auth/signUp/signUp-reducer';
 import {AuthActionsType, authReducer} from '../features/auth/auth-reducer';
 import {PacksActionType, packsReducer} from "../features/packsList/packs-reducer";
+import {cardReducer, CardReducerActionType} from '../features/packsList/Cards/card-reducer';
 
 const rootReducer = combineReducers({
     signUp: signUpReducer,
     app: appReducer,
     auth: authReducer,
     passwordRecovery: passwordRecoveryReducer,
-    packs: packsReducer
+    packs: packsReducer,
+    cards: cardReducer
 })
 
 declare global {
@@ -31,11 +33,13 @@ export type ActionsType =
     | SignUpActionsType
     | AuthActionsType
     | ActionPasswordRecoveryType
+    | CardReducerActionType
     | PacksActionType
 
 export type RootState = ReturnType<typeof rootReducer>
 export type AppDispatch = ThunkDispatch<RootState, unknown, ActionsType>
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, ActionsType>
+
 
 
 //@ts-ignore
