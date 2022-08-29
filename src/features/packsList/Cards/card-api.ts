@@ -1,11 +1,11 @@
 import {instance} from '../../../app/app-api';
 
 export const CardApi = {
-    getCards(queryParams: QueryParamsCardType = {}) {
+    getCards(queryParams: QueryParamsCardType) {
         let queryString = '?'
-        if (Object.keys(queryParams).length) {
-            let key: keyof typeof queryParams
-            for (key in queryParams) {
+        let key: keyof typeof queryParams
+        for (key in queryParams) {
+            if (queryParams[key]) {
                 queryString += `${key}=${queryParams[key]}&`
             }
         }
@@ -50,7 +50,7 @@ export type CardType = CommonDataType & {
 export type QueryParamsCardType = {
     cardAnswer?: string | null
     cardQuestion?: string | null
-    cardsPack_id?: string | null
+    cardsPack_id: string | null
     min?: number | null
     max?: number | null
     sortCards?: string | null

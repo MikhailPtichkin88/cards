@@ -8,7 +8,7 @@ const initState: InitStateType = {
     queryCardParams: {
         cardAnswer: null,
         cardQuestion: null,
-        cardsPack_id: null,
+        cardsPack_id: '630c6777798c4a2534c5d5b1',
         min: null,
         max: null,
         sortCards: null,
@@ -40,6 +40,7 @@ export const fetchCards = (): AppThunk => async (dispatch, getState: () => RootS
     try {
         const res = await CardApi.getCards(queryParams)
         dispatch(setDateCard(res.data))
+        dispatch(setAppStatusAC('succeeded'))
     } catch (e) {
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
@@ -49,6 +50,7 @@ export const fetchCreateCard = (date: DataCreateCardType): AppThunk => async dis
     try {
         const res = await CardApi.createCard(date)
         dispatch(fetchCards())
+        dispatch(setAppStatusAC('succeeded'))
     } catch (e) {
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
@@ -58,6 +60,7 @@ export const fetchUpdateCard = (date: UpdateData): AppThunk => async dispatch =>
     try {
         const res = await CardApi.updateCard(date)
         dispatch(fetchCards())
+        dispatch(setAppStatusAC('succeeded'))
     } catch (e) {
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
@@ -67,6 +70,7 @@ export const fetchRemoveCard = (idCard: string): AppThunk => async dispatch => {
     try {
         const res = await CardApi.removeCard(idCard)
         dispatch(fetchCards())
+        dispatch(setAppStatusAC('succeeded'))
     } catch (e) {
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
