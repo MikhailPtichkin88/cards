@@ -1,6 +1,6 @@
 import {instance} from '../../../app/app-api';
 
-export const CardApi = {
+export const CardsApi = {
     getCards(queryParams: QueryParamsCardType) {
         let queryString = '?'
         let key: keyof typeof queryParams
@@ -80,7 +80,7 @@ export type ResponseUpdateCardType = CardType & {
 export type UpdateData = {
     _id: string
     question?: string
-    comments?: string
+    answer?: string
 }
 
 

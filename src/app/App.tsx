@@ -8,7 +8,7 @@ import {LinearProgress} from '@mui/material';
 import {WhichRouting} from '../common/components/routes/WhichRouting';
 import {ErrorSnackbar} from '../common/components/errorSnackbar/ErrorSnackbar';
 import {AppBar} from '../common/components/appBar/AppBar';
-import {CircularIndeterminate} from '../common/components/CircularProgress/CircularProgress';
+import {Loading} from '../common/components/Loading/Loading';
 
 
 function App() {
@@ -21,8 +21,8 @@ function App() {
         dispatch(initializeAppTC())
     }, [])
 
-    if(!initializeApp){
-        return <CircularIndeterminate/>
+    if (!initializeApp) {
+        return <Loading/>
     }
 
     return (
