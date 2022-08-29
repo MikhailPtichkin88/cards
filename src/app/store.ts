@@ -10,6 +10,7 @@ import {AuthActionsType, authReducer} from '../features/auth/auth-reducer';
 import {PacksActionType, packsReducer} from '../features/packsList/packs-reducer';
 import {cardsReducer, CardReducerActionType} from '../features/packsList/Cards/cards-reducer';
 
+
 const rootReducer = combineReducers({
     signUp: signUpReducer,
     app: appReducer,
@@ -39,6 +40,7 @@ export type ActionsType =
 export type RootState = ReturnType<typeof rootReducer>
 export type AppDispatch = ThunkDispatch<RootState, unknown, ActionsType>
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, ActionsType>
+
 
 
 //@ts-ignore

@@ -1,17 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './OwnerSwitcher.module.css';
 import {ToggleButton, ToggleButtonGroup} from "@mui/material";
+import {useAppSelector} from "../../../../common/hooks/useAppSelector";
+import {useAppDispatch} from "../../../../common/hooks/useAppDispatch";
+import {filterPacksWithOwnerSwitcherAC, getPacksTC, OwnerSwitcherType} from "../../packs-reducer";
 
 export const OwnerSwitcher = () => {
 
-    const [isAllCards, setIsAllCards] = useState("all")
-
+    const myID = useAppSelector(state => state.auth.authData._id)
+    const filter = useAppSelector(state => state.packs.filters.ownerSwitcher)
+    const dispatch = useAppDispatch()
     const handleChange = (
         event: React.MouseEvent<HTMLElement>,
         newAlignment: string,
     ) => {
-        setIsAllCards(newAlignment);
+        dispatch(filterPacksWithOwnerSwitcherAC(newAlignment as OwnerSwitcherType));
     };
+
+    useEffect(() => {
+        if(filter==="my"){
+            dispatch(getPacksTC({user_id:myID}))
+        }else{
+            dispatch(getPacksTC({user_id:undefined}))
+        }
+    }, [filter])
 
     return (
         <div className={styles.wrapper}>
@@ -19,7 +31,7 @@ export const OwnerSwitcher = () => {
             <ToggleButtonGroup
                 size="small"
                 color="primary"
-                value={isAllCards}
+                value={filter}
                 exclusive
                 onChange={handleChange}
                 aria-label="Platform"

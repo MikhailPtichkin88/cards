@@ -42,6 +42,7 @@ export type PacksGetParamsType = {
     pageCount?: number
     user_id?: string
 }
+
 export type GetSortPacksType =
     "0updated"
     | "1updated"

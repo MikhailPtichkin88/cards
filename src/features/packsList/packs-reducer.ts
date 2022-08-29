@@ -21,6 +21,9 @@ const initState: PacksReducerInitStateType = {
         page: 1,
         pageCount: 10,
         user_id: undefined,
+    },
+    filters: {
+        ownerSwitcher: "all"
     }
 }
 
@@ -30,6 +33,8 @@ export const packsReducer = (state = initState, action: PacksActionType): PacksR
             return {...state, packs: action.packs}
         case "PACKS/UPDATE-QUERY-PARAMS":
             return {...state, queryParams: {...state.queryParams, ...action.params}}
+        case "PACKS/FILTER-OWNER-SWITCHER":
+            return {...state, filters:{...state.filters, ownerSwitcher:action.filter}}
         default:
             return state
     }
@@ -48,13 +53,27 @@ export const updateQueryParamsAC = (params: PacksGetParamsType) => {
         params
     } as const
 }
+export const filterPacksWithOwnerSwitcherAC = (filter: OwnerSwitcherType) => {
+    return {
+        type: "PACKS/FILTER-OWNER-SWITCHER",
+        filter
+    } as const
+}
 //types
+export type OwnerSwitcherType = "all" | "my"
+export type PacksFiltersType = {
+    ownerSwitcher: OwnerSwitcherType
+}
+
 export type PacksActionType =
     ReturnType<typeof setPacksAC>
     | ReturnType<typeof updateQueryParamsAC>
+    | ReturnType<typeof filterPacksWithOwnerSwitcherAC>
+
 export type PacksReducerInitStateType = {
     packs: PacksType
     queryParams: PacksGetParamsType
+    filters: PacksFiltersType
 }
 /*---Thunk---*/
 export const getPacksTC = (queryParams: PacksGetParamsType): AppThunk => async (dispatch, getState) => {

@@ -1,4 +1,4 @@
-import {packsReducer, PacksReducerInitStateType, updateQueryParamsAC} from "./packs-reducer";
+import {PacksFiltersType, packsReducer, PacksReducerInitStateType, updateQueryParamsAC} from "./packs-reducer";
 import {PacksGetParamsType} from "./packs-api";
 
 let startState:PacksReducerInitStateType
@@ -21,7 +21,8 @@ beforeEach(()=>{
             page: 1,
             pageCount: 10,
             user_id: undefined,
-        }
+        },
+        filters:{}as PacksFiltersType
     }
 })
 

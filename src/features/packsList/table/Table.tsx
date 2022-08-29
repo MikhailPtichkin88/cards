@@ -27,9 +27,13 @@ export const CardsTable = () => {
         const cards = useAppSelector(state => state.packs.packs.cardPacks)
         const dispatch = useAppDispatch()
         const myID = useAppSelector(state => state.auth.authData._id)
-        useEffect(() => {
-            dispatch(getPacksTC({}))
-        }, [])
+        const ownerSwitcher = useAppSelector(state => state.packs.filters.ownerSwitcher)
+
+
+        // useEffect(() => {
+        //     dispatch(getPacksTC({}))
+        // }, [])
+
         const onClickHandler = () => {
             dispatch(getPacksTC({page: 2}))
         }

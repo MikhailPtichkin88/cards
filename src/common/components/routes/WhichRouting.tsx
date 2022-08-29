@@ -9,7 +9,6 @@ import {SignUp} from '../../../features/auth/signUp/SignUp';
 import {routePath} from '../../constants/routePath';
 import {PacksList} from '../../../features/packsList/PacksList';
 import {Cards} from '../../../features/packsList/Cards/Cards';
-import {PacksList} from "../../../features/packsList/PacksList";
 import {NewPack} from "../../../features/Pack/NewPack";
 
 
