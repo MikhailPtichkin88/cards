@@ -1,13 +1,15 @@
 import React, {useEffect} from 'react';
-import {TableContainer} from "@mui/material";
+import {TableContainer} from '@mui/material';
 import Table from '@mui/material/Table';
 import Paper from '@mui/material/Paper';
-import {useAppSelector} from "../../../common/hooks/useAppSelector";
-import {useAppDispatch} from "../../../common/hooks/useAppDispatch";
-import {getPacksTC} from "../packs-reducer";
-import {CustomTableBody} from "./tableBody/CustomTableBody";
-import {CustomTableHead} from "./TableHead/CustomTableHead";
-import {Loading} from "../../../common/components/Loading/Loading";
+import {useAppSelector} from '../../../common/hooks/useAppSelector';
+import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
+import {getPacksTC} from '../packs-reducer';
+import {CustomTableBody} from './tableBody/CustomTableBody';
+import {CustomTableHead} from './TableHead/CustomTableHead';
+import {Loading} from '../../../common/components/Loading/Loading';
+import {setQueryParams} from '../Cards/cards-reducer';
+import {useNavigate} from 'react-router-dom';
 
 export type HeadCellType = {
     sortPart: "name"
@@ -19,9 +21,9 @@ export type HeadCellType = {
     title: string
 }
 
-
 export const CardsTable = () => {
 
+        const navigate = useNavigate()
         const cards = useAppSelector(state => state.packs.packs.cardPacks)
         const dispatch = useAppDispatch()
         const myID = useAppSelector(state => state.auth.authData._id)
@@ -30,6 +32,10 @@ export const CardsTable = () => {
         }, [])
         const onClickHandler = () => {
             dispatch(getPacksTC({page: 2}))
+        }
+        const onClickNameHandler = (packId: string) => {
+            dispatch(setQueryParams({cardsPack_id: packId}))
+            navigate(`/cards/${packId}`)
         }
 
         if (!cards.length) {
@@ -68,7 +74,7 @@ export const CardsTable = () => {
             <TableContainer component={Paper}>
                 <Table sx={{minWidth: 650}} aria-label="simple table">
                     <CustomTableHead headCells={headCells}/>
-                    <CustomTableBody elements={cards} myID={myID}/>
+                    <CustomTableBody elements={cards} myID={myID} onClickNameHandler={onClickNameHandler}/>
                 </Table>
             </TableContainer>)
 
