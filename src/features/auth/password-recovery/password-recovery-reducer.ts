@@ -8,7 +8,7 @@ const initialState: PasswordRecoveryType = {
     email: null,
 }
 
-export const PasswordRecoveryReducer = (state = initialState, action: ActionPasswordRecoveryType): PasswordRecoveryType => {
+export const passwordRecoveryReducer = (state = initialState, action: ActionPasswordRecoveryType): PasswordRecoveryType => {
     switch (action.type) {
         case 'PS/SET-EMAIL':
             return {...state, email: action.email}

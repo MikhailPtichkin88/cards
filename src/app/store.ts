@@ -2,17 +2,19 @@ import {applyMiddleware, combineReducers, compose, legacy_createStore} from 'red
 import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {
     ActionPasswordRecoveryType,
-    PasswordRecoveryReducer
+    passwordRecoveryReducer
 } from '../features/auth/password-recovery/password-recovery-reducer';
 import {AppActionsType, appReducer} from './app-reducer';
 import {SignUpActionsType, signUpReducer} from '../features/auth/signUp/signUp-reducer';
 import {AuthActionsType, authReducer} from '../features/auth/auth-reducer';
+import {PacksActionType, packsReducer} from "../features/packsList/packs-reducer";
 
 const rootReducer = combineReducers({
     signUp: signUpReducer,
     app: appReducer,
     auth: authReducer,
-    passwordRecovery: PasswordRecoveryReducer,
+    passwordRecovery: passwordRecoveryReducer,
+    packs: packsReducer
 })
 
 declare global {
@@ -29,12 +31,12 @@ export type ActionsType =
     | SignUpActionsType
     | AuthActionsType
     | ActionPasswordRecoveryType
+    | PacksActionType
 
 export type RootState = ReturnType<typeof rootReducer>
 export type AppDispatch = ThunkDispatch<RootState, unknown, ActionsType>
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, ActionsType>
 
 
-
 //@ts-ignore
-window.store=store
+window.store = store
