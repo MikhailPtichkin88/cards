@@ -5,9 +5,9 @@ import Paper from '@mui/material/Paper';
 import {useAppSelector} from "../../../common/hooks/useAppSelector";
 import {useAppDispatch} from "../../../common/hooks/useAppDispatch";
 import {getPacksTC} from "../packs-reducer";
-import {CircularIndeterminate} from "../../../common/components/CircularProgress/CircularProgress";
 import {CustomTableBody} from "./tableBody/CustomTableBody";
 import {CustomTableHead} from "./TableHead/CustomTableHead";
+import {Loading} from "../../../common/components/Loading/Loading";
 
 export type HeadCellType = {
     sortPart: "name"
@@ -18,6 +18,7 @@ export type HeadCellType = {
     sortable: boolean
     title: string
 }
+
 
 export const CardsTable = () => {
 
@@ -32,7 +33,7 @@ export const CardsTable = () => {
         }
 
         if (!cards.length) {
-            return <CircularIndeterminate/>
+            return <Loading/>
         }
 
         const headCells: Array<HeadCellType> = [
