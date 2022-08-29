@@ -12,7 +12,7 @@ import {useAppDispatch} from "../../../common/hooks/useAppDispatch";
 import {getPacksTC, setPacksAC} from "../packs-reducer";
 
 export const CardsTable = () => {
-    const cards = useAppSelector(state => state.packs.cardPacks)
+    const cards = useAppSelector(state => state.packs.packs.cardPacks)
     const dispatch = useAppDispatch()
     function createData(
         name: string,
