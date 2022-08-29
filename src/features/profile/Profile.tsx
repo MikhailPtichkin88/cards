@@ -9,7 +9,6 @@ import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {changeNameTC, logoutTC} from '../auth/auth-reducer';
 import commonStyle from '../../common/style/style.module.css';
 import {routePath} from '../../common/constants/routePath';
-import {fetchCards} from '../packsList/Cards/card-reducer';
 
 export const Profile = () => {
 
@@ -18,8 +17,7 @@ export const Profile = () => {
     const dispatch = useAppDispatch()
     const avatarImg = avatar ? avatar : img
     const onClickLogout = () => {
-        // dispatch(logoutTC())
-        dispatch(fetchCards())
+        dispatch(logoutTC())
     }
 
     const onChangeName = (name: string) => {

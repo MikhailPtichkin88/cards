@@ -1,5 +1,5 @@
-import {cardReducer, InitStateType, setDateCard, setQueryParams} from './card-reducer';
-import {CardType, ResponseGateCardType} from './card-api';
+import {cardsReducer, InitStateType, setDateCard, setQueryParams} from './cards-reducer';
+import {CardType, ResponseGateCardType} from './cards-api';
 
 
 let state: InitStateType = {} as InitStateType
@@ -21,7 +21,7 @@ beforeEach(() => {
 })
 
 test('Adding queried parameters', () => {
-    const newState = cardReducer(state, setQueryParams({cardsPack_id: '1232', max: 5}))
+    const newState = cardsReducer(state, setQueryParams({cardsPack_id: '1232', max: 5}))
 
     expect(newState.queryCardParams.cardsPack_id).toBe('1232')
     expect(newState.queryCardParams.max).toBe(5)
@@ -51,7 +51,7 @@ test('Adding date cards', () => {
         packCreated: 'pack',
 
     }
-    const newState = cardReducer(state, setDateCard(responseDateCards))
+    const newState = cardsReducer(state, setDateCard(responseDateCards))
 
     expect(newState.dateCard.cards.length).toBe(1)
     expect(newState.dateCard.cards[0]._id).toBe('555')

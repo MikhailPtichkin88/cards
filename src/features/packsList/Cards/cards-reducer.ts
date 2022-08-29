@@ -1,4 +1,4 @@
-import {CardApi, DataCreateCardType, QueryParamsCardType, ResponseGateCardType, UpdateData} from './card-api';
+import {CardsApi, DataCreateCardType, QueryParamsCardType, ResponseGateCardType, UpdateData} from './cards-api';
 import {AppThunk, RootState} from '../../../app/store';
 import {setAppStatusAC} from '../../../app/app-reducer';
 import {handleServerNetworkError} from '../../../common/utils/error-utils';
@@ -15,10 +15,10 @@ const initState: InitStateType = {
         page: null,
         pageCount: null,
     },
-    dateCard: {} as ResponseGateCardType
+    dateCard: {} as ResponseGateCardType,
 }
 
-export const cardReducer = (state = initState, action: CardReducerActionType): InitStateType => {
+export const cardsReducer = (state = initState, action: CardReducerActionType): InitStateType => {
     switch (action.type) {
         case 'CARD/SET-QUERY-PARAMS':
             return {...state, queryCardParams: {...state.queryCardParams, ...action.params}}
@@ -38,7 +38,7 @@ export const fetchCards = (): AppThunk => async (dispatch, getState: () => RootS
     dispatch(setAppStatusAC('loading'))
     const queryParams = getState().cards.queryCardParams
     try {
-        const res = await CardApi.getCards(queryParams)
+        const res = await CardsApi.getCards(queryParams)
         dispatch(setDateCard(res.data))
         dispatch(setAppStatusAC('succeeded'))
     } catch (e) {
@@ -48,7 +48,7 @@ export const fetchCards = (): AppThunk => async (dispatch, getState: () => RootS
 export const fetchCreateCard = (date: DataCreateCardType): AppThunk => async dispatch => {
     dispatch(setAppStatusAC('loading'))
     try {
-        const res = await CardApi.createCard(date)
+        const res = await CardsApi.createCard(date)
         dispatch(fetchCards())
         dispatch(setAppStatusAC('succeeded'))
     } catch (e) {
@@ -58,7 +58,7 @@ export const fetchCreateCard = (date: DataCreateCardType): AppThunk => async dis
 export const fetchUpdateCard = (date: UpdateData): AppThunk => async dispatch => {
     dispatch(setAppStatusAC('loading'))
     try {
-        const res = await CardApi.updateCard(date)
+        const res = await CardsApi.updateCard(date)
         dispatch(fetchCards())
         dispatch(setAppStatusAC('succeeded'))
     } catch (e) {
@@ -68,7 +68,7 @@ export const fetchUpdateCard = (date: UpdateData): AppThunk => async dispatch =>
 export const fetchRemoveCard = (idCard: string): AppThunk => async dispatch => {
     dispatch(setAppStatusAC('loading'))
     try {
-        const res = await CardApi.removeCard(idCard)
+        const res = await CardsApi.removeCard(idCard)
         dispatch(fetchCards())
         dispatch(setAppStatusAC('succeeded'))
     } catch (e) {

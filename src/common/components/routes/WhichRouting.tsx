@@ -7,7 +7,8 @@ import {PasswordRecovery} from '../../../features/auth/password-recovery/Passwor
 import {Profile} from '../../../features/profile/Profile';
 import {SignUp} from '../../../features/auth/signUp/SignUp';
 import {routePath} from '../../constants/routePath';
-import {PacksList} from "../../../features/packsList/PacksList";
+import {PacksList} from '../../../features/packsList/PacksList';
+import {Cards} from '../../../features/packsList/Cards/Cards';
 
 
 export const WhichRouting = () => {
@@ -20,6 +21,7 @@ export const WhichRouting = () => {
             <Route path={routePath.auth.passRecovery} element={<PasswordRecovery/>}/>
             <Route path={routePath.auth.signUp} element={<SignUp/>}/>
             <Route path={routePath.cards.packList} element={<PacksList/>}/>
+            <Route path={routePath.cards.card} element={<Cards/>}/>
             <Route path={routePath.error.notFound} element={<Page404/>}/>
         </Routes>
     );
