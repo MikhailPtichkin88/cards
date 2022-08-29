@@ -49,3 +49,6 @@ export type GetSortPacksType =
     | "1name"
     | "0cardsCount"
     | "1cardsCount"
+    | "0user_name"
+    | "1user_name"
+    | ""

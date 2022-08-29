@@ -2,6 +2,7 @@ import {packsAPI, PacksGetParamsType, PacksType} from "./packs-api";
 import {AppThunk} from "../../app/store";
 import {handleServerNetworkError} from "../../common/utils/error-utils";
 import {AxiosError} from "axios";
+import {setAppStatusAC} from "../../app/app-reducer";
 /*---Reducer---*/
 const initState: PacksReducerInitStateType = {
     packs: {
@@ -58,10 +59,14 @@ export type PacksReducerInitStateType = {
 /*---Thunk---*/
 export const getPacksTC = (queryParams: PacksGetParamsType): AppThunk => async (dispatch, getState) => {
     try {
+        dispatch(setAppStatusAC('loading'))
         dispatch(updateQueryParamsAC(queryParams))
+
         const params = getState().packs.queryParams
         const response = await packsAPI.getPacks(params)
+
         dispatch(setPacksAC(response))
+        dispatch(setAppStatusAC('succeeded'))
     } catch (e) {
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
