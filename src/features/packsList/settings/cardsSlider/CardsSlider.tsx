@@ -1,10 +1,13 @@
 import React from 'react';
 import styles from './CardsSlider.module.css';
-import {Slider} from "@mui/material";
+import {Slider} from '@mui/material';
+import {useAppSelector} from '../../../../common/hooks/useAppSelector';
 
 export const CardsSlider = () => {
-
-    const [value, setValue] = React.useState<number[]>([5, 10]);
+    const maxCardsCount = useAppSelector(state => state.packs.packs.maxCardsCount)
+    const minCardsCount = useAppSelector(state => state.packs.packs.minCardsCount)
+    
+    const [value, setValue] = React.useState<number[]>([minCardsCount, maxCardsCount]);
 
     const valuetext = (value: number) => {
         return `${value} cards to show`;
@@ -26,8 +29,8 @@ export const CardsSlider = () => {
                     valueLabelDisplay="auto"
                     getAriaValueText={valuetext}
                     disableSwap
-                    min={1} max={20}
-                    style={{width:"200px"}}
+                    min={minCardsCount} max={maxCardsCount}
+                    style={{width: '200px'}}
                 />
                 <div className={styles.sliderEndValue}>{value[1]}</div>
             </div>

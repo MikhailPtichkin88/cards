@@ -10,15 +10,10 @@ import {useAppSelector} from '../../../common/hooks/useAppSelector';
 
 export const Settings = () => {
     const dispatch = useAppDispatch()
-    const packName = useAppSelector(state => state.packs.queryParams.packName)
-
     const searchHandler = useCallback((packName: string) => {
         dispatch(updateQueryParamsAC({packName}))
     }, [])
 
-    useEffect(() => {
-        dispatch(getPacksTC({}))
-    }, [packName])
 
     return (
         <div className={styles.wrapper}>

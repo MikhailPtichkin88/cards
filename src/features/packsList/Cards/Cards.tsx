@@ -21,7 +21,6 @@ export const Cards = () => {
     const status = useAppSelector(state => state.app.status)
     const packName = useAppSelector(state => state.cards.dateCard.packName)
     const dispatch = useAppDispatch()
-
     const onClickAddCardHandler = () => {
         if (cardsPack_id) {
             dispatch(fetchCreateCard({cardsPack_id}))
@@ -48,7 +47,7 @@ export const Cards = () => {
         <div>
             <NavLink className={styles.packsLink} to={routePath.cards.packList}>Back to Packs List</NavLink>
             {
-                cards
+                cards.length > 0
                     ? <div>
                         <PacksTitle title={packName ? packName : ''}
                                     btnName={'Add new card'}

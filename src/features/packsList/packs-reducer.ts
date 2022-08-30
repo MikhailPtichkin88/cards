@@ -1,8 +1,8 @@
-import {NewPackType, packsAPI, PacksGetParamsType, PacksType, UpdatePackType} from "./packs-api";
-import {AppThunk} from "../../app/store";
-import {handleServerNetworkError} from "../../common/utils/error-utils";
-import {AxiosError} from "axios";
-import {setAppStatusAC} from "../../app/app-reducer";
+import {NewPackType, packsAPI, PacksGetParamsType, PacksType, UpdatePackType} from './packs-api';
+import {AppThunk} from '../../app/store';
+import {handleServerNetworkError} from '../../common/utils/error-utils';
+import {AxiosError} from 'axios';
+import {setAppStatusAC} from '../../app/app-reducer';
 /*---Reducer---*/
 export const initState: PacksReducerInitStateType = {
     packs: {
@@ -79,7 +79,7 @@ export type PacksReducerInitStateType = {
 export const getPacksTC = (queryParams: PacksGetParamsType): AppThunk => async (dispatch, getState) => {
     try {
         dispatch(setAppStatusAC('loading'))
-        dispatch(updateQueryParamsAC(queryParams))
+        // dispatch(updateQueryParamsAC(queryParams))
 
         const params = getState().packs.queryParams
         const response = await packsAPI.getPacks(params)
@@ -90,36 +90,33 @@ export const getPacksTC = (queryParams: PacksGetParamsType): AppThunk => async (
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
 }
-export const addNewPackTC=(newPack:NewPackType):AppThunk => async dispatch=>{
+export const addNewPackTC = (newPack: NewPackType): AppThunk => async dispatch => {
     try {
         dispatch(setAppStatusAC('loading'))
         await packsAPI.addNewPack(newPack)
         await dispatch(getPacksTC({}))
         dispatch(setAppStatusAC('succeeded'))
-    }
-    catch (e){
+    } catch (e) {
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
 }
-export const changePackNameTC=(updatedPack:UpdatePackType):AppThunk => async dispatch=>{
+export const changePackNameTC = (updatedPack: UpdatePackType): AppThunk => async dispatch => {
     try {
         dispatch(setAppStatusAC('loading'))
         await packsAPI.changePackName(updatedPack)
         await dispatch(getPacksTC({}))
         dispatch(setAppStatusAC('succeeded'))
-    }
-    catch (e){
+    } catch (e) {
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
 }
-export const deletePackTC=(id:string):AppThunk => async dispatch=>{
+export const deletePackTC = (id: string): AppThunk => async dispatch => {
     try {
         dispatch(setAppStatusAC('loading'))
         await packsAPI.deletePack(id)
         await dispatch(getPacksTC({}))
         dispatch(setAppStatusAC('succeeded'))
-    }
-    catch (e){
+    } catch (e) {
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
 }

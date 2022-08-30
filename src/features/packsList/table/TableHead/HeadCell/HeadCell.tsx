@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {TableCell, TableSortLabel} from "@mui/material";
-import {HeadCellType} from "../../Table";
+import {TableCell, TableSortLabel} from '@mui/material';
+import {HeadCellType} from '../../Table';
 
 type HeadCellPropsType = {
     sortCallback?: (queryString: string) => void
@@ -13,12 +13,12 @@ export const HeadCell = ({headCell, sortCallback}: HeadCellPropsType) => {
 
     const toggleDirection = () => {
         setDirection(!direction)
-        sortCallback && sortCallback(`${direction?"0":"1"}${sortKey}`)
+        sortCallback && sortCallback(`${direction ? '0' : '1'}${sortKey}`)
     }
     const onActiveHandler = () => {
         setActive(!active)
     }
-    const directionString = direction ? "asc" : "desc"
+    const directionString = direction ? 'asc' : 'desc'
 
     return (
         <>
@@ -33,7 +33,7 @@ export const HeadCell = ({headCell, sortCallback}: HeadCellPropsType) => {
                         {title}
                     </TableSortLabel>
                 </TableCell>
-                : <TableCell style={{textAlign:"end"}} key={sortKey}>{title}</TableCell>}
+                : <TableCell style={{textAlign: 'end'}} key={sortKey}>{title}</TableCell>}
         </>
 
     );
