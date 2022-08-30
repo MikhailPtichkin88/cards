@@ -5,8 +5,26 @@ export const packsAPI = {
         return instance.get<PacksType>('cards/pack', {params})
             .then(res => res.data)
     },
+    addNewPack(newPack:NewPackType){
+        return instance.post('cards/pack',{cardsPack:newPack})
+    },
+    deletePack(id:string){
+        return instance.delete(`cards/pack`,{params:{id}})
+    },
+    updatePackName(updatedPack:UpdatePackType){
+        return instance.post('cards/pack',{cardsPack:updatedPack})
+    },
 }
 //types
+export type UpdatePackType={
+    _id:string
+    name:string
+}
+export type NewPackType={
+    name?:string
+    deckCover?: string
+    private?:boolean
+}
 export type PacksType = {
     cardPacks: Array<PackType>
     cardPacksTotalCount: number
@@ -42,7 +60,6 @@ export type PacksGetParamsType = {
     pageCount?: number
     user_id?: string
 }
-
 export type GetSortPacksType =
     "0updated"
     | "1updated"
