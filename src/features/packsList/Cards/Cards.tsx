@@ -46,7 +46,7 @@ export const Cards = () => {
         <div>
             <NavLink className={styles.packsLink} to={routePath.cards.packList}>Back to Packs List</NavLink>
             {
-                cards
+                cards.length
                     ? <div>
                         <PacksTitle title={packName ? packName : ''}
                                     btnName={'Add new card'}
