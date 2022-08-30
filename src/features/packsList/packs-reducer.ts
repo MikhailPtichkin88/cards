@@ -1,10 +1,10 @@
-import {packsAPI, PacksGetParamsType, PacksType} from "./packs-api";
-import {AppThunk} from "../../app/store";
-import {handleServerNetworkError} from "../../common/utils/error-utils";
-import {AxiosError} from "axios";
-import {setAppStatusAC} from "../../app/app-reducer";
+import {packsAPI, PacksGetParamsType, PacksType} from './packs-api';
+import {AppThunk} from '../../app/store';
+import {handleServerNetworkError} from '../../common/utils/error-utils';
+import {AxiosError} from 'axios';
+import {setAppStatusAC} from '../../app/app-reducer';
 /*---Reducer---*/
-const initState: PacksReducerInitStateType = {
+export const initState: PacksReducerInitStateType = {
     packs: {
         cardPacks: [],
         cardPacksTotalCount: 0,
@@ -23,18 +23,18 @@ const initState: PacksReducerInitStateType = {
         user_id: undefined,
     },
     filters: {
-        ownerSwitcher: "all"
+        ownerSwitcher: 'all'
     }
 }
 
 export const packsReducer = (state = initState, action: PacksActionType): PacksReducerInitStateType => {
     switch (action.type) {
-        case "PACKS/SET-PACKS":
+        case 'PACKS/SET-PACKS':
             return {...state, packs: action.packs}
-        case "PACKS/UPDATE-QUERY-PARAMS":
+        case 'PACKS/UPDATE-QUERY-PARAMS':
             return {...state, queryParams: {...state.queryParams, ...action.params}}
-        case "PACKS/FILTER-OWNER-SWITCHER":
-            return {...state, filters:{...state.filters, ownerSwitcher:action.filter}}
+        case 'PACKS/FILTER-OWNER-SWITCHER':
+            return {...state, filters: {...state.filters, ownerSwitcher: action.filter}}
         default:
             return state
     }
@@ -43,24 +43,24 @@ export const packsReducer = (state = initState, action: PacksActionType): PacksR
 //actions
 export const setPacksAC = (packs: PacksType) => {
     return {
-        type: "PACKS/SET-PACKS",
+        type: 'PACKS/SET-PACKS',
         packs
     } as const
 }
 export const updateQueryParamsAC = (params: PacksGetParamsType) => {
     return {
-        type: "PACKS/UPDATE-QUERY-PARAMS",
+        type: 'PACKS/UPDATE-QUERY-PARAMS',
         params
     } as const
 }
 export const filterPacksWithOwnerSwitcherAC = (filter: OwnerSwitcherType) => {
     return {
-        type: "PACKS/FILTER-OWNER-SWITCHER",
+        type: 'PACKS/FILTER-OWNER-SWITCHER',
         filter
     } as const
 }
 //types
-export type OwnerSwitcherType = "all" | "my"
+export type OwnerSwitcherType = 'all' | 'my'
 export type PacksFiltersType = {
     ownerSwitcher: OwnerSwitcherType
 }
