@@ -4,7 +4,7 @@ import {handleServerNetworkError} from "../../common/utils/error-utils";
 import {AxiosError} from "axios";
 import {setAppStatusAC} from "../../app/app-reducer";
 /*---Reducer---*/
-const initState: PacksReducerInitStateType = {
+export const initState: PacksReducerInitStateType = {
     packs: {
         cardPacks: [],
         cardPacksTotalCount: 0,
@@ -105,6 +105,7 @@ export const updatePackTC=(updatedPack:UpdatePackType):AppThunk => async dispatc
     try {
         dispatch(setAppStatusAC('loading'))
         await packsAPI.updatePackName(updatedPack)
+        await dispatch(getPacksTC({}))
         dispatch(setAppStatusAC('succeeded'))
     }
     catch (e){
@@ -115,6 +116,7 @@ export const deletePackTC=(id:string):AppThunk => async dispatch=>{
     try {
         dispatch(setAppStatusAC('loading'))
         await packsAPI.deletePack(id)
+        await dispatch(getPacksTC({}))
         dispatch(setAppStatusAC('succeeded'))
     }
     catch (e){
