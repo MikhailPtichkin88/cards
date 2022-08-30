@@ -27,7 +27,7 @@ export const PacksList = () => {
         } else {
             dispatch(getPacksTC({user_id: undefined}))
         }
-    }, [packName])
+    }, [packName, filter])
 
     if (status === 'loading') {
 
