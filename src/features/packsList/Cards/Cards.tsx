@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import styles from '../../profile/Profile.module.css';
 import {routePath} from '../../../common/constants/routePath';
 import {NavLink} from 'react-router-dom';
@@ -10,7 +10,7 @@ import Button from '@mui/material/Button/Button';
 import common from '../../../common/style/style.module.css';
 import {Box, Typography} from '@mui/material';
 import {Pagination} from '../pagination/Pagination';
-import {fetchCards, fetchCreateCard, fetchRemoveCard, fetchUpdateCard} from './cards-reducer';
+import {fetchCards, fetchCreateCard, fetchRemoveCard, fetchUpdateCard, setQueryParams} from './cards-reducer';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {Loading} from '../../../common/components/Loading/Loading';
 
@@ -33,6 +33,9 @@ export const Cards = () => {
     const deleteCardHandler = (id: string) => {
         dispatch(fetchRemoveCard(id))
     }
+    const searchHandler = useCallback((cardName: string) => {
+        // dispatch(setQueryParams({}))
+    }, [])
 
     useEffect(() => {
         dispatch(fetchCards())
@@ -41,18 +44,17 @@ export const Cards = () => {
     if (status === 'loading') {
         return <Loading/>
     }
-
     return (
         <div>
             <NavLink className={styles.packsLink} to={routePath.cards.packList}>Back to Packs List</NavLink>
             {
-                cards.length
+                cards
                     ? <div>
                         <PacksTitle title={packName ? packName : ''}
                                     btnName={'Add new card'}
                                     callback={onClickAddCardHandler}/>
                         <Box sx={{mb: 4}}>
-                            <Search id={'cardPacksSearch'}/>
+                            <Search id={'cardPacksSearch'} callback={searchHandler}/>
                         </Box>
                         <CommonTable cards={cards}
                                      deleteCardHandler={deleteCardHandler}
