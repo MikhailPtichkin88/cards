@@ -21,6 +21,7 @@ export const Cards = () => {
     const status = useAppSelector(state => state.app.status)
     const packName = useAppSelector(state => state.cards.dateCard.packName)
     const dispatch = useAppDispatch()
+    
     const onClickAddCardHandler = () => {
         if (cardsPack_id) {
             dispatch(fetchCreateCard({cardsPack_id}))

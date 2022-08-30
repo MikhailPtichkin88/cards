@@ -1,4 +1,11 @@
-import {CardsApi, DataCreateCardType, QueryParamsCardType, ResponseGateCardType, UpdateData} from './cards-api';
+import {
+    CardsApi,
+    CardType,
+    DataCreateCardType,
+    QueryParamsCardType,
+    ResponseGateCardType,
+    UpdateData
+} from './cards-api';
 import {AppThunk, RootState} from '../../../app/store';
 import {setAppStatusAC} from '../../../app/app-reducer';
 import {handleServerNetworkError} from '../../../common/utils/error-utils';
@@ -15,7 +22,9 @@ const initState: InitStateType = {
         page: null,
         pageCount: null,
     },
-    dateCard: {} as ResponseGateCardType,
+    dateCard: {
+        cards: [] as unknown as CardType,
+    } as unknown as ResponseGateCardType,
 }
 
 export const cardsReducer = (state = initState, action: CardReducerActionType): InitStateType => {

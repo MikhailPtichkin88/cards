@@ -10,8 +10,8 @@ import {CustomTableHead} from './TableHead/CustomTableHead';
 import {Loading} from '../../../common/components/Loading/Loading';
 import {setQueryParams} from '../Cards/cards-reducer';
 import {useNavigate} from 'react-router-dom';
-import {GetSortPacksType} from "../packs-api";
-import {Paginator} from "./pagination/Paginator";
+import {GetSortPacksType} from '../packs-api';
+import {Paginator} from './pagination/Paginator';
 
 export type HeadCellType = {
     sortKey: string
@@ -20,28 +20,28 @@ export type HeadCellType = {
 }
 const headCells: Array<HeadCellType> = [
     {
-        sortKey: "name",
-        title: "Name",
+        sortKey: 'name',
+        title: 'Name',
         sortable: true,
     },
     {
-        sortKey: "cardsCount",
-        title: "Cards",
+        sortKey: 'cardsCount',
+        title: 'Cards',
         sortable: true,
     },
     {
-        sortKey: "updated",
-        title: "Last Updated",
+        sortKey: 'updated',
+        title: 'Last Updated',
         sortable: true,
     },
     {
-        sortKey: "user_name",
-        title: "Created by",
+        sortKey: 'user_name',
+        title: 'Created by',
         sortable: true,
     },
     {
-        sortKey: "actions",
-        title: "Actions",
+        sortKey: 'actions',
+        title: 'Actions',
         sortable: false,
     },
 
@@ -53,7 +53,6 @@ export const CardsTable = () => {
         const cards = useAppSelector(state => state.packs.packs.cardPacks)
         const dispatch = useAppDispatch()
         const myID = useAppSelector(state => state.auth.authData._id)
-        const ownerSwitcher = useAppSelector(state => state.packs.filters.ownerSwitcher)
 
         const cardPacksTotalCount = useAppSelector(state => state.packs.packs.cardPacksTotalCount)
         const pageCount = useAppSelector(state => state.packs.packs.pageCount)
@@ -66,11 +65,11 @@ export const CardsTable = () => {
         const tableHeadCallBack = (queryString: string) => {
             dispatch(getPacksTC({sortPacks: queryString as GetSortPacksType}))
         }
-        const changePage = (newPage:number)=>{
-            dispatch(getPacksTC({page:newPage}))
+        const changePage = (newPage: number) => {
+            dispatch(getPacksTC({page: newPage}))
         }
-        const changeRowsPerPage =(rowsPerPage:number)=>{
-            dispatch(getPacksTC({pageCount:rowsPerPage,page:0}))
+        const changeRowsPerPage = (rowsPerPage: number) => {
+            dispatch(getPacksTC({pageCount: rowsPerPage, page: 0}))
         }
         if (!cards.length) {
             return <Loading/>
@@ -82,10 +81,10 @@ export const CardsTable = () => {
                     <CustomTableBody elements={cards} myID={myID} onClickNameHandler={onClickNameHandler}/>
                 </Table>
                 <Paginator
-                           pageCount={pageCount}
-                           totalCount={cardPacksTotalCount}
-                           changePage={changePage}
-                           changeRowsPerPage={changeRowsPerPage}
+                    pageCount={pageCount}
+                    totalCount={cardPacksTotalCount}
+                    changePage={changePage}
+                    changeRowsPerPage={changeRowsPerPage}
                 />
             </TableContainer>)
 
