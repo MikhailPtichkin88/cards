@@ -79,7 +79,7 @@ export type PacksReducerInitStateType = {
 export const getPacksTC = (queryParams: PacksGetParamsType): AppThunk => async (dispatch, getState) => {
     try {
         dispatch(setAppStatusAC('loading'))
-        // dispatch(updateQueryParamsAC(queryParams))
+        dispatch(updateQueryParamsAC(queryParams))
 
         const params = getState().packs.queryParams
         const response = await packsAPI.getPacks(params)
