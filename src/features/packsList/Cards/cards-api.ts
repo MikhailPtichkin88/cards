@@ -1,15 +1,8 @@
 import {instance} from '../../../app/app-api';
 
 export const CardsApi = {
-    getCards(queryParams: QueryParamsCardType) {
-        let queryString = '?'
-        let key: keyof typeof queryParams
-        for (key in queryParams) {
-            if (queryParams[key]) {
-                queryString += `${key}=${queryParams[key]}&`
-            }
-        }
-        return instance.get<ResponseGateCardType>(`cards/card${queryString}`)
+    getCards(params: QueryParamsCardType) {
+        return instance.get<ResponseGateCardType>(`cards/card`, {params})
     },
     createCard(dataCard: DataCreateCardType) {
         return instance.post<ResponseUpdateCardType>('cards/card', {card: dataCard})

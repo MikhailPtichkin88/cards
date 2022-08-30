@@ -12,11 +12,11 @@ import {setQueryParams} from '../Cards/cards-reducer';
 import {useNavigate} from 'react-router-dom';
 
 export type HeadCellType = {
-    sortPart: "name"
-        | "updated"
-        | "cardsCount"
-        | "user_name"
-        | "actions"
+    sortPart: 'name'
+        | 'updated'
+        | 'cardsCount'
+        | 'user_name'
+        | 'actions'
     sortable: boolean
     title: string
 }
@@ -48,28 +48,28 @@ export const CardsTable = () => {
 
         const headCells: Array<HeadCellType> = [
             {
-                sortPart: "name",
-                title: "Name",
+                sortPart: 'name',
+                title: 'Name',
                 sortable: true,
             },
             {
-                sortPart: "cardsCount",
-                title: "Cards",
+                sortPart: 'cardsCount',
+                title: 'Cards',
                 sortable: true,
             },
             {
-                sortPart: "updated",
-                title: "Last Updated",
+                sortPart: 'updated',
+                title: 'Last Updated',
                 sortable: true,
             },
             {
-                sortPart: "user_name",
-                title: "Created by",
+                sortPart: 'user_name',
+                title: 'Created by',
                 sortable: true,
             },
             {
-                sortPart: "actions",
-                title: "Actions",
+                sortPart: 'actions',
+                title: 'Actions',
                 sortable: false,
             },
 

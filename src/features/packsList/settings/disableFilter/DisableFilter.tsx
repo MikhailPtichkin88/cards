@@ -8,7 +8,7 @@ export const DisableFilter = () => {
         <div>
             <button className={styles.btn}
                     style={{backgroundImage: `url(${bgImg}`}}
-            ></button>
+            />
         </div>
     );
 };
