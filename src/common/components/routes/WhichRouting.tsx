@@ -10,6 +10,7 @@ import {routePath} from '../../constants/routePath';
 import {PacksList} from '../../../features/packsList/PacksList';
 import {Cards} from '../../../features/packsList/Cards/Cards';
 import {NewPack} from "../../../features/Pack/NewPack";
+import {LearnCards} from "../../../features/learnCards/LearnCards";
 
 
 export const WhichRouting = () => {
@@ -25,6 +26,8 @@ export const WhichRouting = () => {
             <Route path={routePath.cards.card} element={<Cards/>}/>
             <Route path={routePath.cards.newPack} element={<NewPack/>}/>
             <Route path={routePath.error.notFound} element={<Page404/>}/>
+            <Route path={routePath.cards.learnCards} element={<LearnCards/>}/>
+
         </Routes>
     );
 };

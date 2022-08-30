@@ -101,10 +101,10 @@ export const addNewPackTC=(newPack:NewPackType):AppThunk => async dispatch=>{
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
 }
-export const updatePackTC=(updatedPack:UpdatePackType):AppThunk => async dispatch=>{
+export const changePackNameTC=(updatedPack:UpdatePackType):AppThunk => async dispatch=>{
     try {
         dispatch(setAppStatusAC('loading'))
-        await packsAPI.updatePackName(updatedPack)
+        await packsAPI.changePackName(updatedPack)
         await dispatch(getPacksTC({}))
         dispatch(setAppStatusAC('succeeded'))
     }

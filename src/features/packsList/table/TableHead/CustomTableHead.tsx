@@ -5,15 +5,16 @@ import {HeadCellType} from "../Table";
 
 export type CustomTableHeadPropsType = {
     headCells: Array<HeadCellType>
+    sortCallback: (queryString:string)=>void
 }
 
-export const CustomTableHead = ({headCells}: CustomTableHeadPropsType) => {
+export const CustomTableHead = ({sortCallback,headCells}: CustomTableHeadPropsType) => {
 
    return (
-        <TableHead>
+        <TableHead style={{backgroundColor:"lightgray"}}>
             <TableRow>
                 {headCells.map((headCell) => (
-                   <HeadCell {...headCell}/>
+                   <HeadCell sortCallback={sortCallback} headCell={headCell}/>
                 ))}
             </TableRow>
          </TableHead>
