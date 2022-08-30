@@ -1,9 +1,5 @@
 import React from 'react';
-import {TableBody, TableCell, TableRow} from '@mui/material';
-import styles from '../Table.module.css';
-import study from '../../../../assets/images/cardPackBtns/study.svg';
-import edit from '../../../../assets/images/cardPackBtns/edit.svg';
-import deleteImg from '../../../../assets/images/cardPackBtns/delete.svg';
+import {TableBody} from '@mui/material';
 import {PackType} from '../../packs-api';
 import {CustomTableRow} from "../tableRow/CustomTableRow";
 
