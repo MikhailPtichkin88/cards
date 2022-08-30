@@ -6,7 +6,7 @@ type HeadCellPropsType = {
     sortCallback?: (queryString: string) => void
     headCell: HeadCellType
 }
-const HeadCell = ({headCell, sortCallback}: HeadCellPropsType) => {
+export const HeadCell = ({headCell, sortCallback}: HeadCellPropsType) => {
     const {sortKey, title, sortable} = headCell
     const [active, setActive] = useState(false)
     const [direction, setDirection] = useState(false)
@@ -38,5 +38,3 @@ const HeadCell = ({headCell, sortCallback}: HeadCellPropsType) => {
 
     );
 };
-
-export default HeadCell;

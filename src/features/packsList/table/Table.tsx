@@ -56,12 +56,8 @@ export const CardsTable = () => {
         const ownerSwitcher = useAppSelector(state => state.packs.filters.ownerSwitcher)
 
         const cardPacksTotalCount = useAppSelector(state => state.packs.packs.cardPacksTotalCount)
-        const page = useAppSelector(state => state.packs.packs.page)
         const pageCount = useAppSelector(state => state.packs.packs.pageCount)
 
-        const onClickHandler = () => {
-            dispatch(getPacksTC({page: 2}))
-        }
         const onClickNameHandler = (packId: string) => {
             dispatch(setQueryParams({cardsPack_id: packId}))
             navigate(`/cards/${packId}`)
@@ -85,7 +81,7 @@ export const CardsTable = () => {
                     <CustomTableHead sortCallback={tableHeadCallBack} headCells={headCells}/>
                     <CustomTableBody elements={cards} myID={myID} onClickNameHandler={onClickNameHandler}/>
                 </Table>
-                <Paginator page={page}
+                <Paginator
                            pageCount={pageCount}
                            totalCount={cardPacksTotalCount}
                            changePage={changePage}
