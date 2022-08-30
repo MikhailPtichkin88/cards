@@ -7,8 +7,9 @@ import {
 import {AppActionsType, appReducer} from './app-reducer';
 import {SignUpActionsType, signUpReducer} from '../features/auth/signUp/signUp-reducer';
 import {AuthActionsType, authReducer} from '../features/auth/auth-reducer';
-import {PacksActionType, packsReducer} from '../features/packsList/packs-reducer';
+import {initState, PacksActionType, packsReducer} from '../features/packsList/packs-reducer';
 import {cardsReducer, CardReducerActionType} from '../features/packsList/Cards/cards-reducer';
+import {loadStateOwnerSwitcher, saveState} from '../common/utils/local-utils';
 
 
 const rootReducer = combineReducers({
@@ -25,9 +26,27 @@ declare global {
         __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
     }
 }
+const preloadedState = {
+    packs: {
+        ...initState,
+        filters: {
+            ownerSwitcher: loadStateOwnerSwitcher()
+        }
+    }
+
+}
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const store = legacy_createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
+
+export const store = legacy_createStore(rootReducer, preloadedState, composeEnhancers(applyMiddleware(thunk)))
+
+store.subscribe(() => {
+    saveState({
+        filters: {
+            ownerSwitcher: store.getState().packs.filters.ownerSwitcher,
+        }
+    });
+});
 //types
 export type ActionsType =
     AppActionsType
@@ -40,7 +59,6 @@ export type ActionsType =
 export type RootState = ReturnType<typeof rootReducer>
 export type AppDispatch = ThunkDispatch<RootState, unknown, ActionsType>
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, ActionsType>
-
 
 
 //@ts-ignore
