@@ -53,6 +53,7 @@ export const CardsTable = () => {
         const cards = useAppSelector(state => state.packs.packs.cardPacks)
         const dispatch = useAppDispatch()
         const myID = useAppSelector(state => state.auth.authData._id)
+        const page = useAppSelector(state => state.packs.packs.page)
 
         const cardPacksTotalCount = useAppSelector(state => state.packs.packs.cardPacksTotalCount)
         const pageCount = useAppSelector(state => state.packs.packs.pageCount)
@@ -69,7 +70,7 @@ export const CardsTable = () => {
             dispatch(getPacksTC({page: newPage}))
         }
         const changeRowsPerPage = (rowsPerPage: number) => {
-            dispatch(getPacksTC({pageCount: rowsPerPage, page: 0}))
+            dispatch(getPacksTC({pageCount: rowsPerPage, page: 1}))
         }
         if (!cards.length) {
             return <Loading/>
@@ -81,7 +82,8 @@ export const CardsTable = () => {
                     <CustomTableBody elements={cards} myID={myID} onClickNameHandler={onClickNameHandler}/>
                 </Table>
                 <Paginator
-                    pageCount={pageCount}
+                    page={page}
+                    rowsPerPage={pageCount}
                     totalCount={cardPacksTotalCount}
                     changePage={changePage}
                     changeRowsPerPage={changeRowsPerPage}
