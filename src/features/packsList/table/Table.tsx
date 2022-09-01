@@ -19,6 +19,7 @@ export type HeadCellType = {
     title: string
 }
 const headCells: Array<HeadCellType> = [
+
     {
         sortKey: 'name',
         title: 'Name',
