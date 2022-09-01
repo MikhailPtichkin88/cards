@@ -9,7 +9,7 @@ import {SignUpActionsType, signUpReducer} from '../features/auth/signUp/signUp-r
 import {AuthActionsType, authReducer} from '../features/auth/auth-reducer';
 import {initState, PacksActionType, packsReducer} from '../features/packsList/packs-reducer';
 import {cardsReducer, CardReducerActionType} from '../features/packsList/Cards/cards-reducer';
-import {loadStateOwnerSwitcher, saveState} from '../common/utils/local-utils';
+import {loadStateMaxCards, loadStateMinCards, loadStateOwnerSwitcher, saveState} from '../common/utils/local-utils';
 
 
 const rootReducer = combineReducers({
@@ -29,6 +29,11 @@ declare global {
 const preloadedState = {
     packs: {
         ...initState,
+        queryParams: {
+            ...initState.queryParams,
+            min: loadStateMinCards(),
+            max: loadStateMaxCards(),
+        },
         filters: {
             ownerSwitcher: loadStateOwnerSwitcher()
         }
@@ -42,6 +47,10 @@ export const store = legacy_createStore(rootReducer, preloadedState, composeEnha
 
 store.subscribe(() => {
     saveState({
+        queryParams: {
+            min: store.getState().packs.queryParams.min,
+            max: store.getState().packs.queryParams.max,
+        },
         filters: {
             ownerSwitcher: store.getState().packs.filters.ownerSwitcher,
         }

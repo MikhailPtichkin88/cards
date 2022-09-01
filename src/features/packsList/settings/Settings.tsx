@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import styles from './Settings.module.css';
 import {Search} from './search/Search';
 import {OwnerSwitcher} from './ownerSwitcher/OwnerSwitcher';
@@ -9,7 +9,10 @@ import {getPacksTC, updateQueryParamsAC} from '../packs-reducer';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 
 export const Settings = () => {
+    const valueSearch = useAppSelector(state => state.packs.queryParams.packName)
     const dispatch = useAppDispatch()
+
+    const [clearFilter, setClearFilter] = useState<boolean>(false)
     const searchHandler = useCallback((packName: string) => {
         dispatch(updateQueryParamsAC({packName}))
     }, [])
@@ -17,10 +20,14 @@ export const Settings = () => {
 
     return (
         <div className={styles.wrapper}>
-            <Search id={'cardPacksSearch'} callback={searchHandler}/>
+            <Search id={'cardPacksSearch'}
+                    callback={searchHandler}
+                    valueSearch={valueSearch}
+                    clearFilter={clearFilter}
+            />
             <OwnerSwitcher/>
-            <CardsSlider/>
-            <DisableFilter/>
+            <CardsSlider clearFilter={clearFilter} setClearFilter={setClearFilter}/>
+            <DisableFilter setClearFilter={setClearFilter}/>
         </div>
     );
 };
