@@ -21,7 +21,7 @@ export const Cards = () => {
     const status = useAppSelector(state => state.app.status)
     const packName = useAppSelector(state => state.cards.dateCard.packName)
     const dispatch = useAppDispatch()
-    
+
     const onClickAddCardHandler = () => {
         if (cardsPack_id) {
             dispatch(fetchCreateCard({cardsPack_id}))
@@ -54,7 +54,7 @@ export const Cards = () => {
                                     btnName={'Add new card'}
                                     callback={onClickAddCardHandler}/>
                         <Box sx={{mb: 4}}>
-                            <Search id={'cardPacksSearch'} callback={searchHandler}/>
+                            <Search id={'cardPacksSearch'} callback={searchHandler} valueSearch={''}/>
                         </Box>
                         <CommonTable cards={cards}
                                      deleteCardHandler={deleteCardHandler}

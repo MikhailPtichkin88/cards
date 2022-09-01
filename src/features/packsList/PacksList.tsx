@@ -11,6 +11,8 @@ import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {Loading} from '../../common/components/Loading/Loading';
 
 export const PacksList = () => {
+    const min = useAppSelector(state => state.packs.queryParams.min)
+    const max = useAppSelector(state => state.packs.queryParams.max)
     const myID = useAppSelector(state => state.auth.authData._id)
     const filter = useAppSelector(state => state.packs.filters.ownerSwitcher)
     const packName = useAppSelector(state => state.packs.queryParams.packName)
@@ -22,17 +24,11 @@ export const PacksList = () => {
     }
 
     useEffect(() => {
-        if (filter === 'my') {
-            dispatch(getPacksTC({user_id: myID}))
-        } else {
-            dispatch(getPacksTC({user_id: undefined}))
-        }
-    }, [packName, filter])
 
-    if (status === 'loading') {
+        const user_id = filter === 'my' ? myID : undefined
+        dispatch(getPacksTC({user_id, packName, min, max}))
 
-        return <Loading/>
-    }
+    }, [packName, filter, min, max])
 
     return (
         <div className={styles.wrapper}>

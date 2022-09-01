@@ -1,21 +1,63 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './CardsSlider.module.css';
 import {Slider} from '@mui/material';
 import {useAppSelector} from '../../../../common/hooks/useAppSelector';
+import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
+import {OwnerSwitcherType, updateQueryParamsAC} from '../../packs-reducer';
+import {useDebounce} from '../../../../common/hooks/useDebounce';
 
-export const CardsSlider = () => {
+type CardsSliderType = {
+    clearFilter: boolean
+    setClearFilter: (value: boolean) => void
+}
+
+export const CardsSlider = (props: CardsSliderType) => {
     const maxCardsCount = useAppSelector(state => state.packs.packs.maxCardsCount)
     const minCardsCount = useAppSelector(state => state.packs.packs.minCardsCount)
-    
-    const [value, setValue] = React.useState<number[]>([minCardsCount, maxCardsCount]);
+    const min = useAppSelector(state => state.packs.queryParams.min)
+    const max = useAppSelector(state => state.packs.queryParams.max)
+    const ownerSwitcher = useAppSelector(state => state.packs.filters.ownerSwitcher)
+    const dispatch = useAppDispatch()
 
+    const [value, setValue] = React.useState<number[]>(() => {
+        if (min === undefined || max === undefined) {
+            return [minCardsCount, maxCardsCount]
+        } else {
+            return [min, max]
+        }
+    });
+    const [valueOwnerSwitcher, setValueOwnerSwitcher] = useState<OwnerSwitcherType>(ownerSwitcher)
+
+    const debouncedValue = useDebounce<number[]>(value, 500)
     const valuetext = (value: number) => {
         return `${value} cards to show`;
     }
-
     const handleChange = (event: Event, newValue: number | number[]) => {
         setValue(newValue as number[]);
     };
+
+    useEffect(() => {
+        dispatch(updateQueryParamsAC({min: value[0], max: value[1]}))
+    }, [debouncedValue])
+
+    useEffect(() => {
+        if (valueOwnerSwitcher === ownerSwitcher) {
+            if (min === undefined && max === undefined) {
+                setValue([minCardsCount, maxCardsCount])
+            } else if (min !== undefined && max !== undefined) {
+                setValue([min, max])
+            }
+        } else {
+            setValue([minCardsCount, maxCardsCount])
+            setValueOwnerSwitcher(ownerSwitcher)
+        }
+    }, [minCardsCount, maxCardsCount,])
+
+    useEffect(() => {
+        setValue([minCardsCount, maxCardsCount])
+        props.setClearFilter(false)
+    }, [props.clearFilter])
+
 
     return (
         <div className={styles.wrapper}>

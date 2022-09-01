@@ -8,15 +8,15 @@ export const initState: PacksReducerInitStateType = {
     packs: {
         cardPacks: [],
         cardPacksTotalCount: 0,
-        maxCardsCount: 10,
+        maxCardsCount: 0,
         minCardsCount: 0,
         page: 1,
         pageCount: 5,
     },
     queryParams: {
         packName: undefined,
-        min: 0,
-        max: 110,
+        min: undefined,
+        max: undefined,
         sortPacks: undefined,
         page: 1,
         pageCount: 10,
