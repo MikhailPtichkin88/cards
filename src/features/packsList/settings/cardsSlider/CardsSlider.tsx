@@ -44,7 +44,9 @@ export const CardsSlider = (props: CardsSliderType) => {
         if (valueOwnerSwitcher === ownerSwitcher) {
             if (min === undefined && max === undefined) {
                 setValue([minCardsCount, maxCardsCount])
-            } else if (min !== undefined && max !== undefined) {
+            } else if (min === 0 && max === 0) {
+                setValue([minCardsCount, maxCardsCount])
+            }else if (min !== undefined && max !== undefined) {
                 setValue([min, max])
             }
         } else {
