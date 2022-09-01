@@ -17,7 +17,7 @@ export const Settings = () => {
         dispatch(updateQueryParamsAC({packName}))
     }, [])
 
-
+ 
     return (
         <div className={styles.wrapper}>
             <Search id={'cardPacksSearch'}
