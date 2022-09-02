@@ -4,7 +4,7 @@ import logo from '../../../assets/images/logo.svg'
 import {useNavigate} from 'react-router-dom';
 
 import {useAppSelector} from '../../hooks/useAppSelector';
-import {UserInfo} from "./UserInfo/UserInfo";
+import {UserInfo} from "./userInfo/UserInfo";
 import Button from "@mui/material/Button";
 
 

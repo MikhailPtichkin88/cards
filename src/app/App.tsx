@@ -7,7 +7,7 @@ import {initializeAppTC} from '../features/auth/auth-reducer';
 import {LinearProgress} from '@mui/material';
 import {WhichRouting} from '../common/components/routes/WhichRouting';
 import {ErrorSnackbar} from '../common/components/errorSnackbar/ErrorSnackbar';
-import {AppBar} from '../common/components/appBar/AppBar';
+import {AppBar} from '../common/components/app-bar/AppBar';
 import {Loading} from '../common/components/loading/Loading';
 
 
