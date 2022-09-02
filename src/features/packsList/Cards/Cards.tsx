@@ -48,8 +48,9 @@ export const Cards = () => {
     const deleteCardHandler = (id: string) => {
         dispatch(fetchRemoveCard(id))
     }
-    const searchHandler = useCallback((cardName: string) => {
-        // dispatch(setQueryParams({}))
+    const searchHandler = useCallback((cardQuestion: string) => {
+         dispatch(setQueryParams({cardQuestion}))
+        dispatch(fetchCards())
     }, [])
 
     useEffect(() => {
@@ -63,9 +64,7 @@ export const Cards = () => {
         dispatch(fetchCards())
     }, [])
 
-    if (status === 'loading') {
-        return <Loading/>
-    }
+
     return (
         <div style={{paddingBottom: '30px'}}>
             <NavLink className={styles.packsLink} to={routePath.cards.packList}>Back to Packs List</NavLink>

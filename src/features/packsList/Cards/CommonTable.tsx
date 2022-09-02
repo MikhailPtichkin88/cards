@@ -9,7 +9,7 @@ import edit from '../../../assets/images/cardPackBtns/edit.svg';
 import {GetSortPacksType} from '../packs-api';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {HeadCellType} from '../table/Table';
-import {setQueryParams} from './cards-reducer';
+import {fetchCards, setQueryParams} from './cards-reducer';
 import {CustomTableHead} from '../table/TableHead/CustomTableHead';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import common from '../../../common/style/style.module.css'
@@ -47,6 +47,7 @@ export const CommonTable = (props: CommonTableType) => {
 
     const tableHeadCallBack = (queryString: string) => {
         dispatch(setQueryParams({sortCards: queryString as GetSortPacksType}))
+        dispatch(fetchCards())
     }
 
     return (
