@@ -9,10 +9,9 @@ export type CustomTableHeadPropsType = {
     isMy?: boolean
     title?: string
     sortKey?: string
-    width?: string
 }
 
-export const CustomTableHead = ({width, sortKey, title, isMy, sortCallback, headCells}: CustomTableHeadPropsType) => {
+export const CustomTableHead = ({sortKey, title, isMy, sortCallback, headCells}: CustomTableHeadPropsType) => {
 
     return (
         <TableHead style={{backgroundColor: 'lightgray'}}>
@@ -20,7 +19,6 @@ export const CustomTableHead = ({width, sortKey, title, isMy, sortCallback, head
                 {headCells.map((headCell) => (
                     <HeadCell sortCallback={sortCallback}
                               headCell={headCell}
-                              width={width}
                     />
                 ))}
                 {isMy &&

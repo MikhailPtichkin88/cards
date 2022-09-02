@@ -57,7 +57,6 @@ export const CommonTable = (props: CommonTableType) => {
                                  isMy={isMy}
                                  title={'Actions'}
                                  sortKey={'actions'}
-                                 width={'400px'}
                 />
                 <TableBody>
                     {props.cards.map((card) => (

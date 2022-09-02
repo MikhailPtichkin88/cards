@@ -23,6 +23,10 @@ export const Cards = () => {
     const cardsPack_id = useAppSelector(state => state.cards.queryCardParams.cardsPack_id)
     const status = useAppSelector(state => state.app.status)
     const packName = useAppSelector(state => state.cards.dateCard.packName)
+    const myID = useAppSelector(state => state.auth.authData._id)
+    const packUserId = useAppSelector(state => state.cards.dateCard.packUserId)
+
+    const isMy = myID === packUserId
     const dispatch = useAppDispatch()
 
     const onClickAddCardHandler = () => {
@@ -70,6 +74,7 @@ export const Cards = () => {
                     ? <div>
                         <PacksTitle title={packName ? packName : ''}
                                     btnName={'Add new card'}
+                                    isMy={isMy}
                                     callback={onClickAddCardHandler}/>
                         <Box sx={{mb: 4}}>
                             <Search id={'cardPacksSearch'}
@@ -94,13 +99,16 @@ export const Cards = () => {
                         </h2>
                         <Box sx={{display: 'flex', alignItems: 'center', flexDirection: 'column', mt: 8}}>
                             <Typography sx={{mb: 4}}>
-                                This pack is empty. Click add new card to fill this pack
+                                This pack is empty. {isMy && 'Click add new card to fill this pack'}
                             </Typography>
-                            <Button variant="contained"
-                                    onClick={onClickAddCardHandler}
-                                    className={common.btnStyle}
-                                    sx={{maxWidth: '200px', mt: '0 !important'}}
-                            >Add new card</Button>
+                            {isMy &&
+                                <Button variant="contained"
+                                        onClick={onClickAddCardHandler}
+                                        className={common.btnStyle}
+                                        sx={{maxWidth: '200px', mt: '0 !important'}}
+                                >
+                                    Add new card
+                                </Button>}
                         </Box>
                     </Box>
             }

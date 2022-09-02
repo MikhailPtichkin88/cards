@@ -67,7 +67,7 @@ export const fetchCreateCard = (date: DataCreateCardType): AppThunk => async dis
 export const fetchUpdateCard = (date: UpdateData): AppThunk => async dispatch => {
     dispatch(setAppStatusAC('loading'))
     try {
-        const res = await CardsApi.updateCard(date)
+        await CardsApi.updateCard(date)
         dispatch(fetchCards())
         dispatch(setAppStatusAC('succeeded'))
     } catch (e) {
@@ -77,7 +77,7 @@ export const fetchUpdateCard = (date: UpdateData): AppThunk => async dispatch =>
 export const fetchRemoveCard = (idCard: string): AppThunk => async dispatch => {
     dispatch(setAppStatusAC('loading'))
     try {
-        const res = await CardsApi.removeCard(idCard)
+        await CardsApi.removeCard(idCard)
         dispatch(fetchCards())
         dispatch(setAppStatusAC('succeeded'))
     } catch (e) {
