@@ -41,7 +41,6 @@ export const CardsSlider = (props: CardsSliderType) => {
             dispatch(updateQueryParamsAC({min: value[0], max: value[1]}))
         }
     }, [debouncedValue])
-
     useEffect(() => {
         if (valueOwnerSwitcher === ownerSwitcher) {
             if (min === undefined && max === undefined) {
@@ -54,7 +53,6 @@ export const CardsSlider = (props: CardsSliderType) => {
             setValueOwnerSwitcher(ownerSwitcher)
         }
     }, [minCardsCount, maxCardsCount,])
-
     useEffect(() => {
         setValue([minCardsCount, maxCardsCount])
         props.setClearFilter(false)
@@ -67,7 +65,6 @@ export const CardsSlider = (props: CardsSliderType) => {
             <div className={styles.sliderWrapper}>
                 <div className={styles.sliderStartValue}>{value[0]}</div>
                 <Slider
-                    getAriaLabel={() => 'Temperature range'}
                     value={value}
                     onChange={handleChange}
                     valueLabelDisplay="auto"
