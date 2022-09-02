@@ -11,7 +11,7 @@ import {Loading} from '../../../common/components/Loading/Loading';
 import {setQueryParams} from '../Cards/cards-reducer';
 import {useNavigate} from 'react-router-dom';
 import {GetSortPacksType} from '../packs-api';
-import {Paginator} from './pagination/Paginator';
+import {Paginator} from '../../../common/components/pagination/Paginator';
 
 export type HeadCellType = {
     sortKey: string
@@ -50,48 +50,48 @@ const headCells: Array<HeadCellType> = [
 
 export const CardsTable = () => {
 
-        const navigate = useNavigate()
-        const cards = useAppSelector(state => state.packs.packs.cardPacks)
-        const dispatch = useAppDispatch()
-        const myID = useAppSelector(state => state.auth.authData._id)
-        const page = useAppSelector(state => state.packs.packs.page)
+    const navigate = useNavigate()
+    const cards = useAppSelector(state => state.packs.packs.cardPacks)
+    const dispatch = useAppDispatch()
+    const myID = useAppSelector(state => state.auth.authData._id)
+    const page = useAppSelector(state => state.packs.packs.page)
 
-        const cardPacksTotalCount = useAppSelector(state => state.packs.packs.cardPacksTotalCount)
-        const pageCount = useAppSelector(state => state.packs.packs.pageCount)
+    const cardPacksTotalCount = useAppSelector(state => state.packs.packs.cardPacksTotalCount)
+    const pageCount = useAppSelector(state => state.packs.packs.pageCount)
 
-        const onClickNameHandler = (packId: string) => {
-            dispatch(setQueryParams({cardsPack_id: packId}))
-            navigate(`/cards/${packId}`)
-        }
+    const onClickNameHandler = (packId: string) => {
+        dispatch(setQueryParams({cardsPack_id: packId}))
+        navigate(`/cards/${packId}`)
+    }
 
-        const tableHeadCallBack = (queryString: string) => {
-            dispatch(getPacksTC({sortPacks: queryString as GetSortPacksType}))
-        }
-        const changePage = (newPage: number) => {
-            dispatch(getPacksTC({page: newPage}))
-        }
-        const changeRowsPerPage = (rowsPerPage: number) => {
-            dispatch(getPacksTC({pageCount: rowsPerPage, page: 1}))
-        }
-        if (!cards.length) {
-            return <Loading/>
-        }
-        return (
+    const tableHeadCallBack = (queryString: string) => {
+        dispatch(getPacksTC({sortPacks: queryString as GetSortPacksType}))
+    }
+    const changePage = (newPage: number) => {
+        dispatch(getPacksTC({page: newPage}))
+    }
+    const changeRowsPerPage = (rowsPerPage: number) => {
+        dispatch(getPacksTC({pageCount: rowsPerPage, page: 1}))
+    }
+    if (!cards.length) {
+        return <Loading/>
+    }
+    return (
+        <>
             <TableContainer component={Paper}>
                 <Table sx={{minWidth: 650}} aria-label="simple table">
                     <CustomTableHead sortCallback={tableHeadCallBack} headCells={headCells}/>
                     <CustomTableBody elements={cards} myID={myID} onClickNameHandler={onClickNameHandler}/>
                 </Table>
-                <Paginator
-                    page={page}
-                    rowsPerPage={pageCount}
-                    totalCount={cardPacksTotalCount}
-                    changePage={changePage}
-                    changeRowsPerPage={changeRowsPerPage}
-                />
-            </TableContainer>)
-
-
-    }
-;
+            </TableContainer>
+            <Paginator
+                page={page}
+                rowsPerPage={pageCount}
+                totalCount={cardPacksTotalCount}
+                changePage={changePage}
+                changeRowsPerPage={changeRowsPerPage}
+            />
+        </>
+    )
+};
 

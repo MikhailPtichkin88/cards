@@ -19,8 +19,8 @@ const initState: InitStateType = {
         min: null,
         max: null,
         sortCards: null,
-        page: null,
-        pageCount: null,
+        page: 1,
+        pageCount: 10,
     },
     dateCard: {
         cards: [] as unknown as CardType,

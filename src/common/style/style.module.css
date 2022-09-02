@@ -12,3 +12,8 @@
     margin: 20px auto;
     box-sizing: border-box;
 }
+
+.tableCell {
+    max-width: 100px;
+    overflow-wrap: break-word;
+}

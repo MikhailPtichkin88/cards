@@ -1,4 +1,5 @@
 import {instance} from '../../../app/app-api';
+import {GetSortPacksType} from '../packs-api';
 
 export const CardsApi = {
     getCards(params: QueryParamsCardType) {
@@ -43,10 +44,10 @@ export type CardType = CommonDataType & {
 export type QueryParamsCardType = {
     cardAnswer?: string | null
     cardQuestion?: string | null
-    cardsPack_id: string | null
+    cardsPack_id?: string | null
     min?: number | null
     max?: number | null
-    sortCards?: string | null
+    sortCards?: null | GetSortPacksType
     page?: number | null
     pageCount?: number | null
 }
@@ -56,7 +57,7 @@ export type ResponseGateCardType = {
     maxGrade: number
     minGrade: number
     page: number
-    pageCount?: number
+    pageCount: number
     packUserId?: string
     packName?: string
     packDeckCover?: string

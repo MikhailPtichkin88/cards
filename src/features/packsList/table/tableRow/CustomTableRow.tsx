@@ -1,14 +1,15 @@
 import React from 'react';
-import {TableCell, TableRow} from "@mui/material";
-import styles from "../Table.module.css";
-import study from "../../../../assets/images/cardPackBtns/study.svg";
-import edit from "../../../../assets/images/cardPackBtns/edit.svg";
-import deleteImg from "../../../../assets/images/cardPackBtns/delete.svg";
-import {PackType} from "../../packs-api";
-import {Navigate, NavLink, useNavigate} from "react-router-dom";
-import {routePath} from "../../../../common/constants/routePath";
-import {useAppDispatch} from "../../../../common/hooks/useAppDispatch";
-import {changePackNameTC, deletePackTC} from "../../packs-reducer";
+import {TableCell, TableRow} from '@mui/material';
+import styles from '../Table.module.css';
+import study from '../../../../assets/images/cardPackBtns/study.svg';
+import edit from '../../../../assets/images/cardPackBtns/edit.svg';
+import deleteImg from '../../../../assets/images/cardPackBtns/delete.svg';
+import {PackType} from '../../packs-api';
+import {Navigate, NavLink, useNavigate} from 'react-router-dom';
+import {routePath} from '../../../../common/constants/routePath';
+import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
+import {changePackNameTC, deletePackTC} from '../../packs-reducer';
+import common from '../../../../common/style/style.module.css';
 
 type CustomTableRowPropsType = {
     el: PackType
@@ -23,7 +24,7 @@ export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPro
         return navigate(routePath.cards.learnCards)
     }
     const changePackName = () => {
-        dispatch(changePackNameTC({_id: el._id, name: "Super Pako"}))
+        dispatch(changePackNameTC({_id: el._id, name: 'Super Pako'}))
     }
     const deletePack = () => {
         dispatch(deletePackTC(el._id))
@@ -32,7 +33,7 @@ export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPro
         <TableRow key={el._id} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
             <TableCell component="th" scope="row"
                        onClick={() => onClickNameHandler(el._id)}
-                       style={{cursor: 'pointer'}}
+                       style={{cursor: 'pointer', maxWidth: '200px', overflowWrap: 'break-word'}}
             >
                 {el.name}
             </TableCell>
@@ -54,7 +55,7 @@ export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPro
 
                     </div>}
                 :
-                </TableCell>
-                </TableRow>
-                );
-            };
+            </TableCell>
+        </TableRow>
+    );
+};

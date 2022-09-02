@@ -5,8 +5,9 @@ import {HeadCellType} from '../../Table';
 type HeadCellPropsType = {
     sortCallback?: (queryString: string) => void
     headCell: HeadCellType
+    width?: string
 }
-export const HeadCell = ({headCell, sortCallback}: HeadCellPropsType) => {
+export const HeadCell = ({width, headCell, sortCallback}: HeadCellPropsType) => {
     const {sortKey, title, sortable} = headCell
     const [active, setActive] = useState(false)
     const [direction, setDirection] = useState(false)
@@ -22,7 +23,7 @@ export const HeadCell = ({headCell, sortCallback}: HeadCellPropsType) => {
 
     return (
         <>
-            {sortable ? <TableCell key={sortKey}>
+            {sortable ? <TableCell key={sortKey} sx={{maxWidth: width}}>
                     <TableSortLabel
                         onClick={toggleDirection}
                         onFocus={onActiveHandler}

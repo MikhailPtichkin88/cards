@@ -49,6 +49,7 @@ test('Adding date cards', () => {
         maxGrade: 3,
         minGrade: 1,
         packCreated: 'pack',
+        pageCount: 1
 
     }
     const newState = cardsReducer(state, setDateCard(responseDateCards))
