@@ -41,24 +41,15 @@ export const packsReducer = (state = initState, action: PacksActionType): PacksR
 }
 
 //actions
-export const setPacksAC = (packs: PacksType) => {
-    return {
-        type: 'PACKS/SET-PACKS',
-        packs
-    } as const
-}
-export const updateQueryParamsAC = (params: PacksGetParamsType) => {
-    return {
-        type: 'PACKS/UPDATE-QUERY-PARAMS',
-        params
-    } as const
-}
-export const filterPacksWithOwnerSwitcherAC = (filter: OwnerSwitcherType) => {
-    return {
-        type: 'PACKS/FILTER-OWNER-SWITCHER',
-        filter
-    } as const
-}
+export const setPacksAC = (packs: PacksType) =>
+    ({type: 'PACKS/SET-PACKS', packs} as const)
+
+export const updateQueryParamsAC = (params: PacksGetParamsType) =>
+    ({type: 'PACKS/UPDATE-QUERY-PARAMS', params} as const)
+
+export const filterPacksWithOwnerSwitcherAC = (filter: OwnerSwitcherType) =>
+    ({type: 'PACKS/FILTER-OWNER-SWITCHER', filter} as const)
+
 //types
 export type OwnerSwitcherType = 'all' | 'my'
 export type PacksFiltersType = {

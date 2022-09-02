@@ -36,16 +36,17 @@ export const CardsSlider = (props: CardsSliderType) => {
         setValue(newValue as number[]);
     };
 
-    useEffect(() => {debugger
-        if(value[1] !==0){
+    useEffect(() => {
+        if (value[1] !== 0) {
             dispatch(updateQueryParamsAC({min: value[0], max: value[1]}))
         }
     }, [debouncedValue])
+    
     useEffect(() => {
         if (valueOwnerSwitcher === ownerSwitcher) {
             if (min === undefined && max === undefined) {
                 setValue([minCardsCount, maxCardsCount])
-            }  else if (min !== undefined && max !== undefined) {
+            } else if (min !== undefined && max !== undefined) {
                 setValue([min, max])
             }
         } else {
@@ -53,6 +54,7 @@ export const CardsSlider = (props: CardsSliderType) => {
             setValueOwnerSwitcher(ownerSwitcher)
         }
     }, [minCardsCount, maxCardsCount,])
+
     useEffect(() => {
         setValue([minCardsCount, maxCardsCount])
         props.setClearFilter(false)
@@ -78,4 +80,3 @@ export const CardsSlider = (props: CardsSliderType) => {
         </div>
     );
 };
-
