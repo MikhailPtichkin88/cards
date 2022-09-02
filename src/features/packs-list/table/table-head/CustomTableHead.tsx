@@ -1,7 +1,7 @@
 import React from 'react';
 import {TableCell, TableHead, TableRow} from '@mui/material';
 import {HeadCellType} from '../Table';
-import {HeadCell} from './HeadCell/HeadCell';
+import {HeadCell} from './head-cell/HeadCell';
 
 export type CustomTableHeadPropsType = {
     headCells: Array<HeadCellType>

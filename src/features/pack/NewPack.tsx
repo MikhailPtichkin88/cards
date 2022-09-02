@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './NewPack.module.css';
-import {BackToPacksLink} from "../../common/components/BackToPacksLink/BackToPacksLink";
+import {BackToPacksLink} from "../../common/components/back-to-packs-link/BackToPacksLink";
 import Button from "@mui/material/Button/Button";
 
 

@@ -6,7 +6,7 @@ import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import Paper from '@mui/material/Paper/Paper';
 import commonStyle from '../../../common/style/style.module.css'
 import Grid from '@mui/material/Grid/Grid';
-import {Title} from '../signUp/Title/Title';
+import {Title} from '../sign-up/title/Title';
 import {Box} from '@mui/material';
 
 export const CheckEmail = (props: CheckEmailType) => {

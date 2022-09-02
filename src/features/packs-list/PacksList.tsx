@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import styles from './PackList.module.css';
-import {PacksTitle} from './packsTitle/PacksTitle';
+import {PacksTitle} from './packs-title/PacksTitle';
 import {Settings} from './settings/Settings';
 import {CardsTable} from './table/Table';
 import {NavLink} from 'react-router-dom';
@@ -8,7 +8,7 @@ import {routePath} from '../../common/constants/routePath';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {addNewPackTC, getPacksTC} from './packs-reducer';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
-import {Loading} from '../../common/components/Loading/Loading';
+import {Loading} from '../../common/components/loading/Loading';
 
 export const PacksList = () => {
     const min = useAppSelector(state => state.packs.queryParams.min)

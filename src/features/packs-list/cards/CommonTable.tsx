@@ -9,10 +9,11 @@ import edit from '../../../assets/images/cardPackBtns/edit.svg';
 import {GetSortPacksType} from '../packs-api';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {HeadCellType} from '../table/Table';
-import {fetchCards, setQueryParams} from './cards-reducer';
-import {CustomTableHead} from '../table/TableHead/CustomTableHead';
+
+import {CustomTableHead} from '../table/table-head/CustomTableHead';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import common from '../../../common/style/style.module.css'
+import {fetchCards, setQueryParams} from './cards-reducer';
 
 const headCells: Array<HeadCellType> = [
 

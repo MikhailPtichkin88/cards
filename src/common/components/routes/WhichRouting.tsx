@@ -5,12 +5,12 @@ import {Login} from '../../../features/auth/login/Login';
 import {NewPassword} from '../../../features/auth/new-password/NewPassword';
 import {PasswordRecovery} from '../../../features/auth/password-recovery/PasswordRecovery';
 import {Profile} from '../../../features/profile/Profile';
-import {SignUp} from '../../../features/auth/signUp/SignUp';
+import {SignUp} from '../../../features/auth/sign-up/SignUp';
 import {routePath} from '../../constants/routePath';
-import {PacksList} from '../../../features/packsList/PacksList';
-import {Cards} from '../../../features/packsList/Cards/Cards';
-import {NewPack} from "../../../features/Pack/NewPack";
-import {LearnCards} from "../../../features/learnCards/LearnCards";
+import {PacksList} from '../../../features/packs-list/PacksList';
+import {Cards} from '../../../features/packs-list/cards/Cards';
+import {NewPack} from "../../../features/pack/NewPack";
+import {LearnCards} from "../../../features/learn-cards/LearnCards";
 
 
 export const WhichRouting = () => {

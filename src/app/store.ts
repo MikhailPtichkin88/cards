@@ -5,10 +5,10 @@ import {
     passwordRecoveryReducer
 } from '../features/auth/password-recovery/password-recovery-reducer';
 import {AppActionsType, appReducer} from './app-reducer';
-import {SignUpActionsType, signUpReducer} from '../features/auth/signUp/signUp-reducer';
+import {SignUpActionsType, signUpReducer} from '../features/auth/sign-up/signUp-reducer';
 import {AuthActionsType, authReducer} from '../features/auth/auth-reducer';
-import {initState, PacksActionType, packsReducer} from '../features/packsList/packs-reducer';
-import {cardsReducer, CardReducerActionType} from '../features/packsList/Cards/cards-reducer';
+import {initState, PacksActionType, packsReducer} from '../features/packs-list/packs-reducer';
+import {cardsReducer, CardReducerActionType} from '../features/packs-list/cards/cards-reducer';
 import {loadStateMaxCards, loadStateMinCards, loadStateOwnerSwitcher, saveState} from '../common/utils/local-utils';
 
 

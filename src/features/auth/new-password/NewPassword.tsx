@@ -13,8 +13,8 @@ import Paper from '@mui/material/Paper/Paper';
 import FormControl from '@mui/material/FormControl/FormControl';
 import {Box, FormGroup} from '@mui/material';
 import Grid from '@mui/material/Grid/Grid';
-import {Title} from '../signUp/Title/Title';
-import {InputEyeSwitcher} from '../signUp/TextField/InputEyeSwitcher';
+import {Title} from '../sign-up/title/Title';
+import {InputEyeSwitcher} from '../sign-up/text-field/InputEyeSwitcher';
 import {setAppStatusAC} from '../../../app/app-reducer';
 
 export const NewPassword = () => {

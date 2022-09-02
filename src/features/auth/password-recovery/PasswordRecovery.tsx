@@ -11,7 +11,7 @@ import {useNavigate} from 'react-router-dom';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import Paper from '@mui/material/Paper/Paper';
 import Grid from '@mui/material/Grid/Grid';
-import {Title} from '../signUp/Title/Title';
+import {Title} from '../sign-up/title/Title';
 import FormControl from '@mui/material/FormControl/FormControl';
 import {Box, FormGroup} from '@mui/material';
 import commonStyle from '../../../common/style/style.module.css'

@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from 'react';
 import styles from '../../profile/Profile.module.css';
 import {routePath} from '../../../common/constants/routePath';
 import {NavLink} from 'react-router-dom';
-import {PacksTitle} from '../packsTitle/PacksTitle';
+import {PacksTitle} from '../packs-title/PacksTitle';
 import {CommonTable} from './CommonTable';
 import {Search} from '../settings/search/Search';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
@@ -11,7 +11,7 @@ import common from '../../../common/style/style.module.css';
 import {Box, Typography} from '@mui/material';
 import {fetchCards, fetchCreateCard, fetchRemoveCard, fetchUpdateCard, setQueryParams} from './cards-reducer';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import {Loading} from '../../../common/components/Loading/Loading';
+import {Loading} from '../../../common/components/loading/Loading';
 import {Paginator} from '../../../common/components/pagination/Paginator';
 
 

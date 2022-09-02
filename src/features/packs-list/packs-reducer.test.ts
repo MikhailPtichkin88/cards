@@ -29,7 +29,7 @@ beforeEach(()=>{
 test('updateQueryParamsAC should work correctly', ()=>{
 
     let data = {
-        packName: "Cards for people",
+        packName: "cards for people",
         min: 0,
         max: 110,
         sortPacks: undefined,
@@ -40,7 +40,7 @@ test('updateQueryParamsAC should work correctly', ()=>{
 
     const result = packsReducer(startState, updateQueryParamsAC(data))
 
-    expect(result.queryParams.packName).toBe("Cards for people")
+    expect(result.queryParams.packName).toBe("cards for people")
     expect(startState.queryParams.packName).toBe(undefined)
 
     const oldPacks = startState.packs

@@ -1,7 +1,7 @@
 import React from 'react';
 import {TableBody} from '@mui/material';
 import {PackType} from '../../packs-api';
-import {CustomTableRow} from '../tableRow/CustomTableRow';
+import {CustomTableRow} from '../table-row/CustomTableRow';
 
 type CustomTableBodyPropsType = {
     elements: Array<PackType>
