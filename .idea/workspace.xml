@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa29b013-ac98-4e76-9ceb-4e4676a001c7" name="Changes" comment="New Pack markup page">
+    <list default="true" id="aa29b013-ac98-4e76-9ceb-4e4676a001c7" name="Changes" comment="owner switcher filtering done without local storage">
+      <change afterPath="$PROJECT_DIR$/src/features/packs-list/pack-modals/CustomModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/packs-list/pack-modals/add-edit-pack-modal/AddEditPackModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/packs-list/pack-modals/delete-pack-modal/DeletePackModal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/components/routes/WhichRouting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/routes/WhichRouting.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/packsList/packs-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packsList/packs-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/packsList/packs-reducer.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packsList/packs-reducer.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/packsList/packs-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packsList/packs-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/packsList/settings/ownerSwitcher/OwnerSwitcher.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packsList/settings/ownerSwitcher/OwnerSwitcher.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/packsList/table/Table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packsList/table/Table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/packs-list/PacksList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/PacksList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/packs-list/packs-title/PacksTitle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/packs-title/PacksTitle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/packs-list/table/table-row/CustomTableRow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/table/table-row/CustomTableRow.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,13 +21,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="TypeScript File" />
         <option value="CSS File" />
         <option value="TypeScript JSX File" />
-        <option value="TypeScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
@@ -63,11 +67,11 @@
       <recent name="E:\projects\cards\src\assets\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\projects\cards\src\features\packs-list" />
       <recent name="E:\projects\cards\src\assets\images\cardPackBtns" />
       <recent name="E:\projects\cards\src\assets\images" />
       <recent name="E:\projects\cards\src\features\packsList\settings\disableFilter" />
       <recent name="E:\projects\cards\src\features\auth\auth-api.ts" />
-      <recent name="E:\projects\cards\src\features\auth" />
     </key>
   </component>
   <component name="RunManager" selected="Jest.setAuthAC should work correctly">

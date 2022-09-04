@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {TableCell, TableRow} from '@mui/material';
 import styles from '../Table.module.css';
 import study from '../../../../assets/images/cardPackBtns/study.svg';
@@ -10,21 +10,31 @@ import {routePath} from '../../../../common/constants/routePath';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {changePackNameTC, deletePackTC} from '../../packs-reducer';
 import common from '../../../../common/style/style.module.css';
+import {AddEditPackModal} from "../../pack-modals/add-edit-pack-modal/AddEditPackModal";
+import {DeletePackModal} from "../../pack-modals/delete-pack-modal/DeletePackModal";
+
+export type ShowModalType = "close" | "edit" | "add" | "delete"
 
 type CustomTableRowPropsType = {
     el: PackType
     myID: string
     onClickNameHandler: (packId: string) => void
 }
+
 export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPropsType) => {
+    const [openModal, setOpenModal] = useState<ShowModalType>("close")
+    const handleOpenEdit = () => setOpenModal("edit");
+    const handleOpenDelete = () => setOpenModal("delete");
+    const handleClose = () => setOpenModal("close");
+
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
     const redirectToStudy = () => {
         return navigate(routePath.cards.learnCards)
     }
-    const changePackName = () => {
-        dispatch(changePackNameTC({_id: el._id, name: 'Super Pako'}))
+    const changePackName = (name:string) => {
+        dispatch(changePackNameTC({_id: el._id, name}))
     }
     const deletePack = () => {
         dispatch(deletePackTC(el._id))
@@ -45,8 +55,23 @@ export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPro
                     ? <div className={styles.btnBlock}>
                         <button onClick={redirectToStudy} className={styles.btn}
                                 style={{backgroundImage: `url(${study})`}}/>
-                        <button onClick={changePackName} className={styles.btn} style={{backgroundImage: `url(${edit})`}}/>
-                        <button onClick={deletePack} className={styles.btn} style={{backgroundImage: `url(${deleteImg})`}}/>
+                        <button onClick={handleOpenEdit} className={styles.btn} style={{backgroundImage: `url(${edit})`}}/>
+                        <button onClick={handleOpenDelete} className={styles.btn} style={{backgroundImage: `url(${deleteImg})`}}/>
+                        {
+                            openModal==="edit" && <AddEditPackModal open={openModal}
+                                              handleClose={handleClose}
+                                              title="Edit pack"
+                                              packName={el.name}
+                                              saveCallback={changePackName}/>
+                        }
+                        {
+                            openModal==="delete" && <DeletePackModal open={openModal==="delete"}
+                                                                    handleClose={handleClose}
+                                                                    title="Delete Pack"
+                                                                    packName={el.name}
+                                                                    deleteCallback={deletePack}/>
+                        }
+
                     </div>
                     :
                     <div className={styles.btnBlock}>

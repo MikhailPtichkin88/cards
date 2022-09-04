@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './PackList.module.css';
 import {PacksTitle} from './packs-title/PacksTitle';
 import {Settings} from './settings/Settings';
@@ -9,8 +9,10 @@ import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {addNewPackTC, getPacksTC} from './packs-reducer';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {Loading} from '../../common/components/loading/Loading';
+import {AddEditPackModal} from "./pack-modals/add-edit-pack-modal/AddEditPackModal";
 
 export const PacksList = () => {
+
     const min = useAppSelector(state => state.packs.queryParams.min)
     const max = useAppSelector(state => state.packs.queryParams.max)
     const myID = useAppSelector(state => state.auth.authData._id)
@@ -19,8 +21,8 @@ export const PacksList = () => {
     const status = useAppSelector(state => state.app.status)
     const dispatch = useAppDispatch()
 
-    const addNewPack = () => {
-        dispatch(addNewPackTC({name: new Date().getMinutes().toString()}))
+    const addNewPack = (name:string) => {
+        dispatch(addNewPackTC({name}))
     }
 
     useEffect(() => {
@@ -37,7 +39,7 @@ export const PacksList = () => {
                         callback={addNewPack}/>
             <Settings/>
             <CardsTable/>
-            <NavLink to={routePath.cards.newPack}>NewPack page sample</NavLink>
+
         </div>
     );
 };
