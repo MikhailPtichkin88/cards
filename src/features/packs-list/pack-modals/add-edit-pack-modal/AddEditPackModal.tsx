@@ -47,7 +47,7 @@ export const AddEditPackModal: React.FC<AddEditPackModalType> = ({
     }
 
     return (
-        <CustomModal title={title} open={open==="add"} handleClose={handleClose}>
+        <CustomModal title={title} open={open==="add" || open==="edit"} handleClose={handleClose}>
             <TextField id="standard-basic"
                        label="Name pack"
                        variant="standard"

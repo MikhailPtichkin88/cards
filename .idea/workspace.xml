@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa29b013-ac98-4e76-9ceb-4e4676a001c7" name="Changes" comment="owner switcher filtering done without local storage">
-      <change afterPath="$PROJECT_DIR$/src/features/packs-list/pack-modals/CustomModal.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packs-list/pack-modals/add-edit-pack-modal/AddEditPackModal.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/packs-list/pack-modals/delete-pack-modal/DeletePackModal.tsx" afterDir="false" />
+    <list default="true" id="aa29b013-ac98-4e76-9ceb-4e4676a001c7" name="Changes" comment="New Pack markup page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/packs-list/PacksList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/PacksList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/packs-list/packs-title/PacksTitle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/packs-title/PacksTitle.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/packs-list/table/table-row/CustomTableRow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/table/table-row/CustomTableRow.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,19 +16,20 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="CSS File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="checkFix" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
     <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -56,7 +52,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs.jest.jest_package&quot;: &quot;E:/projects/cards/node_modules/react-scripts&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;E:\\projects\\cards\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\projects\\cards\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -67,11 +63,11 @@
       <recent name="E:\projects\cards\src\assets\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\projects\cards\src\features\packs-list" />
       <recent name="E:\projects\cards\src\assets\images\cardPackBtns" />
       <recent name="E:\projects\cards\src\assets\images" />
       <recent name="E:\projects\cards\src\features\packsList\settings\disableFilter" />
       <recent name="E:\projects\cards\src\features\auth\auth-api.ts" />
+      <recent name="E:\projects\cards\src\features\auth" />
     </key>
   </component>
   <component name="RunManager" selected="Jest.setAuthAC should work correctly">
@@ -163,6 +159,7 @@
       <workItem from="1661501799629" duration="7189000" />
       <workItem from="1661537126638" duration="1317000" />
       <workItem from="1661699703190" duration="13115000" />
+      <workItem from="1662361114870" duration="338000" />
     </task>
     <task id="LOCAL-00001" summary="Login">
       <created>1661242909801</created>
