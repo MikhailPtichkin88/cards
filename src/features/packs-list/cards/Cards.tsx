@@ -55,12 +55,15 @@ export const Cards = () => {
         dispatch(fetchCards())
     }
 
-    // useEffect(() => {
-    //     if (cards.length === 0 && page !== 1) {
-    //         dispatch(setQueryParams({page: page - 1}))
-    //         dispatch(fetchCards())
-    //     }
-    // }, [cards])
+    useEffect(() => {debugger
+        if(page>1){
+            if (cards.length === 0 ) {
+                dispatch(setQueryParams({page: page - 1}))
+                dispatch(fetchCards())
+            }
+        }
+
+    }, [cards])
 
     useEffect(() => {
         if(!cardsPack_id){
