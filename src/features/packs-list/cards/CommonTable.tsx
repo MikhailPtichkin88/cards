@@ -95,6 +95,8 @@ export const CommonTable = (props: CommonTableType) => {
 
                                     <Box sx={{display: 'flex', justifyContent: 'space-between', width: '50px'}}>
                                         <EditAddModalCard title={'Edit card'}
+                                                          valueQuestion={card.question}
+                                                          valueAnswer={card.answer}
                                                           childrenDiv={<button className={styles.btn}
                                                                                style={{backgroundImage: `url(${edit})`}}/>}
                                                           saveCallback={saveCallback}/>

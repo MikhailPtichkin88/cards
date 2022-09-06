@@ -11,12 +11,14 @@ import commonStyle from '../../../../common/style/style.module.css';
 type EditAddModalCardType = {
     childrenDiv: ReactNode
     title: string
+    valueQuestion?: string
+    valueAnswer?: string
     saveCallback: ([]: string[]) => void
 };
-export const EditAddModalCard: React.FC<EditAddModalCardType> = ({childrenDiv, saveCallback, title}) => {
+export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
 
-    const [valueQuestion, setValueQuestion] = useState('')
-    const [valueAnswer, setValueAnswer] = useState('')
+    const [valueQuestion, setValueQuestion] = useState(props.valueQuestion)
+    const [valueAnswer, setValueAnswer] = useState(props.valueAnswer)
     const [errorQuestion, setErrorQuestion] = useState(false)
     const [errorAnswer, setErrorAnswer] = useState(false)
     const [close, setClose] = useState(false)
@@ -43,15 +45,15 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = ({childrenDiv, s
         } else if (!valueAnswer) {
             return setErrorAnswer(true)
         }
-        await saveCallback([valueQuestion, valueAnswer])
+        await props.saveCallback([valueQuestion, valueAnswer])
         handleClose()
     }
 
 
     return (
         <>
-            <CustomModal childrenDiv={childrenDiv}
-                         title={title}
+            <CustomModal childrenDiv={props.childrenDiv}
+                         title={props.title}
                          isClose={close}
                          setClose={setClose}>
                 <Box sx={{justifyContent: 'center', display: 'flex', flexDirection: 'column'}}>

@@ -21,7 +21,6 @@ export const PacksList = () => {
     const myID = useAppSelector(state => state.auth.authData._id)
     const filter = useAppSelector(state => state.packs.filters.ownerSwitcher)
     const packName = useAppSelector(state => state.packs.queryParams.packName)
-    const status = useAppSelector(state => state.app.status)
     const dispatch = useAppDispatch()
 
     const addNewPack = (name: string) => {

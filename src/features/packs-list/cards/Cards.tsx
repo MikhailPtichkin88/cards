@@ -118,14 +118,19 @@ export const Cards = () => {
                             <Typography sx={{mb: 4}}>
                                 This pack is empty. {isMy && 'Click add new card to fill this pack'}
                             </Typography>
-                            {/*{isMy &&*/}
-                            {/*    <Button variant="contained"*/}
-                            {/*            onClick={onClickAddCardHandler}*/}
-                            {/*            className={common.btnStyle}*/}
-                            {/*            sx={{maxWidth: '200px', mt: '0 !important'}}*/}
-                            {/*    >*/}
-                            {/*        Add new card*/}
-                            {/*    </Button>}*/}
+                            {isMy && <EditAddModalCard
+                                title="Add new card"
+                                saveCallback={onClickAddCardHandler}
+                                childrenDiv={
+                                    <Button variant="contained"
+                                            className={common.btnStyle}
+                                            sx={{maxWidth: '200px', mt: '0 !important'}}
+                                    >
+                                        Add new card
+                                    </Button>
+                                }
+                            />
+                            }
                         </Box>
                     </Box>
             }
