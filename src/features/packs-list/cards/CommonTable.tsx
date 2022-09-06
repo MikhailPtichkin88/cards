@@ -14,6 +14,9 @@ import {CustomTableHead} from '../table/table-head/CustomTableHead';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import common from '../../../common/style/style.module.css'
 import {fetchCards, setQueryParams} from './cards-reducer';
+import {AddEditModalPack} from '../modals/add-edit-modal-pack/AddEditModalPack';
+import {DeleteModal} from '../modals/delete-modal/DeleteModal';
+import {EditAddModalCard} from '../modals/add-edit-modal-cards/EditAddModalCard';
 
 const headCells: Array<HeadCellType> = [
 
@@ -61,8 +64,16 @@ export const CommonTable = (props: CommonTableType) => {
                                  sortKey={'actions'}
                 />
                 <TableBody>
-                    {props.cards.map((card) => (
-                        <TableRow
+                    {props.cards.map((card) => {
+                        const saveCallback = (params: string[] | string) => {
+                            if (Array.isArray(params)) {
+                                props.updateCardHandler(card._id, params)
+                            }
+                        }
+                        const deleteCallback = () => {
+                            props.deleteCardHandler(card._id)
+                        }
+                        return <TableRow
                             key={card._id}
                             sx={{'&:last-child td, &:last-child th': {border: 0}}}
                         >
@@ -81,20 +92,23 @@ export const CommonTable = (props: CommonTableType) => {
                             {
                                 isMy &&
                                 <TableCell align="right">
+
                                     <Box sx={{display: 'flex', justifyContent: 'space-between', width: '50px'}}>
-                                        <button className={styles.btn}
-                                                style={{backgroundImage: `url(${edit})`}}
-                                                onClick={() => props.updateCardHandler(card._id)}
-                                        />
-                                        <button className={styles.btn}
-                                                style={{backgroundImage: `url(${deleteImg})`}}
-                                                onClick={() => props.deleteCardHandler(card._id)}
-                                        />
+                                        <EditAddModalCard title={'Edit card'}
+                                                          childrenDiv={<button className={styles.btn}
+                                                                               style={{backgroundImage: `url(${edit})`}}/>}
+                                                          saveCallback={saveCallback}/>
+                                        <DeleteModal title={'Delete Card'}
+                                                     name={card.answer}
+                                                     childrenDiv={<button className={styles.btn}
+                                                                          style={{backgroundImage: `url(${deleteImg})`}}/>}
+                                                     deleteCallback={deleteCallback}/>
+
                                     </Box>
                                 </TableCell>
                             }
                         </TableRow>
-                    ))}
+                    })}
                 </TableBody>
             </Table>
         </TableContainer>
@@ -104,7 +118,7 @@ export const CommonTable = (props: CommonTableType) => {
 //type
 type CommonTableType = {
     cards: CardType[]
-    updateCardHandler: (id: string) => void
+    updateCardHandler: (id: string, params: string[]) => void
     deleteCardHandler: (id: string) => void
 }
 

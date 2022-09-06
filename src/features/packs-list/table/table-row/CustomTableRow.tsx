@@ -1,19 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {TableCell, TableRow} from '@mui/material';
 import styles from '../Table.module.css';
 import study from '../../../../assets/images/cardPackBtns/study.svg';
 import edit from '../../../../assets/images/cardPackBtns/edit.svg';
 import deleteImg from '../../../../assets/images/cardPackBtns/delete.svg';
 import {PackType} from '../../packs-api';
-import {Navigate, NavLink, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {routePath} from '../../../../common/constants/routePath';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {changePackNameTC, deletePackTC} from '../../packs-reducer';
-import common from '../../../../common/style/style.module.css';
-import {AddEditPackModal} from "../../pack-modals/add-edit-pack-modal/AddEditPackModal";
-import {DeletePackModal} from "../../pack-modals/delete-pack-modal/DeletePackModal";
+import {AddEditModalPack} from '../../modals/add-edit-modal-pack/AddEditModalPack';
+import {DeleteModal} from '../../modals/delete-modal/DeleteModal';
 
-export type ShowModalType = "close" | "edit" | "add" | "delete"
 
 type CustomTableRowPropsType = {
     el: PackType
@@ -22,10 +20,6 @@ type CustomTableRowPropsType = {
 }
 
 export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPropsType) => {
-    const [openModal, setOpenModal] = useState<ShowModalType>("close")
-    const handleOpenEdit = () => setOpenModal("edit");
-    const handleOpenDelete = () => setOpenModal("delete");
-    const handleClose = () => setOpenModal("close");
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
@@ -33,7 +27,7 @@ export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPro
     const redirectToStudy = () => {
         return navigate(routePath.cards.learnCards)
     }
-    const changePackName = (name:string) => {
+    const changePackName = (name: string) => {
         dispatch(changePackNameTC({_id: el._id, name}))
     }
     const deletePack = () => {
@@ -55,23 +49,19 @@ export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPro
                     ? <div className={styles.btnBlock}>
                         <button onClick={redirectToStudy} className={styles.btn}
                                 style={{backgroundImage: `url(${study})`}}/>
-                        <button onClick={handleOpenEdit} className={styles.btn} style={{backgroundImage: `url(${edit})`}}/>
-                        <button onClick={handleOpenDelete} className={styles.btn} style={{backgroundImage: `url(${deleteImg})`}}/>
-                        {
-                            openModal==="edit" && <AddEditPackModal open={openModal}
-                                              handleClose={handleClose}
-                                              title="Edit pack"
-                                              packName={el.name}
-                                              saveCallback={changePackName}/>
-                        }
-                        {
-                            openModal==="delete" && <DeletePackModal open={openModal==="delete"}
-                                                                    handleClose={handleClose}
-                                                                    title="Delete Pack"
-                                                                    packName={el.name}
-                                                                    deleteCallback={deletePack}/>
-                        }
+                        <AddEditModalPack title="Edit pack"
+                                          name={el.name}
+                                          saveCallback={changePackName}
+                                          childrenDiv={<button className={styles.btn}
+                                                               style={{backgroundImage: `url(${edit})`}}/>}
+                        />
+                        <DeleteModal title="Delete Pack"
+                                     name={el.name}
+                                     deleteCallback={deletePack}
+                                     childrenDiv={<button className={styles.btn}
+                                                          style={{backgroundImage: `url(${deleteImg})`}}/>}
 
+                        />
                     </div>
                     :
                     <div className={styles.btnBlock}>

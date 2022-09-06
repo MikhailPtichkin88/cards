@@ -17,3 +17,10 @@
     max-width: 200px;
     overflow-wrap: break-word;
 }
+
+.modalBtnBlock {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: 100px;
+}

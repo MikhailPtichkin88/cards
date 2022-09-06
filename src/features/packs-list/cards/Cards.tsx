@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import styles from '../../profile/Profile.module.css';
 import {routePath} from '../../../common/constants/routePath';
 import {NavLink, useParams} from 'react-router-dom';
@@ -11,8 +11,8 @@ import common from '../../../common/style/style.module.css';
 import {Box, Typography} from '@mui/material';
 import {fetchCards, fetchCreateCard, fetchRemoveCard, fetchUpdateCard, setQueryParams} from './cards-reducer';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import {Loading} from '../../../common/components/loading/Loading';
 import {Paginator} from '../../../common/components/pagination/Paginator';
+import {EditAddModalCard} from '../modals/add-edit-modal-cards/EditAddModalCard';
 
 
 export const Cards = () => {
@@ -31,9 +31,9 @@ export const Cards = () => {
     const isMy = myID === packUserId
     const dispatch = useAppDispatch()
 
-    const onClickAddCardHandler = () => {
+    const onClickAddCardHandler = (params: string | string[]) => {
         if (cardsPack_id) {
-            dispatch(fetchCreateCard({cardsPack_id}))
+            dispatch(fetchCreateCard({cardsPack_id, question: params[0], answer: params[1]}))
         }
     }
     const changeRowsPerPage = (pageCount: number) => {
@@ -44,20 +44,20 @@ export const Cards = () => {
         dispatch(setQueryParams({page}))
         dispatch(fetchCards())
     }
-    const updateCardHandler = (_id: string) => {
-        dispatch(fetchUpdateCard({_id, question: 'update', answer: 'answer'}))
+    const updateCardHandler = (_id: string, params: string[]) => {
+        dispatch(fetchUpdateCard({_id, question: params[0], answer: params[1]}))
     }
     const deleteCardHandler = (id: string) => {
         dispatch(fetchRemoveCard(id))
     }
     const searchHandler = (cardQuestion: string) => {
-         dispatch(setQueryParams({cardQuestion}))
+        dispatch(setQueryParams({cardQuestion}))
         dispatch(fetchCards())
     }
 
-    useEffect(() => {debugger
-        if(page>1){
-            if (cards.length === 0 ) {
+    useEffect(() => {
+        if (page > 1) {
+            if (cards.length === 0) {
                 dispatch(setQueryParams({page: page - 1}))
                 dispatch(fetchCards())
             }
@@ -66,10 +66,10 @@ export const Cards = () => {
     }, [cards])
 
     useEffect(() => {
-        if(!cardsPack_id){
-            dispatch(setQueryParams({cardsPack_id:params.id}))
+        if (!cardsPack_id) {
+            dispatch(setQueryParams({cardsPack_id: params.id}))
         }
-         dispatch(fetchCards())
+        dispatch(fetchCards())
     }, [])
 
 
@@ -80,9 +80,19 @@ export const Cards = () => {
                 cards.length > 0
                     ? <div>
                         <PacksTitle title={packName ? packName : ''}
-                                    btnName={'Add new card'}
-                                    isMy={isMy}
-                                    callback={onClickAddCardHandler}/>
+                                    isMy={isMy}>
+                            <EditAddModalCard
+                                title="Add new card"
+                                saveCallback={onClickAddCardHandler}
+                                childrenDiv={
+                                    <Button variant="contained"
+                                            className={common.btnStyle}
+                                            sx={{maxWidth: '200px', mt: '0 !important'}}>
+                                        {'Add new card'}
+                                    </Button>
+                                }
+                            />
+                        </PacksTitle>
                         <Box sx={{mb: 4}}>
                             <Search id={'cardPacksSearch'}
                                     callback={searchHandler}
@@ -108,14 +118,14 @@ export const Cards = () => {
                             <Typography sx={{mb: 4}}>
                                 This pack is empty. {isMy && 'Click add new card to fill this pack'}
                             </Typography>
-                            {isMy &&
-                                <Button variant="contained"
-                                        onClick={onClickAddCardHandler}
-                                        className={common.btnStyle}
-                                        sx={{maxWidth: '200px', mt: '0 !important'}}
-                                >
-                                    Add new card
-                                </Button>}
+                            {/*{isMy &&*/}
+                            {/*    <Button variant="contained"*/}
+                            {/*            onClick={onClickAddCardHandler}*/}
+                            {/*            className={common.btnStyle}*/}
+                            {/*            sx={{maxWidth: '200px', mt: '0 !important'}}*/}
+                            {/*    >*/}
+                            {/*        Add new card*/}
+                            {/*    </Button>}*/}
                         </Box>
                     </Box>
             }
