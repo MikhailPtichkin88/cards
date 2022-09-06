@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect} from 'react';
 import styles from '../../profile/Profile.module.css';
 import {routePath} from '../../../common/constants/routePath';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useParams} from 'react-router-dom';
 import {PacksTitle} from '../packs-title/PacksTitle';
 import {CommonTable} from './CommonTable';
 import {Search} from '../settings/search/Search';
@@ -26,6 +26,8 @@ export const Cards = () => {
     const myID = useAppSelector(state => state.auth.authData._id)
     const packUserId = useAppSelector(state => state.cards.dateCard.packUserId)
 
+    const params = useParams()
+
     const isMy = myID === packUserId
     const dispatch = useAppDispatch()
 
@@ -48,20 +50,23 @@ export const Cards = () => {
     const deleteCardHandler = (id: string) => {
         dispatch(fetchRemoveCard(id))
     }
-    const searchHandler = useCallback((cardQuestion: string) => {
+    const searchHandler = (cardQuestion: string) => {
          dispatch(setQueryParams({cardQuestion}))
         dispatch(fetchCards())
-    }, [])
+    }
+
+    // useEffect(() => {
+    //     if (cards.length === 0 && page !== 1) {
+    //         dispatch(setQueryParams({page: page - 1}))
+    //         dispatch(fetchCards())
+    //     }
+    // }, [cards])
 
     useEffect(() => {
-        if (cards.length === 0 && page !== 1) {
-            dispatch(setQueryParams({page: page - 1}))
-            dispatch(fetchCards())
+        if(!cardsPack_id){
+            dispatch(setQueryParams({cardsPack_id:params.id}))
         }
-    }, [cards])
-
-    useEffect(() => {
-        dispatch(fetchCards())
+         dispatch(fetchCards())
     }, [])
 
 

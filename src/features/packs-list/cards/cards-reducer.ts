@@ -13,9 +13,9 @@ import {AxiosError} from 'axios';
 
 const initState: InitStateType = {
     queryCardParams: {
-        cardAnswer: null,
-        cardQuestion: null,
-        cardsPack_id: '630c6777798c4a2534c5d5b1',
+        cardAnswer: '',
+        cardQuestion: '',
+        cardsPack_id: null,
         min: null,
         max: null,
         sortCards: null,
@@ -57,7 +57,7 @@ export const fetchCards = (): AppThunk => async (dispatch, getState: () => RootS
 export const fetchCreateCard = (date: DataCreateCardType): AppThunk => async dispatch => {
     dispatch(setAppStatusAC('loading'))
     try {
-        const res = await CardsApi.createCard(date)
+        await CardsApi.createCard(date)
         dispatch(fetchCards())
         dispatch(setAppStatusAC('succeeded'))
     } catch (e) {

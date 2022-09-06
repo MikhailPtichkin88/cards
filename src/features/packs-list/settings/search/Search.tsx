@@ -19,11 +19,11 @@ export const Search = React.memo((props: SearchPropsType) => {
         }
 
         useEffect(() => {
-                props.callback(value)
-            }
-            ,
-            [debouncedValue]
-        )
+                if(props.valueSearch !== value){
+                    props.callback(value)
+                }
+            },[debouncedValue])
+
         useEffect(() => {
             setValue('')
         }, [props.clearFilter])
