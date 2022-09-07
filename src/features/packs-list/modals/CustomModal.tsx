@@ -2,7 +2,6 @@ import * as React from 'react';
 import {ReactNode, useEffect} from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import styles from './CustomModal.module.css';
 import {IconButton} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -30,18 +29,17 @@ type CustomModalType = {
     children: ReactNode
     childrenDiv: ReactNode
     title: string
-    isClose?: boolean
-    setClose?: (close: boolean) => void
+    isClose: boolean
+    setClose: (close: boolean) => void
+    setDataOnClose?: () => void
 }
 
 export const CustomModal: React.FC<CustomModalType> = (props) => {
     const [open, setOpen] = React.useState(false);
 
-    const handleOpen = () => {
-        setOpen(true)
-    };
-    const handleClose = () => {
-        setOpen(false)
+    const handleOpenClose = () => {
+        setOpen(!open)
+        if (props.setDataOnClose) props.setDataOnClose()
     };
 
     useEffect(() => {
@@ -53,17 +51,17 @@ export const CustomModal: React.FC<CustomModalType> = (props) => {
 
     return (
         <>
-            <Box onClick={handleOpen}>
+            <Box onClick={handleOpenClose}>
                 {props.childrenDiv}
             </Box>
             <Modal
                 open={open}
-                onClose={handleClose}
+                onClose={handleOpenClose}
             >
                 <Box sx={style}>
                     <div style={headerStyle}>
                         <h3 style={{margin: '0px'}}>{props.title}</h3>
-                        <IconButton aria-label="delete" onClick={handleClose}>
+                        <IconButton aria-label="delete" onClick={handleOpenClose}>
                             <CloseIcon/>
                         </IconButton>
                     </div>

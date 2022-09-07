@@ -1,16 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import styles from './PackList.module.css';
 import {PacksTitle} from './packs-title/PacksTitle';
 import {Settings} from './settings/Settings';
 import {CardsTable} from './table/Table';
-import {NavLink} from 'react-router-dom';
-import {routePath} from '../../common/constants/routePath';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {addNewPackTC, getPacksTC} from './packs-reducer';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
-import {Loading} from '../../common/components/loading/Loading';
-import {AddEditModalPack} from './modals/add-edit-modal-pack/AddEditModalPack';
-import {EditAddModalCard} from './modals/add-edit-modal-cards/EditAddModalCard';
+import {EditAddModalPack} from './modals/edit-add-modal-pack/EditAddModalPack';
 import Button from '@mui/material/Button/Button';
 import common from '../../common/style/style.module.css';
 
@@ -38,16 +34,18 @@ export const PacksList = () => {
     return (
         <div className={styles.wrapper}>
             <PacksTitle title={'Packs list'}>
-                <AddEditModalPack title={'Add new pack'}
-                                  childrenDiv={
-                                      <Button variant="contained"
-                                              className={common.btnStyle}
-                                              sx={{maxWidth: '200px', mt: '0 !important'}}>
-                                          {'Add new card'}
-                                      </Button>}
-                                  saveCallback={addNewPack}/>
+
+                <EditAddModalPack title={'Add new pack'}
+                                  saveCallback={addNewPack}
+                                  childrenDiv={<Button variant="contained"
+                                                       className={common.btnStyle}
+                                                       sx={{maxWidth: '200px', mt: '0 !important'}}>
+                                      {'Add new pack'}
+                                  </Button>}/>
             </PacksTitle>
+
             <Settings/>
+
             <CardsTable/>
 
         </div>

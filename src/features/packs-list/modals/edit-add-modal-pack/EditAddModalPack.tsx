@@ -2,15 +2,8 @@ import React, {ChangeEvent, ReactNode, useState} from 'react';
 import {CustomModal} from '../CustomModal';
 import TextField from '@mui/material/TextField';
 import {Checkbox, FormControlLabel, FormGroup} from '@mui/material';
-import Button from '@mui/material/Button';
 import commonStyle from '../../../../common/style/style.module.css'
-
-// export const btnBlockStyle = {
-//     display: 'flex',
-//     justifyContent: 'center',
-//     alignCenter: 'center',
-//     gap: '100px',
-// }
+import {ButtonModal} from '../ButtonModal';
 
 type AddEditPackModalType = {
     title: string
@@ -19,13 +12,8 @@ type AddEditPackModalType = {
     saveCallback: (name: string) => void
 }
 
-export const AddEditModalPack: React.FC<AddEditPackModalType> = ({
-                                                                     title,
-                                                                     name,
-                                                                     saveCallback,
-                                                                     childrenDiv
-                                                                 }) => {
-    const [value, setValue] = useState(name)
+export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
+    const [value, setValue] = useState(props.name)
     const [error, setError] = useState(false)
     const [close, setClose] = useState(false)
     const [isPrivate, setIsPrivate] = useState(false)
@@ -39,38 +27,46 @@ export const AddEditModalPack: React.FC<AddEditPackModalType> = ({
     }
     const handleClose = () => {
         setClose(true)
+        setDataOnClose()
     }
-    const onClickSaveHandler = async () => {
+    const setDataOnClose = () => {
+        setValue(props.name)
+        setError(false)
+    }
+    const onClickSaveHandler = () => {
         if (!value) {
             return setError(true)
         }
-        await saveCallback(value)
+        props.saveCallback(value)
         handleClose()
     }
 
     return (
-        <CustomModal title={title}
-                     childrenDiv={childrenDiv}
+        <CustomModal title={props.title}
+                     childrenDiv={props.childrenDiv}
                      isClose={close}
                      setClose={setClose}
-        >
-            <TextField id="standard-basic"
-                       label="Name pack"
+                     setDataOnClose={setDataOnClose}>
+
+            <TextField label="Name pack"
                        variant="standard"
+                       multiline
+                       maxRows={7}
                        value={value}
                        onChange={onChangeValueHandler}
                        error={error}
                        helperText={error && 'Empty field'}
-                       style={{marginBottom: '30px'}}/>
+                       className={commonStyle.textFieldModal}/>
+
             <FormGroup style={{marginBottom: '35px'}}>
+
                 <FormControlLabel label="Private pack" control={
                     <Checkbox checked={isPrivate}
                               onChange={onChangeIsPrivateHandler}/>}/>
             </FormGroup>
-            <div className={commonStyle.modalBtnBlock}>
-                <Button onClick={handleClose} variant="outlined">Cancel</Button>
-                <Button variant="contained" onClick={onClickSaveHandler}>Save</Button>
-            </div>
+
+            <ButtonModal onClickSaveHandler={onClickSaveHandler}
+                         handleClose={handleClose}/>
         </CustomModal>
     );
 };

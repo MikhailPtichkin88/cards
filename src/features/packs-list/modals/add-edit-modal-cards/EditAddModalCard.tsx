@@ -4,48 +4,57 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box/Box';
 import InputLabel from '@mui/material/InputLabel/InputLabel';
 import {MenuItem, Select, SelectChangeEvent} from '@mui/material';
-import Button from '@mui/material/Button';
 import commonStyle from '../../../../common/style/style.module.css';
+import {ButtonModal} from '../ButtonModal';
 
 
-type EditAddModalCardType = {
-    childrenDiv: ReactNode
-    title: string
-    valueQuestion?: string
-    valueAnswer?: string
-    saveCallback: ([]: string[]) => void
-};
 export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
 
     const [valueQuestion, setValueQuestion] = useState(props.valueQuestion)
     const [valueAnswer, setValueAnswer] = useState(props.valueAnswer)
+
     const [errorQuestion, setErrorQuestion] = useState(false)
     const [errorAnswer, setErrorAnswer] = useState(false)
+
     const [close, setClose] = useState(false)
 
     const [valueSelect, setValueSelect] = React.useState('text');
+
     const handleChange = (event: SelectChangeEvent) => {
         setValueSelect(event.target.value as string);
-    };
-
+    }
     const onChangeValueQuestion = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setErrorQuestion(false)
-        setValueQuestion(e.currentTarget.value)
+        const value = e.currentTarget.value
+        if (value.trim() !== '') {
+            setErrorQuestion(false)
+            setValueQuestion(value)
+        }
     }
     const onChangeValueAnswer = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const value = e.currentTarget.value
+        if (value.trim() !== '') {
+            setErrorAnswer(false)
+            setValueAnswer(value)
+        }
+    }
+    const setDataOnClose = () => {
+        setValueAnswer(props.valueAnswer)
+        setValueQuestion(props.valueQuestion)
+        setErrorQuestion(false)
         setErrorAnswer(false)
-        setValueAnswer(e.currentTarget.value)
     }
     const handleClose = () => {
         setClose(true)
+        setDataOnClose()
     }
-    const onClickSaveHandler = async () => {
+    const onClickSaveHandler = () => {
+        debugger
         if (!valueQuestion) {
             return setErrorQuestion(true)
         } else if (!valueAnswer) {
             return setErrorAnswer(true)
         }
-        await props.saveCallback([valueQuestion, valueAnswer])
+        props.saveCallback([valueQuestion, valueAnswer])
         handleClose()
     }
 
@@ -55,40 +64,57 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
             <CustomModal childrenDiv={props.childrenDiv}
                          title={props.title}
                          isClose={close}
-                         setClose={setClose}>
+                         setClose={setClose}
+                         setDataOnClose={setDataOnClose}>
                 <Box sx={{justifyContent: 'center', display: 'flex', flexDirection: 'column'}}>
+
                     <InputLabel id="demo-simple-select-label">Choose a question format</InputLabel>
+
                     <Select
                         sx={{mb: 4}}
                         value={valueSelect}
-                        onChange={handleChange}
-                    >
+                        onChange={handleChange}>
+
                         <MenuItem value={'text'}>Text</MenuItem>
                         <MenuItem value={'img'}>IMG</MenuItem>
+
                     </Select>
-                    <TextField id="standard-basic"
-                               label="Question"
+
+                    <TextField label="Question"
                                variant="standard"
+                               multiline
+                               maxRows={7}
                                value={valueQuestion}
                                onChange={onChangeValueQuestion}
                                error={errorQuestion}
                                helperText={errorQuestion && 'Empty field'}
-                               style={{marginBottom: '30px'}}/>
-                    <TextField id="standard-basic"
-                               label="Answer"
+                               className={commonStyle.textFieldModal}/>
+
+                    <TextField label="Answer"
                                variant="standard"
+                               multiline
+                               maxRows={7}
                                value={valueAnswer}
                                onChange={onChangeValueAnswer}
                                error={errorAnswer}
                                helperText={errorAnswer && 'Empty field'}
-                               style={{marginBottom: '30px'}}/>
+                               className={commonStyle.textFieldModal}/>
+
                 </Box>
-                <div className={commonStyle.modalBtnBlock}>
-                    <Button onClick={handleClose} variant="outlined">Cancel</Button>
-                    <Button variant="contained" onClick={onClickSaveHandler}>Save</Button>
-                </div>
+
+                <ButtonModal onClickSaveHandler={onClickSaveHandler}
+                             handleClose={handleClose}/>
+
             </CustomModal>
         </>
     );
+};
+//type
+type EditAddModalCardType = {
+    childrenDiv: ReactNode
+    title: string
+    valueQuestion?: string
+    valueAnswer?: string
+    saveCallback: ([]: string[]) => void
 };
 

@@ -1,7 +1,6 @@
 import React, {ReactNode, useState} from 'react';
 import {CustomModal} from '../CustomModal';
-import Button from '@mui/material/Button/Button';
-import commonStyle from '../../../../common/style/style.module.css';
+import {ButtonModal} from '../ButtonModal';
 
 type DeleteModalType = {
     title: string
@@ -10,12 +9,7 @@ type DeleteModalType = {
     deleteCallback: () => void
 }
 
-export const DeleteModal: React.FC<DeleteModalType> = ({
-                                                           childrenDiv,
-                                                           title,
-                                                           name,
-                                                           deleteCallback
-                                                       }) => {
+export const DeleteModal: React.FC<DeleteModalType> = (props) => {
 
     const [close, setClose] = useState(false)
 
@@ -24,13 +18,14 @@ export const DeleteModal: React.FC<DeleteModalType> = ({
     }
 
     return (
-        <CustomModal title={title} childrenDiv={childrenDiv} isClose={close} setClose={setClose}>
-            <p style={{marginBottom: '5px'}}>{`Do you really want to remove ${name}?`}</p>
+        <CustomModal title={props.title} childrenDiv={props.childrenDiv} isClose={close} setClose={setClose}>
+            
+            <p style={{marginBottom: '5px'}}>Do you really want to remove <b>{props.name}</b>?</p>
             <p style={{margin: '0px 0px 25px'}}>All cards will be deleted.</p>
-            <div className={commonStyle.modalBtnBlock}>
-                <Button onClick={handleClose} variant="outlined">Cancel</Button>
-                <Button color="error" variant="contained" onClick={deleteCallback}>Delete</Button>
-            </div>
+
+            <ButtonModal onClickSaveHandler={props.deleteCallback}
+                         deleteStyle={true}
+                         handleClose={handleClose}/>
         </CustomModal>
     );
 };

@@ -14,7 +14,7 @@ import {CustomTableHead} from '../table/table-head/CustomTableHead';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import common from '../../../common/style/style.module.css'
 import {fetchCards, setQueryParams} from './cards-reducer';
-import {AddEditModalPack} from '../modals/add-edit-modal-pack/AddEditModalPack';
+import {EditAddModalPack} from '../modals/edit-add-modal-pack/EditAddModalPack';
 import {DeleteModal} from '../modals/delete-modal/DeleteModal';
 import {EditAddModalCard} from '../modals/add-edit-modal-cards/EditAddModalCard';
 
@@ -78,30 +78,36 @@ export const CommonTable = (props: CommonTableType) => {
                             sx={{'&:last-child td, &:last-child th': {border: 0}}}
                         >
                             <TableCell component="th" scope="row"
-                                       className={common.tableCell}
-                            >
+                                       className={common.tableCell}>
                                 {card.question}
                             </TableCell>
+
                             <TableCell align="left"
-                                       className={common.tableCell}
-                            >{card.answer}</TableCell>
+                                       className={common.tableCell}>
+                                {card.answer}
+                            </TableCell>
+
                             <TableCell align="left">{card.updated.slice(0, 10)}</TableCell>
+
                             <TableCell align="right" sx={{width: '50px'}}>
                                 <Rating defaultValue={card.grade} precision={0.5} readOnly/>
                             </TableCell>
+
                             {
                                 isMy &&
                                 <TableCell align="right">
 
                                     <Box sx={{display: 'flex', justifyContent: 'space-between', width: '50px'}}>
+
                                         <EditAddModalCard title={'Edit card'}
                                                           valueQuestion={card.question}
                                                           valueAnswer={card.answer}
                                                           childrenDiv={<button className={styles.btn}
                                                                                style={{backgroundImage: `url(${edit})`}}/>}
                                                           saveCallback={saveCallback}/>
+
                                         <DeleteModal title={'Delete Card'}
-                                                     name={card.answer}
+                                                     name={card.question}
                                                      childrenDiv={<button className={styles.btn}
                                                                           style={{backgroundImage: `url(${deleteImg})`}}/>}
                                                      deleteCallback={deleteCallback}/>

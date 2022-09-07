@@ -9,7 +9,7 @@ import {useNavigate} from 'react-router-dom';
 import {routePath} from '../../../../common/constants/routePath';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {changePackNameTC, deletePackTC} from '../../packs-reducer';
-import {AddEditModalPack} from '../../modals/add-edit-modal-pack/AddEditModalPack';
+import {EditAddModalPack} from '../../modals/edit-add-modal-pack/EditAddModalPack';
 import {DeleteModal} from '../../modals/delete-modal/DeleteModal';
 
 
@@ -49,7 +49,7 @@ export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPro
                     ? <div className={styles.btnBlock}>
                         <button onClick={redirectToStudy} className={styles.btn}
                                 style={{backgroundImage: `url(${study})`}}/>
-                        <AddEditModalPack title="Edit pack"
+                        <EditAddModalPack title="Edit pack"
                                           name={el.name}
                                           saveCallback={changePackName}
                                           childrenDiv={<button className={styles.btn}
