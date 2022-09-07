@@ -23,6 +23,7 @@ export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPro
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
+    const isNoCards = el.cardsCount === 0
 
     const redirectToStudy = () => {
         return navigate(routePath.cards.learnCards)
@@ -33,6 +34,8 @@ export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPro
     const deletePack = () => {
         dispatch(deletePackTC(el._id))
     }
+
+    const studyBtnClasses= isNoCards?`${styles.btn} ${styles.btnDisabled}`:`${styles.btn}`
     return (
         <TableRow key={el._id} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
             <TableCell component="th" scope="row"
@@ -44,10 +47,10 @@ export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPro
             <TableCell align="left">{el.cardsCount}</TableCell>
             <TableCell align="left">{el.updated.toString()}</TableCell>
             <TableCell align="left">{el.user_name}</TableCell>
-            <TableCell align="left">{
+            <TableCell align="right">{
                 myID === el.user_id
                     ? <div className={styles.btnBlock}>
-                        <button onClick={redirectToStudy} className={styles.btn}
+                        <button onClick={redirectToStudy} disabled={isNoCards} className={studyBtnClasses}
                                 style={{backgroundImage: `url(${study})`}}/>
                         <EditAddModalPack title="Edit pack"
                                           name={el.name}
@@ -65,11 +68,10 @@ export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPro
                     </div>
                     :
                     <div className={styles.btnBlock}>
-                        <button onClick={redirectToStudy} className={styles.btn}
+                        <button onClick={redirectToStudy} disabled={isNoCards} className={studyBtnClasses}
                                 style={{backgroundImage: `url(${study})`}}/>
 
                     </div>}
-                :
             </TableCell>
         </TableRow>
     );

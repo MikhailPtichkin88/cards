@@ -2,12 +2,15 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 import styles from './Search.module.css';
 import {useDebounce} from '../../../../common/hooks/useDebounce';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
+import {useAppSelector} from "../../../../common/hooks/useAppSelector";
+import {styleDisabled} from "../Settings";
 
 type SearchPropsType = {
     id: string
     valueSearch: string | undefined
     clearFilter?: boolean
     callback: (value: string) => void
+    isLoading?: boolean
 }
 
 export const Search = React.memo((props: SearchPropsType) => {
@@ -17,12 +20,12 @@ export const Search = React.memo((props: SearchPropsType) => {
         const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
             setValue(event.target.value)
         }
-
+        const disabledLabelStyles = props.isLoading ? styleDisabled : {}
         useEffect(() => {
-                if(props.valueSearch !== value){
-                    props.callback(value)
-                }
-            },[debouncedValue])
+            if (props.valueSearch !== value) {
+                props.callback(value)
+            }
+        }, [debouncedValue])
 
         useEffect(() => {
             setValue('')
@@ -30,13 +33,16 @@ export const Search = React.memo((props: SearchPropsType) => {
 
         return (
             <form className={styles.form}>
-                <label className={styles.label} htmlFor={props.id}>Search</label>
+                <label className={styles.label}
+                       style={disabledLabelStyles}
+                       htmlFor={props.id}>Search</label>
                 <input placeholder="Provide your text"
                        value={value}
                        className={styles.input}
                        type="text"
                        id={props.id}
                        onChange={handleChange}
+                       disabled={props.isLoading}
                 />
             </form>
         );

@@ -1,8 +1,9 @@
 .btnBlock{
-    display: flex;
-    justify-content: flex-end;
+    display: inline-flex;
     gap: 15px;
+    min-width: 85px;
 }
+
 .btn{
     width: 18px;
     height: 18px;
@@ -12,4 +13,8 @@
     background-size: cover;
     background-repeat: no-repeat;
     cursor: pointer;
+}
+.btnDisabled{
+    opacity: 0.5;
+    cursor: auto;
 }

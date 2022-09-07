@@ -6,6 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="aa29b013-ac98-4e76-9ceb-4e4676a001c7" name="Changes" comment="New Pack markup page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/app-bar/AppBar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/app-bar/AppBar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/pagination/Paginator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/pagination/Paginator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/login/Login.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/login/Login.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/packs-list/settings/Settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/settings/Settings.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/packs-list/settings/cardsSlider/CardsSlider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/settings/cardsSlider/CardsSlider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/packs-list/settings/disableFilter/DisableFilter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/settings/disableFilter/DisableFilter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/packs-list/settings/ownerSwitcher/OwnerSwitcher.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/settings/ownerSwitcher/OwnerSwitcher.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/packs-list/settings/search/Search.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/settings/search/Search.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/packs-list/settings/search/Search.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/settings/search/Search.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/packs-list/table/Table.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/table/Table.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/packs-list/table/table-body/CustomTableBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/table/table-body/CustomTableBody.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/packs-list/table/table-head/CustomTableHead.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/table/table-head/CustomTableHead.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/packs-list/table/table-head/head-cell/HeadCell.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/table/table-head/head-cell/HeadCell.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/packs-list/table/table-row/CustomTableRow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/packs-list/table/table-row/CustomTableRow.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,19 +56,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;E:/projects/cards/node_modules/react-scripts&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\projects\\cards\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "E:/projects/cards/node_modules/react-scripts",
+    "nodejs_package_manager_path": "yarn",
+    "ts.external.directory.path": "E:\\projects\\cards\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Friday\new-project\src\features\auth\signUp" />

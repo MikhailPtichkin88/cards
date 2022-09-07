@@ -17,7 +17,8 @@ export const CustomTableHead = ({sortKey, title, isMy, sortCallback, headCells}:
         <TableHead style={{backgroundColor: 'lightgray'}}>
             <TableRow>
                 {headCells.map((headCell) => (
-                    <HeadCell sortCallback={sortCallback}
+                    <HeadCell key={headCell.title}
+                              sortCallback={sortCallback}
                               headCell={headCell}
                     />
                 ))}

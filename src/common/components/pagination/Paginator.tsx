@@ -1,6 +1,7 @@
 import React from 'react';
 import {Pagination, Stack} from '@mui/material';
 import Box from '@mui/material/Box';
+import {useAppSelector} from "../../hooks/useAppSelector";
 
 type PaginatorPropsType = {
     page: number
@@ -11,6 +12,9 @@ type PaginatorPropsType = {
 }
 
 export const Paginator = (props: PaginatorPropsType) => {
+
+    const status = useAppSelector(state=>state.app.status)
+    const isLoading = status === "loading"
     const pageCount = Math.ceil(props.totalCount / props.rowsPerPage)
     return (
         <>
@@ -20,6 +24,7 @@ export const Paginator = (props: PaginatorPropsType) => {
                     <Stack spacing={1}>
 
                         {pageCount > 1 && <Pagination
+                            disabled={isLoading}
                             sx={{marginY: 3}}
                             page={props.page}
                             count={pageCount}

@@ -6,6 +6,7 @@ import {filterPacksWithOwnerSwitcherAC} from '../../packs-reducer';
 
 type DisableFilterType = {
     setClearFilter: (value: boolean) => void
+    isLoading?:boolean
 }
 
 export const DisableFilter = (props: DisableFilterType) => {
@@ -16,11 +17,13 @@ export const DisableFilter = (props: DisableFilterType) => {
         props.setClearFilter(true)
     }
 
+    const studyBtnClasses= props.isLoading?`${styles.btn} ${styles.btnDisabled}`:`${styles.btn}`
     return (
         <div>
-            <button className={styles.btn}
+            <button className={studyBtnClasses}
                     onClick={onClickDisableFilter}
                     style={{backgroundImage: `url(${bgImg}`}}
+                    disabled={props.isLoading}
             />
         </div>
     );

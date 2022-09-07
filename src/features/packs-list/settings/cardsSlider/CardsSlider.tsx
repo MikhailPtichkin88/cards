@@ -5,10 +5,12 @@ import {useAppSelector} from '../../../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {OwnerSwitcherType, updateQueryParamsAC} from '../../packs-reducer';
 import {useDebounce} from '../../../../common/hooks/useDebounce';
+import {styleDisabled} from "../Settings";
 
 type CardsSliderType = {
     clearFilter: boolean
     setClearFilter: (value: boolean) => void
+    isLoading?:boolean
 }
 
 export const CardsSlider = (props: CardsSliderType) => {
@@ -60,10 +62,10 @@ export const CardsSlider = (props: CardsSliderType) => {
         props.setClearFilter(false)
     }, [props.clearFilter])
 
-
+    const disabledLabelStyles = props.isLoading ? styleDisabled : {}
     return (
         <div className={styles.wrapper}>
-            <h4 className={styles.title}>Number of cards</h4>
+            <h4 className={styles.title} style={disabledLabelStyles}>Number of cards</h4>
             <div className={styles.sliderWrapper}>
                 <div className={styles.sliderStartValue}>{value[0]}</div>
                 <Slider
@@ -74,6 +76,7 @@ export const CardsSlider = (props: CardsSliderType) => {
                     disableSwap
                     min={minCardsCount} max={maxCardsCount}
                     style={{width: '200px'}}
+                    disabled={props.isLoading}
                 />
                 <div className={styles.sliderEndValue}>{value[1]}</div>
             </div>

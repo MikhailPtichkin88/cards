@@ -13,7 +13,7 @@ export const CustomTableBody = ({elements, myID, onClickNameHandler}: CustomTabl
     return (
         <TableBody>
             {elements.map((el) => (
-                <CustomTableRow el={el} onClickNameHandler={onClickNameHandler} myID={myID}/>))}
+                <CustomTableRow key={el._id} el={el} onClickNameHandler={onClickNameHandler} myID={myID}/>))}
 
         </TableBody>
     );

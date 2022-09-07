@@ -9,3 +9,7 @@
     background-color: #fff;
     cursor: pointer;
 }
+.btnDisabled{
+    opacity: 0.5;
+    cursor: auto;
+}

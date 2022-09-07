@@ -4,8 +4,13 @@ import {ToggleButton, ToggleButtonGroup} from '@mui/material';
 import {useAppSelector} from '../../../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {filterPacksWithOwnerSwitcherAC, getPacksTC, OwnerSwitcherType} from '../../packs-reducer';
+import {styleDisabled} from "../Settings";
 
-export const OwnerSwitcher = () => {
+type OwnerSwitcherPropsType={
+    isLoading?:boolean
+}
+
+export const OwnerSwitcher = (props:OwnerSwitcherPropsType) => {
 
     const filter = useAppSelector(state => state.packs.filters.ownerSwitcher)
     const dispatch = useAppDispatch()
@@ -15,10 +20,10 @@ export const OwnerSwitcher = () => {
     ) => {
         dispatch(filterPacksWithOwnerSwitcherAC(newAlignment as OwnerSwitcherType));
     };
-
+    const disabledLabelStyles = props.isLoading ? styleDisabled : {}
     return (
         <div className={styles.wrapper}>
-            <h4 className={styles.title}>Show packs cards</h4>
+            <h4 className={styles.title} style={disabledLabelStyles}>Show packs cards</h4>
             <ToggleButtonGroup
                 size="small"
                 color="primary"
@@ -27,8 +32,8 @@ export const OwnerSwitcher = () => {
                 onChange={handleChange}
                 aria-label="Platform"
             >
-                <ToggleButton style={{padding: '5px 40px'}} value="my">My</ToggleButton>
-                <ToggleButton style={{padding: '5px 40px'}} value="all">All</ToggleButton>
+                <ToggleButton style={{padding: '5px 40px'}} value="my" disabled={props.isLoading}>My</ToggleButton>
+                <ToggleButton style={{padding: '5px 40px'}} value="all" disabled={props.isLoading}>All</ToggleButton>
 
             </ToggleButtonGroup>
         </div>
