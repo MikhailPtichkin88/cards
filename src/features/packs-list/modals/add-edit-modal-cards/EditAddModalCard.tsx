@@ -48,7 +48,6 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
         setDataOnClose()
     }
     const onClickSaveHandler = () => {
-        debugger
         if (!valueQuestion) {
             return setErrorQuestion(true)
         } else if (!valueAnswer) {

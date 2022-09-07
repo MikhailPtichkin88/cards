@@ -19,8 +19,11 @@ export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
     const [isPrivate, setIsPrivate] = useState(false)
 
     const onChangeValueHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setError(false)
-        setValue(e.currentTarget.value)
+        const value = e.currentTarget.value
+        if (value.trim() !== '') {
+            setError(false)
+            setValue(e.currentTarget.value)
+        }
     }
     const onChangeIsPrivateHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setIsPrivate(e.currentTarget.checked)
