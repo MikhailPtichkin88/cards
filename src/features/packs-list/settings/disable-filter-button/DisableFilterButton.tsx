@@ -1,6 +1,6 @@
 import React from 'react';
 import bgImg from '../../../../assets/images/filter.svg'
-import styles from './DisableFilter.module.css';
+import styles from './DisableFilterButton.module.css';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {filterPacksWithOwnerSwitcherAC} from '../../packs-reducer';
 
@@ -9,7 +9,7 @@ type DisableFilterType = {
     isLoading?:boolean
 }
 
-export const DisableFilter = (props: DisableFilterType) => {
+export const DisableFilterButton = (props: DisableFilterType) => {
     const dispatch = useAppDispatch()
 
     const onClickDisableFilter = () => {

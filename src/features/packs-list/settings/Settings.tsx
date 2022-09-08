@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import styles from './Settings.module.css';
 import {Search} from './search/Search';
-import {OwnerSwitcher} from './ownerSwitcher/OwnerSwitcher';
-import {CardsSlider} from './cardsSlider/CardsSlider';
-import {DisableFilter} from './disableFilter/DisableFilter';
+import {OwnerSwitcher} from './owner-switcher/OwnerSwitcher';
+import {CardsSlider} from './cards-slider/CardsSlider';
+import {DisableFilterButton} from './disable-filter-button/DisableFilterButton';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {getPacksTC, updateQueryParamsAC} from '../packs-reducer';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
@@ -36,8 +36,8 @@ export const Settings = () => {
             <CardsSlider clearFilter={clearFilter}
                          setClearFilter={setClearFilter}
                          isLoading={isLoading}/>
-            <DisableFilter setClearFilter={setClearFilter}
-                           isLoading={isLoading}/>
+            <DisableFilterButton setClearFilter={setClearFilter}
+                                 isLoading={isLoading}/>
         </div>
     );
 };

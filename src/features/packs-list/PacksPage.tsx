@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import styles from './PackList.module.css';
+import styles from './PacksPage.module.css';
 import {PacksTitle} from './packs-title/PacksTitle';
 import {Settings} from './settings/Settings';
 import {CardsTable} from './table/Table';
@@ -10,7 +10,7 @@ import {EditAddModalPack} from './modals/edit-add-modal-pack/EditAddModalPack';
 import Button from '@mui/material/Button/Button';
 import common from '../../common/style/style.module.css';
 
-export const PacksList = () => {
+export const PacksPage = () => {
 
     const min = useAppSelector(state => state.packs.queryParams.min)
     const max = useAppSelector(state => state.packs.queryParams.max)
