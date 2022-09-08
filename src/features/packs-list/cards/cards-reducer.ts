@@ -3,7 +3,7 @@ import {
     CardType,
     DataCreateCardType,
     QueryParamsCardType,
-    ResponseGateCardType,
+    ResponseGateCardType, UpdateCardGradeDataType, UpdateCardGradeResponseType,
     UpdateData
 } from './cards-api';
 import {AppThunk, RootState} from '../../../app/store';
@@ -33,11 +33,27 @@ export const cardsReducer = (state = initState, action: CardReducerActionType): 
             return {...state, queryCardParams: {...state.queryCardParams, ...action.params}}
         case 'CARD/SET-DATE-CARD':
             return {...state, dateCard: action.date}
+        case "CARD/UPDATE-CARD-GRADE":
+            const newGrade = action.updatedCard.grade
+            const newShots = action.updatedCard.shots
+            return {
+                ...state,
+                dateCard: {
+                    ...state.dateCard,
+                    cards: state.dateCard.cards.map(el => el._id === action.updatedCard._id ? {
+                        ...el,
+                        grade: newGrade,
+                        shots: newShots
+                    } : el)
+                }
+            }
         default :
             return state
     }
 }
 //action
+export const updateCardGrade = (updatedCard: UpdateCardGradeResponseType) =>
+    ({type: 'CARD/UPDATE-CARD-GRADE', updatedCard}) as const
 export const setQueryParams = (params: QueryParamsCardType) =>
     ({type: 'CARD/SET-QUERY-PARAMS', params} as const)
 export const setDateCard = (date: ResponseGateCardType) =>
@@ -84,10 +100,21 @@ export const fetchRemoveCard = (idCard: string): AppThunk => async dispatch => {
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
 }
+export const updateCardGradeTC = (data:UpdateCardGradeDataType): AppThunk => async dispatch => {
+    dispatch(setAppStatusAC('loading'))
+    try {
+        const response = await CardsApi.updateCardGrade(data)
+        dispatch(updateCardGrade(response.data))
+        dispatch(setAppStatusAC('succeeded'))
+    } catch (e) {
+        handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
+    }
+}
 //type
 export type CardReducerActionType =
     | ReturnType<typeof setQueryParams>
     | ReturnType<typeof setDateCard>
+    | ReturnType<typeof updateCardGrade>
 
 export type InitStateType = {
     queryCardParams: QueryParamsCardType
