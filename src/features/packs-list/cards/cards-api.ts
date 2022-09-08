@@ -13,10 +13,25 @@ export const CardsApi = {
     },
     updateCard(data: UpdateData) {
         return instance.put<ResponseGateCardType>('cards/card', {card: data})
+    },
+    updateCardGrade(data:UpdateCardGradeDataType){
+        return instance.put<UpdateCardGradeResponseType>('cards/grade',data)
     }
 }
 
 //type
+export type UpdateCardGradeDataType = {
+    grade: number
+    card_id: string
+}
+export type UpdateCardGradeResponseType = {
+    _id: string
+    cardsPack_id: string
+    card_id: string
+    user_id: string
+    grade: 3
+    shots: 1
+}
 export type DataCreateCardType = CommonDataType & {
     answerImg?: string
     questionImg?: string

@@ -26,7 +26,7 @@ export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPro
     const isNoCards = el.cardsCount === 0
 
     const redirectToStudy = () => {
-        return navigate(routePath.cards.learnCards)
+        return navigate(routePath.cards.learn+el._id)
     }
     const changePackName = (name: string) => {
         dispatch(changePackNameTC({_id: el._id, name}))
@@ -72,6 +72,7 @@ export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPro
                                 style={{backgroundImage: `url(${study})`}}/>
 
                     </div>}
+
             </TableCell>
         </TableRow>
     );

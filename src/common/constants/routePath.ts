@@ -15,7 +15,7 @@ export const routePath={
         packList: "/pack-list",
         newPack: "/new-pack",
         card: '/cards/:id',
-        learnCards: '/learn-cards'
+        learn: '/learn/',
     },
     tests:{
         test:"/test"
