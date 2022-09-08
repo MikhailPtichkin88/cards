@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Navigate, useNavigate, useParams} from "react-router-dom";
+import {Navigate, useParams} from "react-router-dom";
 import Paper from "@mui/material/Paper/Paper";
 import {useAppSelector} from "../../common/hooks/useAppSelector";
 import {useAppDispatch} from "../../common/hooks/useAppDispatch";
