@@ -26,7 +26,9 @@ export const WhichRouting = () => {
             <Route path={routePath.cards.card} element={<Cards/>}/>
             <Route path={routePath.cards.newPack} element={<NewPack/>}/>
             <Route path={routePath.error.notFound} element={<Page404/>}/>
-            <Route path={routePath.cards.learnCards} element={<LearnCards/>}/>
+            <Route path={routePath.cards.learn} element={<LearnCards/>}>
+                <Route path=":id" element={<LearnCards />} />
+                </Route>
 
         </Routes>
     );
