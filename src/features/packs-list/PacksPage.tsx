@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import styles from './PacksPage.module.css';
 import {PacksTitle} from './packs-title/PacksTitle';
 import {Settings} from './settings/Settings';
-import {CardsTable} from './table/Table';
+import {CardsTable} from './table-packs/TablePacks';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {addNewPackTC, getPacksTC} from './packs-reducer';
 import {useAppSelector} from '../../common/hooks/useAppSelector';

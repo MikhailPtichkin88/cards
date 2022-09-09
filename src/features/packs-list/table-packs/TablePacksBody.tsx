@@ -1,16 +1,16 @@
 import React from 'react';
 import {TableCell, TableRow} from '@mui/material';
-import styles from '../Table.module.css';
-import study from '../../../../assets/images/cardPackBtns/study.svg';
-import edit from '../../../../assets/images/cardPackBtns/edit.svg';
-import deleteImg from '../../../../assets/images/cardPackBtns/delete.svg';
-import {PackType} from '../../packs-api';
+import styles from '../../../common/components/table/Table.module.css';
+import study from '../../../assets/images/cardPackBtns/study.svg';
+import edit from '../../../assets/images/cardPackBtns/edit.svg';
+import deleteImg from '../../../assets/images/cardPackBtns/delete.svg';
+import {PackType} from '../packs-api';
 import {useNavigate} from 'react-router-dom';
-import {routePath} from '../../../../common/constants/routePath';
-import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
-import {changePackNameTC, deletePackTC} from '../../packs-reducer';
-import {EditAddModalPack} from '../../modals/edit-add-modal-pack/EditAddModalPack';
-import {DeleteModal} from '../../modals/delete-modal/DeleteModal';
+import {routePath} from '../../../common/constants/routePath';
+import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
+import {changePackNameTC, deletePackTC} from '../packs-reducer';
+import {EditAddModalPack} from '../modals/edit-add-modal-pack/EditAddModalPack';
+import {DeleteModal} from '../modals/delete-modal/DeleteModal';
 
 
 type CustomTableRowPropsType = {
@@ -19,14 +19,14 @@ type CustomTableRowPropsType = {
     onClickNameHandler: (packId: string) => void
 }
 
-export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPropsType) => {
+export const TablePacksBody = ({el, myID, onClickNameHandler}: CustomTableRowPropsType) => {
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const isNoCards = el.cardsCount === 0
 
     const redirectToStudy = () => {
-        return navigate(routePath.cards.learn+el._id)
+        return navigate(routePath.cards.learn + el._id)
     }
     const changePackName = (name: string) => {
         dispatch(changePackNameTC({_id: el._id, name}))
@@ -35,7 +35,7 @@ export const CustomTableRow = ({el, myID, onClickNameHandler}: CustomTableRowPro
         dispatch(deletePackTC(el._id))
     }
 
-    const studyBtnClasses= isNoCards?`${styles.btn} ${styles.btnDisabled}`:`${styles.btn}`
+    const studyBtnClasses = isNoCards ? `${styles.btn} ${styles.btnDisabled}` : `${styles.btn}`
     return (
         <TableRow key={el._id} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
             <TableCell component="th" scope="row"

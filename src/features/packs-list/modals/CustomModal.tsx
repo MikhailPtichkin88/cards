@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import {IconButton} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import commonStyle from '../../../common/style/style.module.css';
+import Button from '@mui/material/Button';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -29,9 +31,9 @@ type CustomModalType = {
     children: ReactNode
     childrenDiv: ReactNode
     title: string
-    isClose: boolean
-    setClose: (close: boolean) => void
+    deleteStyle: boolean
     setDataOnClose?: () => void
+    onClickSaveHandler: () => void
 }
 
 export const CustomModal: React.FC<CustomModalType> = (props) => {
@@ -42,12 +44,11 @@ export const CustomModal: React.FC<CustomModalType> = (props) => {
         if (props.setDataOnClose) props.setDataOnClose()
     };
 
-    useEffect(() => {
-        if (props.isClose && props.setClose) {
-            setOpen(false)
-            props.setClose(false)
-        }
-    }, [props.isClose])
+    const onClickSaveHandler = () => {
+        props.onClickSaveHandler()
+        handleOpenClose()
+    }
+
 
     return (
         <>
@@ -66,6 +67,23 @@ export const CustomModal: React.FC<CustomModalType> = (props) => {
                         </IconButton>
                     </div>
                     {props.children}
+                    <div className={commonStyle.modalBtnBlock}>
+
+                        <Button onClick={handleOpenClose}
+                                variant="outlined"
+                                className={commonStyle.btnStyle}>Cancel</Button>
+
+                        {props.deleteStyle
+                            ? <Button color="error"
+                                      variant="contained"
+                                      onClick={props.onClickSaveHandler}
+                                      className={commonStyle.btnStyle}>Delete</Button>
+
+                            : <Button variant="contained"
+                                      onClick={onClickSaveHandler}
+                                      className={commonStyle.btnStyle}>Save</Button>
+                        }
+                    </div>
                 </Box>
             </Modal>
         </>

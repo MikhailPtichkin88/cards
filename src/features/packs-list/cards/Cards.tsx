@@ -3,7 +3,7 @@ import styles from '../../profile/Profile.module.css';
 import {routePath} from '../../../common/constants/routePath';
 import {NavLink, useParams} from 'react-router-dom';
 import {PacksTitle} from '../packs-title/PacksTitle';
-import {CommonTable} from './CommonTable';
+import {TableCards} from './table-cards/TableCards';
 import {Search} from '../settings/search/Search';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import Button from '@mui/material/Button/Button';
@@ -98,9 +98,9 @@ export const Cards = () => {
                                     callback={searchHandler}
                                     valueSearch={''}/>
                         </Box>
-                        <CommonTable cards={cards}
-                                     deleteCardHandler={deleteCardHandler}
-                                     updateCardHandler={updateCardHandler}
+                        <TableCards cards={cards}
+                                    deleteCardHandler={deleteCardHandler}
+                                    updateCardHandler={updateCardHandler}
                         />
                         <Paginator page={page}
                                    rowsPerPage={pageCount}

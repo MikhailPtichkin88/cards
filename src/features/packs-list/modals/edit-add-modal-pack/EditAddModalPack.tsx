@@ -15,7 +15,6 @@ type AddEditPackModalType = {
 export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
     const [value, setValue] = useState(props.name)
     const [error, setError] = useState(false)
-    const [close, setClose] = useState(false)
     const [isPrivate, setIsPrivate] = useState(false)
 
     const onChangeValueHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -28,10 +27,6 @@ export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
     const onChangeIsPrivateHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setIsPrivate(e.currentTarget.checked)
     }
-    const handleClose = () => {
-        setClose(true)
-        setDataOnClose()
-    }
     const setDataOnClose = () => {
         setValue(props.name)
         setError(false)
@@ -41,15 +36,15 @@ export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
             return setError(true)
         }
         props.saveCallback(value)
-        handleClose()
+        setDataOnClose()
     }
 
     return (
         <CustomModal title={props.title}
                      childrenDiv={props.childrenDiv}
-                     isClose={close}
-                     setClose={setClose}
-                     setDataOnClose={setDataOnClose}>
+                     setDataOnClose={setDataOnClose}
+                     onClickSaveHandler={onClickSaveHandler}
+                     deleteStyle={false}>
 
             <TextField label="Name pack"
                        variant="standard"
@@ -68,8 +63,6 @@ export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
                               onChange={onChangeIsPrivateHandler}/>}/>
             </FormGroup>
 
-            <ButtonModal onClickSaveHandler={onClickSaveHandler}
-                         handleClose={handleClose}/>
         </CustomModal>
     );
 };

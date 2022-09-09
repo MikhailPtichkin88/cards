@@ -16,8 +16,6 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
     const [errorQuestion, setErrorQuestion] = useState(false)
     const [errorAnswer, setErrorAnswer] = useState(false)
 
-    const [close, setClose] = useState(false)
-
     const [valueSelect, setValueSelect] = React.useState('text');
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -43,10 +41,8 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
         setErrorQuestion(false)
         setErrorAnswer(false)
     }
-    const handleClose = () => {
-        setClose(true)
-        setDataOnClose()
-    }
+
+
     const onClickSaveHandler = () => {
         if (!valueQuestion) {
             return setErrorQuestion(true)
@@ -54,7 +50,7 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
             return setErrorAnswer(true)
         }
         props.saveCallback([valueQuestion, valueAnswer])
-        handleClose()
+        setDataOnClose()
     }
 
 
@@ -62,9 +58,9 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
         <>
             <CustomModal childrenDiv={props.childrenDiv}
                          title={props.title}
-                         isClose={close}
-                         setClose={setClose}
-                         setDataOnClose={setDataOnClose}>
+                         setDataOnClose={setDataOnClose}
+                         onClickSaveHandler={onClickSaveHandler}
+                         deleteStyle={false}>
                 <Box sx={{justifyContent: 'center', display: 'flex', flexDirection: 'column'}}>
 
                     <InputLabel id="demo-simple-select-label">Choose a question format</InputLabel>
@@ -101,8 +97,8 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
 
                 </Box>
 
-                <ButtonModal onClickSaveHandler={onClickSaveHandler}
-                             handleClose={handleClose}/>
+                {/*<ButtonModal onClickSaveHandler={onClickSaveHandler}*/}
+                {/*             handleClose={handleClose}/>*/}
 
             </CustomModal>
         </>

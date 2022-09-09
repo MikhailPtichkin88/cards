@@ -1,7 +1,7 @@
 import React from 'react';
 import {TableBody} from '@mui/material';
-import {PackType} from '../../packs-api';
-import {CustomTableRow} from '../table-row/CustomTableRow';
+import {PackType} from '../../../../features/packs-list/packs-api';
+import {TablePacksBody} from '../../../../features/packs-list/table-packs/TablePacksBody';
 
 type CustomTableBodyPropsType = {
     elements: Array<PackType>
@@ -13,7 +13,7 @@ export const CustomTableBody = ({elements, myID, onClickNameHandler}: CustomTabl
     return (
         <TableBody>
             {elements.map((el) => (
-                <CustomTableRow key={el._id} el={el} onClickNameHandler={onClickNameHandler} myID={myID}/>))}
+                <TablePacksBody key={el._id} el={el} onClickNameHandler={onClickNameHandler} myID={myID}/>))}
 
         </TableBody>
     );

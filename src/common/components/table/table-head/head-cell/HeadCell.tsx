@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {TableCell, TableSortLabel} from '@mui/material';
-import {HeadCellType} from '../../Table';
-import {useAppSelector} from "../../../../../common/hooks/useAppSelector";
+import {HeadCellType} from '../../../../../features/packs-list/table-packs/TablePacks';
+import {useAppSelector} from '../../../../hooks/useAppSelector';
 
 type HeadCellPropsType = {
     sortCallback?: (queryString: string) => void
@@ -13,8 +13,8 @@ export const HeadCell = ({width, headCell, sortCallback}: HeadCellPropsType) => 
     const [active, setActive] = useState(false)
     const [direction, setDirection] = useState(false)
 
-    const status = useAppSelector(state=>state.app.status)
-    const isLoading = status === "loading"
+    const status = useAppSelector(state => state.app.status)
+    const isLoading = status === 'loading'
 
     const toggleDirection = () => {
         setDirection(!direction)
