@@ -1,10 +1,10 @@
 import React from 'react';
 import {Box, Rating, TableBody, TableCell, TableRow} from '@mui/material';
 import common from '../../../../common/style/style.module.css';
-import {EditAddModalCard} from '../../modals/add-edit-modal-cards/EditAddModalCard';
+import {EditAddModalCard} from '../add-edit-modal-cards/EditAddModalCard';
 import styles from '../../../../common/components/table/Table.module.css';
 import edit from '../../../../assets/images/cardPackBtns/edit.svg';
-import {DeleteModal} from '../../modals/delete-modal/DeleteModal';
+import {DeleteModal} from '../../../../common/components/modals/delete-modal/DeleteModal';
 import deleteImg from '../../../../assets/images/cardPackBtns/delete.svg';
 import {CardType} from '../cards-api';
 

@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import {IconButton} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import commonStyle from '../../../common/style/style.module.css';
+import commonStyle from '../../style/style.module.css';
 import Button from '@mui/material/Button';
 
 const style = {

@@ -14,8 +14,8 @@ import {CustomTableHead} from '../../../../common/components/table/table-head/Cu
 import {useAppSelector} from '../../../../common/hooks/useAppSelector';
 import common from '../../../../common/style/style.module.css'
 import {fetchCards, setQueryParams} from '../cards-reducer';
-import {DeleteModal} from '../../modals/delete-modal/DeleteModal';
-import {EditAddModalCard} from '../../modals/add-edit-modal-cards/EditAddModalCard';
+import {DeleteModal} from '../../../../common/components/modals/delete-modal/DeleteModal';
+import {EditAddModalCard} from '../add-edit-modal-cards/EditAddModalCard';
 import {TableCardsBody} from './TableCardsBody';
 
 const headCells: Array<HeadCellType> = [

@@ -6,7 +6,7 @@ import {CardsTable} from './table-packs/TablePacks';
 import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {addNewPackTC, getPacksTC} from './packs-reducer';
 import {useAppSelector} from '../../common/hooks/useAppSelector';
-import {EditAddModalPack} from './modals/edit-add-modal-pack/EditAddModalPack';
+import {EditAddModalPack} from './edit-add-modal-pack/EditAddModalPack';
 import Button from '@mui/material/Button/Button';
 import common from '../../common/style/style.module.css';
 

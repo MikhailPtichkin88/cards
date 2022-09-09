@@ -1,11 +1,11 @@
 import React, {ChangeEvent, ReactNode, useState} from 'react';
-import {CustomModal} from '../CustomModal';
+import {CustomModal} from '../../../../common/components/modals/CustomModal';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box/Box';
 import InputLabel from '@mui/material/InputLabel/InputLabel';
 import {MenuItem, Select, SelectChangeEvent} from '@mui/material';
 import commonStyle from '../../../../common/style/style.module.css';
-import {ButtonModal} from '../ButtonModal';
+import {ButtonModal} from '../../../../common/components/modals/ButtonModal';
 
 
 export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {

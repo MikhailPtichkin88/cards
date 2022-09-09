@@ -1,9 +1,9 @@
 import React, {ChangeEvent, ReactNode, useState} from 'react';
-import {CustomModal} from '../CustomModal';
+import {CustomModal} from '../../../common/components/modals/CustomModal';
 import TextField from '@mui/material/TextField';
 import {Checkbox, FormControlLabel, FormGroup} from '@mui/material';
-import commonStyle from '../../../../common/style/style.module.css'
-import {ButtonModal} from '../ButtonModal';
+import commonStyle from '../../../common/style/style.module.css'
+import {ButtonModal} from '../../../common/components/modals/ButtonModal';
 
 type AddEditPackModalType = {
     title: string

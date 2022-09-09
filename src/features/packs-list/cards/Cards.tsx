@@ -12,7 +12,7 @@ import {Box, Typography} from '@mui/material';
 import {fetchCards, fetchCreateCard, fetchRemoveCard, fetchUpdateCard, setQueryParams} from './cards-reducer';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {Paginator} from '../../../common/components/pagination/Paginator';
-import {EditAddModalCard} from '../modals/add-edit-modal-cards/EditAddModalCard';
+import {EditAddModalCard} from './add-edit-modal-cards/EditAddModalCard';
 
 
 export const Cards = () => {

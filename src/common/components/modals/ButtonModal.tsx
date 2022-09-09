@@ -1,5 +1,5 @@
 import React from 'react';
-import commonStyle from '../../../common/style/style.module.css';
+import commonStyle from '../../style/style.module.css';
 import Button from '@mui/material/Button';
 
 export const ButtonModal: React.FC<ButtonModalType> = (props) => {

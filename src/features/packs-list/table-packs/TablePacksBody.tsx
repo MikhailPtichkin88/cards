@@ -9,8 +9,8 @@ import {useNavigate} from 'react-router-dom';
 import {routePath} from '../../../common/constants/routePath';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {changePackNameTC, deletePackTC} from '../packs-reducer';
-import {EditAddModalPack} from '../modals/edit-add-modal-pack/EditAddModalPack';
-import {DeleteModal} from '../modals/delete-modal/DeleteModal';
+import {EditAddModalPack} from '../edit-add-modal-pack/EditAddModalPack';
+import {DeleteModal} from '../../../common/components/modals/delete-modal/DeleteModal';
 
 
 type CustomTableRowPropsType = {
