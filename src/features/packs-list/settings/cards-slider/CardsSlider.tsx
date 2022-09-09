@@ -5,12 +5,12 @@ import {useAppSelector} from '../../../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 import {OwnerSwitcherType, updateQueryParamsAC} from '../../packs-reducer';
 import {useDebounce} from '../../../../common/hooks/useDebounce';
-import {styleDisabled} from "../Settings";
+import {styleDisabled} from '../Settings';
 
 type CardsSliderType = {
     clearFilter: boolean
     setClearFilter: (value: boolean) => void
-    isLoading?:boolean
+    isLoading?: boolean
 }
 
 export const CardsSlider = (props: CardsSliderType) => {
@@ -29,6 +29,7 @@ export const CardsSlider = (props: CardsSliderType) => {
         }
     });
     const [valueOwnerSwitcher, setValueOwnerSwitcher] = useState<OwnerSwitcherType>(ownerSwitcher)
+    const [isActiveDebounced, setIsActiveDebounced] = useState(true)
 
     const debouncedValue = useDebounce<number[]>(value, 500)
     const valuetext = (value: number) => {
@@ -39,11 +40,12 @@ export const CardsSlider = (props: CardsSliderType) => {
     };
 
     useEffect(() => {
-        if (value[1] !== 0) {
+        if (value[1] !== 0 && isActiveDebounced) {
             dispatch(updateQueryParamsAC({min: value[0], max: value[1]}))
         }
+        setIsActiveDebounced(true)
     }, [debouncedValue])
-    
+
     useEffect(() => {
         if (valueOwnerSwitcher === ownerSwitcher) {
             if (min === undefined && max === undefined) {
@@ -54,6 +56,7 @@ export const CardsSlider = (props: CardsSliderType) => {
         } else {
             setValue([minCardsCount, maxCardsCount])
             setValueOwnerSwitcher(ownerSwitcher)
+            setIsActiveDebounced(false)
         }
     }, [minCardsCount, maxCardsCount,])
 
