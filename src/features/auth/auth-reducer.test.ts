@@ -1,4 +1,4 @@
-import {authReducer, changeNameAC, initAuthStateType, logOutAC, setAuthAC} from "./auth-reducer";
+import {authReducer, changeNameAndAvatarAC, initAuthStateType, logOutAC, setAuthAC} from "./auth-reducer";
 import {AuthResponseType} from "./auth-api";
 
 
@@ -63,7 +63,7 @@ test('logOutAC should work correctly', ()=>{
 
 test('changeNameAC should work correctly', ()=>{
 
-    const result = authReducer(startState, changeNameAC("new name"))
+    const result = authReducer(startState, changeNameAndAvatarAC("new name",""))
 
     expect(startState.authData.name).toBeFalsy()
     expect(result.authData.name).toEqual("new name")

@@ -10,7 +10,9 @@ import Button from "@mui/material/Button";
 
 export const AppBar = () => {
     const navigate = useNavigate();
-    const auth = useAppSelector(state => state.auth)
+    const isAuth = useAppSelector(state => state.auth.isAuth)
+    const name = useAppSelector(state => state.auth.authData.name)
+    const avatar = useAppSelector(state => state.auth.authData.avatar)
 
     const onClickHandler = () => {
         navigate('/login', {replace: true})
@@ -25,13 +27,12 @@ export const AppBar = () => {
                     </a>
                     <div>
                         {
-                            auth.isAuth
-                                ? <UserInfo name={auth.authData.name} avatar={auth.authData.avatar}/>
+                           isAuth
+                                ? <UserInfo name={name} avatar={avatar}/>
                                 : <Button className={styles.btn}
                                           variant={'contained'}
                                           onClick={onClickHandler}>Sign In</Button>
                         }
-
                     </div>
                 </div>
             </div>

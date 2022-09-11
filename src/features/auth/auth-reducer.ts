@@ -1,11 +1,11 @@
 import {authAPI, AuthResponseType, ChangeNameDataType, LoginPostDataType} from "./auth-api";
 import {AppThunk} from "../../app/store";
-import axios, {AxiosError} from "axios";
+import {AxiosError} from "axios";
 import {setAppStatusAC} from "../../app/app-reducer";
 import {handleServerNetworkError} from '../../common/utils/error-utils';
 
 const initAuthState = {
-    initializeApp:false,
+    initializeApp: false,
     isAuth: false,
     authData: {
         _id: "",
@@ -22,7 +22,7 @@ const initAuthState = {
 }
 
 export type initAuthStateType = typeof initAuthState
-export type AuthActionsType = SetAuthACType  | LogOutACType | changeNameACType |SetInitializeAppType
+export type AuthActionsType = SetAuthACType | LogOutACType | changeNameandAvatarACType | SetInitializeAppType
 
 export const authReducer = (state: initAuthStateType = initAuthState, action: AuthActionsType): initAuthStateType => {
     switch (action.type) {
@@ -30,10 +30,10 @@ export const authReducer = (state: initAuthStateType = initAuthState, action: Au
             return {...state, isAuth: true, authData: {...action.data}}
         case "auth/LOGOUT":
             return {...state, isAuth: false}
-        case "auth/CHANGE-NAME":
-            return {...state, authData: {...state.authData, name: action.name}}
+        case "auth/CHANGE-NAME-AVATAR":
+            return {...state, authData: {...state.authData, name: action.name, avatar: action.avatar}}
         case 'auth/SET-INITIALIZE-APP':
-            return {...state,initializeApp: action.value}
+            return {...state, initializeApp: action.value}
         default:
             return state
     }
@@ -47,9 +47,9 @@ type LogOutACType = ReturnType<typeof logOutAC>
 export const logOutAC = () => {
     return {type: "auth/LOGOUT"} as const
 }
-type changeNameACType = ReturnType<typeof changeNameAC>
-export const changeNameAC = (name: string) => {
-    return {type: "auth/CHANGE-NAME", name} as const
+type changeNameandAvatarACType = ReturnType<typeof changeNameAndAvatarAC>
+export const changeNameAndAvatarAC = (name: string, avatar: string) => {
+    return {type: "auth/CHANGE-NAME-AVATAR", name, avatar} as const
 }
 type SetInitializeAppType = ReturnType<typeof setInitializeApp>
 export const setInitializeApp = (value: boolean) => {
@@ -74,11 +74,11 @@ export const initializeAppTC = (): AppThunk => async dispatch => {
         dispatch(setAuthAC(res));
         dispatch(setAppStatusAC("succeeded"))
     } catch (e) {
-        const error = e as  AxiosError<{ error: string }>
-        if(error.response?.status !== 401){
+        const error = e as AxiosError<{ error: string }>
+        if (error.response?.status !== 401) {
             handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
         }
-    }finally {
+    } finally {
         dispatch(setInitializeApp(true))
         dispatch(setAppStatusAC("succeeded"))
     }
@@ -87,7 +87,7 @@ export const initializeAppTC = (): AppThunk => async dispatch => {
 export const logoutTC = (): AppThunk => async dispatch => {
     dispatch(setAppStatusAC("loading"))
     try {
-        const res = await authAPI.logout()
+        await authAPI.logout()
         dispatch(logOutAC())
         dispatch(setAppStatusAC("succeeded"))
     } catch (e) {
@@ -95,17 +95,16 @@ export const logoutTC = (): AppThunk => async dispatch => {
     }
 }
 
-export const changeNameTC = (name: string): AppThunk => async dispatch => {
+export const changeNameAndAvatarTC = (name: string, avatar: string): AppThunk => async dispatch => {
     dispatch(setAppStatusAC("loading"))
 
     let data: ChangeNameDataType = {
         name,
-        avatar: ""
+        avatar,
     }
-
     try {
         const res = await authAPI.changeName(data)
-        dispatch(changeNameAC(res.updatedUser.name))
+        dispatch(changeNameAndAvatarAC(res.updatedUser.name, res.updatedUser.avatar!))
         dispatch(setAppStatusAC("succeeded"))
     } catch (e) {
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
