@@ -5,7 +5,7 @@ import Box from '@mui/material/Box/Box';
 import InputLabel from '@mui/material/InputLabel/InputLabel';
 import {MenuItem, Select, SelectChangeEvent} from '@mui/material';
 import commonStyle from '../../../../common/style/style.module.css';
-import {ButtonModal} from '../../../../common/components/modals/ButtonModal';
+import Button from '@mui/material/Button/Button';
 
 
 export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
@@ -17,40 +17,40 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
     const [errorAnswer, setErrorAnswer] = useState(false)
 
     const [valueSelect, setValueSelect] = React.useState('text');
+    const [isClosed, setIsClosed] = React.useState(false);
 
     const handleChange = (event: SelectChangeEvent) => {
         setValueSelect(event.target.value as string);
     }
     const onChangeValueQuestion = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const value = e.currentTarget.value
-        if (value.trim() !== '') {
-            setErrorQuestion(false)
-            setValueQuestion(value)
-        }
+        setErrorQuestion(false)
+        setValueQuestion(value)
+
     }
     const onChangeValueAnswer = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const value = e.currentTarget.value
-        if (value.trim() !== '') {
-            setErrorAnswer(false)
-            setValueAnswer(value)
-        }
+        setErrorAnswer(false)
+        setValueAnswer(value)
     }
     const setDataOnClose = () => {
         setValueAnswer(props.valueAnswer)
         setValueQuestion(props.valueQuestion)
         setErrorQuestion(false)
         setErrorAnswer(false)
+        setIsClosed(false)
     }
 
 
-    const onClickSaveHandler = () => {
+    const onClickSaveHandler = async () => {
         if (!valueQuestion) {
             return setErrorQuestion(true)
         } else if (!valueAnswer) {
             return setErrorAnswer(true)
         }
-        props.saveCallback([valueQuestion, valueAnswer])
+        await props.saveCallback([valueQuestion, valueAnswer])
         setDataOnClose()
+        setIsClosed(true)
     }
 
 
@@ -60,7 +60,8 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
                          title={props.title}
                          setDataOnClose={setDataOnClose}
                          onClickSaveHandler={onClickSaveHandler}
-                         deleteStyle={false}>
+                         deleteStyle={false}
+                         isClosed={isClosed}>
                 <Box sx={{justifyContent: 'center', display: 'flex', flexDirection: 'column'}}>
 
                     <InputLabel id="demo-simple-select-label">Choose a question format</InputLabel>
@@ -75,15 +76,19 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
 
                     </Select>
 
-                    <TextField label="Question"
-                               variant="standard"
-                               multiline
-                               maxRows={7}
-                               value={valueQuestion}
-                               onChange={onChangeValueQuestion}
-                               error={errorQuestion}
-                               helperText={errorQuestion && 'Empty field'}
-                               className={commonStyle.textFieldModal}/>
+
+                    {valueSelect === 'text'
+                        ? <TextField label="Question"
+                                     variant="standard"
+                                     multiline
+                                     maxRows={7}
+                                     value={valueQuestion}
+                                     onChange={onChangeValueQuestion}
+                                     error={errorQuestion}
+                                     helperText={errorQuestion && 'Empty field'}
+                                     className={commonStyle.textFieldModal}/>
+                        : <Button variant="contained">Change cover</Button>
+                    }
 
                     <TextField label="Answer"
                                variant="standard"
@@ -96,9 +101,6 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
                                className={commonStyle.textFieldModal}/>
 
                 </Box>
-
-                {/*<ButtonModal onClickSaveHandler={onClickSaveHandler}*/}
-                {/*             handleClose={handleClose}/>*/}
 
             </CustomModal>
         </>

@@ -21,7 +21,6 @@ export const Cards = () => {
     const cardsTotalCount = useAppSelector(state => state.cards.dateCard.cardsTotalCount)
     const cards = useAppSelector(state => state.cards.dateCard.cards)
     const cardsPack_id = useAppSelector(state => state.cards.queryCardParams.cardsPack_id)
-    const status = useAppSelector(state => state.app.status)
     const packName = useAppSelector(state => state.cards.dateCard.packName)
     const myID = useAppSelector(state => state.auth.authData._id)
     const packUserId = useAppSelector(state => state.cards.dateCard.packUserId)
@@ -31,9 +30,9 @@ export const Cards = () => {
     const isMy = myID === packUserId
     const dispatch = useAppDispatch()
 
-    const onClickAddCardHandler = (params: string | string[]) => {
+    const onClickAddCardHandler = async (params: string | string[]) => {
         if (cardsPack_id) {
-            dispatch(fetchCreateCard({cardsPack_id, question: params[0], answer: params[1]}))
+            await dispatch(fetchCreateCard({cardsPack_id, question: params[0], answer: params[1]}))
         }
     }
     const changeRowsPerPage = (pageCount: number) => {

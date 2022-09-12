@@ -6,6 +6,7 @@ import {IconButton} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import commonStyle from '../../style/style.module.css';
 import Button from '@mui/material/Button';
+import {useAppSelector} from '../../hooks/useAppSelector';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -32,11 +33,13 @@ type CustomModalType = {
     childrenDiv: ReactNode
     title: string
     deleteStyle: boolean
+    isClosed?: boolean
     setDataOnClose?: () => void
     onClickSaveHandler: () => void
 }
 
 export const CustomModal: React.FC<CustomModalType> = (props) => {
+    const status = useAppSelector(state => state.app.status)
     const [open, setOpen] = React.useState(false);
 
     const handleOpenClose = () => {
@@ -46,8 +49,12 @@ export const CustomModal: React.FC<CustomModalType> = (props) => {
 
     const onClickSaveHandler = () => {
         props.onClickSaveHandler()
-        handleOpenClose()
     }
+    useEffect(() => {
+        if (props.isClosed) {
+            handleOpenClose()
+        }
+    }, [props.isClosed])
 
 
     return (
@@ -77,10 +84,12 @@ export const CustomModal: React.FC<CustomModalType> = (props) => {
                             ? <Button color="error"
                                       variant="contained"
                                       onClick={props.onClickSaveHandler}
+                                      disabled={status === 'loading'}
                                       className={commonStyle.btnStyle}>Delete</Button>
 
                             : <Button variant="contained"
                                       onClick={onClickSaveHandler}
+                                      disabled={status === 'loading'}
                                       className={commonStyle.btnStyle}>Save</Button>
                         }
                     </div>

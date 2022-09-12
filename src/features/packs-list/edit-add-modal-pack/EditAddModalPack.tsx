@@ -3,7 +3,6 @@ import {CustomModal} from '../../../common/components/modals/CustomModal';
 import TextField from '@mui/material/TextField';
 import {Checkbox, FormControlLabel, FormGroup} from '@mui/material';
 import commonStyle from '../../../common/style/style.module.css'
-import {ButtonModal} from '../../../common/components/modals/ButtonModal';
 
 type AddEditPackModalType = {
     title: string
@@ -15,6 +14,7 @@ type AddEditPackModalType = {
 export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
     const [value, setValue] = useState(props.name)
     const [error, setError] = useState(false)
+    const [isClosed, setIsClosed] = React.useState(false);
     const [isPrivate, setIsPrivate] = useState(false)
 
     const onChangeValueHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -30,6 +30,7 @@ export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
     const setDataOnClose = () => {
         setValue(props.name)
         setError(false)
+        setIsClosed(false)
     }
     const onClickSaveHandler = () => {
         if (!value) {
@@ -37,6 +38,7 @@ export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
         }
         props.saveCallback(value)
         setDataOnClose()
+        setIsClosed(true)
     }
 
     return (
@@ -44,7 +46,8 @@ export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
                      childrenDiv={props.childrenDiv}
                      setDataOnClose={setDataOnClose}
                      onClickSaveHandler={onClickSaveHandler}
-                     deleteStyle={false}>
+                     deleteStyle={false}
+                     isClosed={isClosed}>
 
             <TextField label="Name pack"
                        variant="standard"

@@ -1,6 +1,5 @@
-import React, {ReactNode, useState} from 'react';
+import React, {ReactNode} from 'react';
 import {CustomModal} from '../CustomModal';
-import {ButtonModal} from '../ButtonModal';
 
 type DeleteModalType = {
     title: string
@@ -19,10 +18,7 @@ export const DeleteModal: React.FC<DeleteModalType> = (props) => {
 
             <p style={{marginBottom: '5px'}}>Do you really want to remove <b>{props.name}</b>?</p>
             <p style={{margin: '0px 0px 25px'}}>All cards will be deleted.</p>
-
-            {/*<ButtonModal onClickSaveHandler={props.deleteCallback}*/}
-            {/*             deleteStyle={true}*/}
-            {/*             handleClose={handleClose}/>*/}
+            
         </CustomModal>
     );
 };
