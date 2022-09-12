@@ -74,7 +74,7 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
                     setQuestionImg(file64)
                 })
             } else {
-                dispatch(setAppErrorAC("Incorrect file size"))
+                dispatch(setAppErrorAC('Incorrect file size'))
             }
         }
     };
@@ -94,7 +94,7 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
                         ? <img src={props.questionImg}
                                className={common.questionImg}
                                alt="questionImg"/>
-                        : <div>
+                        : <>
                             <InputLabel id="demo-simple-select-label">Choose a question format</InputLabel>
 
                             <Select
@@ -106,7 +106,7 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
                                 <MenuItem value={'img'}>IMG</MenuItem>
 
                             </Select>
-                        </div>
+                        </>
 
                     }
 
