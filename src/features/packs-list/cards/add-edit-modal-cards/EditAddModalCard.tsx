@@ -6,6 +6,10 @@ import InputLabel from '@mui/material/InputLabel/InputLabel';
 import {MenuItem, Select, SelectChangeEvent} from '@mui/material';
 import commonStyle from '../../../../common/style/style.module.css';
 import Button from '@mui/material/Button/Button';
+import {convertFileToBase64} from '../../../../common/utils/convert-base64';
+import {CreateCardType} from '../cards-api';
+import style from './EditAddModalCard.module.css'
+import common from '../../../../common/style/style.module.css';
 
 
 export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
@@ -16,8 +20,11 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
     const [errorQuestion, setErrorQuestion] = useState(false)
     const [errorAnswer, setErrorAnswer] = useState(false)
 
-    const [valueSelect, setValueSelect] = React.useState('text');
+    const [valueSelect, setValueSelect] = React.useState(props.valueQuestion ? 'img' : 'text');
     const [isClosed, setIsClosed] = React.useState(false);
+
+    const [nameFileImg, setNameFileImg] = React.useState('');
+    const [questionImg, setQuestionImg] = React.useState('');
 
     const handleChange = (event: SelectChangeEvent) => {
         setValueSelect(event.target.value as string);
@@ -39,24 +46,37 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
         setErrorQuestion(false)
         setErrorAnswer(false)
         setIsClosed(false)
+        setNameFileImg('')
     }
 
 
     const onClickSaveHandler = async () => {
-        if (!valueQuestion) {
+        if (!valueQuestion && valueSelect === 'text') {
             return setErrorQuestion(true)
         } else if (!valueAnswer) {
             return setErrorAnswer(true)
         }
-        await props.saveCallback([valueQuestion, valueAnswer])
+        await props.saveCallback({question: valueQuestion, answer: valueAnswer, questionImg})
         setDataOnClose()
         setIsClosed(true)
     }
 
+    const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length) {
+            if (e.target.files[0].size / 1024 <= 4096) {
+                const file = e.target.files[0]
+                setNameFileImg(file.name)
+                convertFileToBase64(file, (file64) => {
+                    setQuestionImg(file64)
+                })
+            }
+        }
+    };
+
 
     return (
         <>
-            <CustomModal childrenDiv={props.childrenDiv}
+            <CustomModal childrenDiv={props.childrenBtn}
                          title={props.title}
                          setDataOnClose={setDataOnClose}
                          onClickSaveHandler={onClickSaveHandler}
@@ -64,17 +84,25 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
                          isClosed={isClosed}>
                 <Box sx={{justifyContent: 'center', display: 'flex', flexDirection: 'column'}}>
 
-                    <InputLabel id="demo-simple-select-label">Choose a question format</InputLabel>
+                    {props.questionImg
+                        ? <img src={props.questionImg}
+                               alt="questionImg"
+                        />
+                        : <div>
+                            <InputLabel id="demo-simple-select-label">Choose a question format</InputLabel>
 
-                    <Select
-                        sx={{mb: 4}}
-                        value={valueSelect}
-                        onChange={handleChange}>
+                            <Select
+                                sx={{mb: 4}}
+                                value={valueSelect}
+                                onChange={handleChange}>
 
-                        <MenuItem value={'text'}>Text</MenuItem>
-                        <MenuItem value={'img'}>IMG</MenuItem>
+                                <MenuItem value={'text'}>Text</MenuItem>
+                                <MenuItem value={'img'}>IMG</MenuItem>
 
-                    </Select>
+                            </Select>
+                        </div>
+
+                    }
 
 
                     {valueSelect === 'text'
@@ -87,7 +115,19 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
                                      error={errorQuestion}
                                      helperText={errorQuestion && 'Empty field'}
                                      className={commonStyle.textFieldModal}/>
-                        : <Button variant="contained">Change cover</Button>
+                        : <label>
+                            <input type="file"
+                                   accept="image/*"
+                                   onChange={uploadHandler}
+                                   style={{display: 'none'}}
+                            />
+                            <Box className={style.uploadBlock}>
+                                <Button className={style.uploadBtn} variant="contained" component="span">
+                                    Upload button
+                                </Button>
+                                <span className={style.nameImg}>{nameFileImg}</span>
+                            </Box>
+                        </label>
                     }
 
                     <TextField label="Answer"
@@ -108,10 +148,12 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
 };
 //type
 type EditAddModalCardType = {
-    childrenDiv: ReactNode
+    childrenBtn: ReactNode
     title: string
     valueQuestion?: string
     valueAnswer?: string
-    saveCallback: ([]: string[]) => void
+    questionImg?: string
+    saveCallback: ({}: CreateCardType) => void
 };
+
 

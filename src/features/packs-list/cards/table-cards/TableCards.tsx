@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, Rating, TableBody, TableCell, TableContainer, TableRow} from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
-import {CardType} from '../cards-api';
+import {CardType, CreateCardType} from '../cards-api';
 import styles from '../../../../common/components/table/Table.module.css';
 import deleteImg from '../../../../assets/images/cardPackBtns/delete.svg';
 import edit from '../../../../assets/images/cardPackBtns/edit.svg';
@@ -75,7 +75,7 @@ export const TableCards = (props: CommonTableType) => {
 //type
 type CommonTableType = {
     cards: CardType[]
-    updateCardHandler: (id: string, params: string[]) => void
+    updateCardHandler: (id: string, params: CreateCardType) => void
     deleteCardHandler: (id: string) => void
 }
 

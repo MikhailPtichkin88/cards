@@ -13,6 +13,7 @@ import {fetchCards, fetchCreateCard, fetchRemoveCard, fetchUpdateCard, setQueryP
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {Paginator} from '../../../common/components/pagination/Paginator';
 import {EditAddModalCard} from './add-edit-modal-cards/EditAddModalCard';
+import {CreateCardType} from './cards-api';
 
 
 export const Cards = () => {
@@ -30,9 +31,9 @@ export const Cards = () => {
     const isMy = myID === packUserId
     const dispatch = useAppDispatch()
 
-    const onClickAddCardHandler = async (params: string | string[]) => {
+    const onClickAddCardHandler = async (params: CreateCardType) => {
         if (cardsPack_id) {
-            await dispatch(fetchCreateCard({cardsPack_id, question: params[0], answer: params[1]}))
+            await dispatch(fetchCreateCard({cardsPack_id, ...params}))
         }
     }
     const changeRowsPerPage = (pageCount: number) => {
@@ -43,8 +44,8 @@ export const Cards = () => {
         dispatch(setQueryParams({page}))
         dispatch(fetchCards())
     }
-    const updateCardHandler = (_id: string, params: string[]) => {
-        dispatch(fetchUpdateCard({_id, question: params[0], answer: params[1]}))
+    const updateCardHandler = (_id: string, params: CreateCardType) => {
+        dispatch(fetchUpdateCard({_id, ...params}))
     }
     const deleteCardHandler = (id: string) => {
         dispatch(fetchRemoveCard(id))
@@ -83,7 +84,7 @@ export const Cards = () => {
                             <EditAddModalCard
                                 title="Add new card"
                                 saveCallback={onClickAddCardHandler}
-                                childrenDiv={
+                                childrenBtn={
                                     <Button variant="contained"
                                             className={common.btnStyle}
                                             sx={{maxWidth: '200px', mt: '0 !important'}}>
@@ -120,7 +121,7 @@ export const Cards = () => {
                             {isMy && <EditAddModalCard
                                 title="Add new card"
                                 saveCallback={onClickAddCardHandler}
-                                childrenDiv={
+                                childrenBtn={
                                     <Button variant="contained"
                                             className={common.btnStyle}
                                             sx={{maxWidth: '200px', mt: '0 !important'}}
@@ -138,4 +139,5 @@ export const Cards = () => {
         </div>
     );
 };
+
 

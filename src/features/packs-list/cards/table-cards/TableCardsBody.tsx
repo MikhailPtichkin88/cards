@@ -6,12 +6,12 @@ import styles from '../../../../common/components/table/Table.module.css';
 import edit from '../../../../assets/images/cardPackBtns/edit.svg';
 import {DeleteModal} from '../../../../common/components/modals/delete-modal/DeleteModal';
 import deleteImg from '../../../../assets/images/cardPackBtns/delete.svg';
-import {CardType} from '../cards-api';
+import {CardType, CreateCardType} from '../cards-api';
 
 type TableCardsBodyParams = {
     cards: CardType[]
     isMy: boolean
-    updateCardHandler: (id: string, params: string[]) => void
+    updateCardHandler: (id: string, params: CreateCardType) => void
     deleteCardHandler: (id: string) => void
 }
 
@@ -19,10 +19,8 @@ export const TableCardsBody = (props: TableCardsBodyParams) => {
     return (
         <TableBody>
             {props.cards.map((card) => {
-                const saveCallback = (params: string[] | string) => {
-                    if (Array.isArray(params)) {
-                        props.updateCardHandler(card._id, params)
-                    }
+                const saveCallback = (params: CreateCardType) => {
+                    props.updateCardHandler(card._id, params)
                 }
                 const deleteCallback = () => {
                     props.deleteCardHandler(card._id)
@@ -33,7 +31,12 @@ export const TableCardsBody = (props: TableCardsBodyParams) => {
                 >
                     <TableCell component="th" scope="row"
                                className={common.tableCell}>
-                        {card.question}
+                        {card.questionImg
+                            ? <img src={card.questionImg} alt="questionImg"
+                                   className={common.questionImg}/>
+                            : card.question
+                        }
+
                     </TableCell>
 
                     <TableCell align="left"
@@ -56,7 +59,8 @@ export const TableCardsBody = (props: TableCardsBodyParams) => {
                                 <EditAddModalCard title={'Edit card'}
                                                   valueQuestion={card.question}
                                                   valueAnswer={card.answer}
-                                                  childrenDiv={<button className={styles.btn}
+                                                  questionImg={card.questionImg}
+                                                  childrenBtn={<button className={styles.btn}
                                                                        style={{backgroundImage: `url(${edit})`}}/>}
                                                   saveCallback={saveCallback}/>
 

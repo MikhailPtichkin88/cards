@@ -1,0 +1,18 @@
+.uploadBlock {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.uploadBtn {
+    width: 180px !important;
+}
+
+.nameImg {
+    margin-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
