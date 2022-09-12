@@ -32,8 +32,10 @@ export const TableCardsBody = (props: TableCardsBodyParams) => {
                     <TableCell component="th" scope="row"
                                className={common.tableCell}>
                         {card.questionImg
-                            ? <img src={card.questionImg} alt="questionImg"
-                                   className={common.questionImg}/>
+                            ? <Box sx={{maxWidth: '300px'}}>
+                                <img src={card.questionImg} alt="questionImg"
+                                     className={common.questionImg}/>
+                            </Box>
                             : card.question
                         }
 

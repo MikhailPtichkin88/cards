@@ -10,6 +10,8 @@ import {convertFileToBase64} from '../../../../common/utils/convert-base64';
 import {CreateCardType} from '../cards-api';
 import style from './EditAddModalCard.module.css'
 import common from '../../../../common/style/style.module.css';
+import {setAppErrorAC} from '../../../../app/app-reducer';
+import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 
 
 export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
@@ -25,6 +27,8 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
 
     const [nameFileImg, setNameFileImg] = React.useState('');
     const [questionImg, setQuestionImg] = React.useState('');
+
+    const dispatch = useAppDispatch()
 
     const handleChange = (event: SelectChangeEvent) => {
         setValueSelect(event.target.value as string);
@@ -69,6 +73,8 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
                 convertFileToBase64(file, (file64) => {
                     setQuestionImg(file64)
                 })
+            } else {
+                dispatch(setAppErrorAC("Incorrect file size"))
             }
         }
     };
@@ -86,8 +92,8 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
 
                     {props.questionImg
                         ? <img src={props.questionImg}
-                               alt="questionImg"
-                        />
+                               className={common.questionImg}
+                               alt="questionImg"/>
                         : <div>
                             <InputLabel id="demo-simple-select-label">Choose a question format</InputLabel>
 
