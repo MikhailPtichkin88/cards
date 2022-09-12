@@ -14,6 +14,7 @@ import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {Paginator} from '../../../common/components/pagination/Paginator';
 import {EditAddModalCard} from './add-edit-modal-cards/EditAddModalCard';
 import {CreateCardType} from './cards-api';
+import {KebabLearnMenu} from "../../../common/components/learn-menu/KebabLearnMenu";
 
 
 export const Cards = () => {
@@ -72,15 +73,16 @@ export const Cards = () => {
         dispatch(fetchCards())
     }, [])
 
-
     return (
         <div style={{paddingBottom: '30px'}}>
             <NavLink className={styles.packsLink} to={routePath.cards.packList}>Back to Packs List</NavLink>
             {
                 cards.length > 0
                     ? <div>
-                        <PacksTitle title={packName ? packName : ''}
+                        <PacksTitle title={packName?packName:''}
+                                    packId={cardsPack_id}
                                     isMy={isMy}>
+                            <KebabLearnMenu packName={packName?packName:''} packId={cardsPack_id}/>
                             <EditAddModalCard
                                 title="Add new card"
                                 saveCallback={onClickAddCardHandler}
@@ -90,6 +92,7 @@ export const Cards = () => {
                                             sx={{maxWidth: '200px', mt: '0 !important'}}>
                                         {'Add new card'}
                                     </Button>
+
                                 }
                             />
                         </PacksTitle>
