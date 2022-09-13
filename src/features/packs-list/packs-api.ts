@@ -19,6 +19,7 @@ export const packsAPI = {
 export type UpdatePackType={
     _id:string
     name:string
+    deckCover?:string
 }
 export type NewPackType={
     name?:string

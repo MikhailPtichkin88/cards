@@ -19,8 +19,8 @@ export const PacksPage = () => {
     const packName = useAppSelector(state => state.packs.queryParams.packName)
     const dispatch = useAppDispatch()
 
-    const addNewPack = (name: string) => {
-        dispatch(addNewPackTC({name}))
+    const addNewPack = (name: string, deckCover:string) => {
+        dispatch(addNewPackTC({name, deckCover}))
 
     }
 

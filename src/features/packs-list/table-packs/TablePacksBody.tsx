@@ -28,8 +28,8 @@ export const TablePacksBody = ({el, myID, onClickNameHandler}: CustomTableRowPro
     const redirectToStudy = () => {
         return navigate(routePath.cards.learn + el._id)
     }
-    const changePackName = (name: string) => {
-        dispatch(changePackNameTC({_id: el._id, name}))
+    const changePackName = (name: string, deckCover:string) => {
+        dispatch(changePackNameTC({_id: el._id, name, deckCover}))
     }
     const deletePack = () => {
         dispatch(deletePackTC(el._id))
@@ -66,6 +66,7 @@ export const TablePacksBody = ({el, myID, onClickNameHandler}: CustomTableRowPro
                                 style={{backgroundImage: `url(${study})`}}/>
                         <EditAddModalPack title="Edit pack"
                                           name={el.name}
+                                          deckCover={el.deckCover}
                                           saveCallback={changePackName}
                                           childrenDiv={<button className={styles.btn}
                                                                style={{backgroundImage: `url(${edit})`}}/>}
