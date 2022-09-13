@@ -44,10 +44,10 @@ export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
         setIsClosed(false)
     }
     const onClickSaveHandler = async () => {
-        if (!value || !deckCover) {
+        if (!value) {
             return setError(true)
         }
-        await props.saveCallback(value, deckCover)
+        await props.saveCallback(value, deckCover!)
         setDataOnClose()
         setIsClosed(true)
     }
