@@ -40,9 +40,21 @@ export const TablePacksBody = ({el, myID, onClickNameHandler}: CustomTableRowPro
         <TableRow key={el._id} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
             <TableCell component="th" scope="row"
                        onClick={() => onClickNameHandler(el._id)}
-                       style={{cursor: 'pointer', maxWidth: '200px', overflowWrap: 'break-word'}}
+                       style={{
+                           cursor: 'pointer',
+                           maxWidth: '200px',
+                           overflowWrap: 'break-word'
+                       }}
             >
-                {el.name}
+                <div style={{display: "flex", alignItems: "center", gap: "10px"}}>
+                    {
+                        //Проверка на длинну строки поставил, т.к. в некоторых колодах вместо адреса
+                        // или base64 хардкодили текст типа "Some cover" и отображалась битая картинка
+                        el.deckCover && el.deckCover.length > 15 &&
+                        <img src={el.deckCover} style={{width: "60px", height: "40px", objectFit: "contain"}}/>
+                    }
+                    {el.name}
+                </div>
             </TableCell>
             <TableCell align="left">{el.cardsCount}</TableCell>
             <TableCell align="left">{el.updated.toString()}</TableCell>
