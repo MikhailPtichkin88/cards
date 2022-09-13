@@ -76,23 +76,26 @@ export const KebabLearnMenu = (props: KebabLearnMenuPropsType) => {
             >
                 <MenuItem>
                     <button onClick={redirectToStudy} className={styles1.btn}
-                            style={{backgroundImage: `url(${study})`, minHeight:'20px'}}/>
+                            style={{backgroundImage: `url(${study})`, minHeight:'20px', marginRight:"10px"}}/>
+                    Learn
                 </MenuItem>
                 <MenuItem>
                     <EditAddModalPack title="Edit pack"
                                       name={titleName}
                                       saveCallback={changePackName}
                                       childrenDiv={<button className={styles.btn}
-                                                           style={{backgroundImage: `url(${edit})`}}/>}
+                                                           style={{backgroundImage: `url(${edit})`,marginRight:"10px"}}/>}
                     />
+                    Edit
                 </MenuItem>
                 <MenuItem>
                     <DeleteModal title="Delete Pack"
                                  name={titleName}
                                  deleteCallback={deletePack}
                                  childrenDiv={<button className={styles.btn}
-                                                      style={{backgroundImage: `url(${deleteImg})`}}/>}
+                                                      style={{backgroundImage: `url(${deleteImg})`,marginRight:"10px"}}/>}
                     />
+                    Delete
                 </MenuItem>
             </Menu>
         </div>
