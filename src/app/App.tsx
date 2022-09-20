@@ -29,7 +29,9 @@ function App() {
         <div className="App">
             <ErrorSnackbar/>
             <AppBar/>
-            {status === 'loading' && <LinearProgress/>}
+            {status === 'loading'
+                ? <LinearProgress className="adaptivePadding"/>
+                : <div  className="adaptivePadding" style={{height: "4px"}}/>}
             <div className="container">
                 <WhichRouting/>
             </div>

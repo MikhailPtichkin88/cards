@@ -30,7 +30,7 @@ export const KebabLearnMenu = (props: KebabLearnMenuPropsType) => {
     const title = useAppSelector(state => state.packs.packs.cardPacks.find(pack => pack._id === props.packId))
     const titleName = title ? title.name : props.packName
 
-    const redirectToStudy = () => {
+     const redirectToStudy = () => {
         if (props.packId) {
             return navigate(routePath.cards.learn + props.packId)
         }
@@ -76,26 +76,23 @@ export const KebabLearnMenu = (props: KebabLearnMenuPropsType) => {
             >
                 <MenuItem>
                     <button onClick={redirectToStudy} className={styles1.btn}
-                            style={{backgroundImage: `url(${study})`, minHeight:'20px', marginRight:"10px"}}/>
-                    Learn
+                            style={{backgroundImage: `url(${study})`, minHeight:'20px'}}/>
                 </MenuItem>
                 <MenuItem>
                     <EditAddModalPack title="Edit pack"
                                       name={titleName}
                                       saveCallback={changePackName}
                                       childrenDiv={<button className={styles.btn}
-                                                           style={{backgroundImage: `url(${edit})`,marginRight:"10px"}}/>}
+                                                           style={{backgroundImage: `url(${edit})`}}/>}
                     />
-                    Edit
                 </MenuItem>
                 <MenuItem>
                     <DeleteModal title="Delete Pack"
                                  name={titleName}
                                  deleteCallback={deletePack}
                                  childrenDiv={<button className={styles.btn}
-                                                      style={{backgroundImage: `url(${deleteImg})`,marginRight:"10px"}}/>}
+                                                      style={{backgroundImage: `url(${deleteImg})`}}/>}
                     />
-                    Delete
                 </MenuItem>
             </Menu>
         </div>

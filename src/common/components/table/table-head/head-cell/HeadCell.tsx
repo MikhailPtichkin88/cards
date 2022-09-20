@@ -24,10 +24,10 @@ export const HeadCell = ({width, headCell, sortCallback}: HeadCellPropsType) => 
         setActive(!active)
     }
     const directionString = direction ? 'asc' : 'desc'
-
+    const alignCenter = title==="Actions" ? "center" : "left"
     return (
         <>
-            {sortable ? <TableCell key={sortKey} sx={{maxWidth: width}}>
+            {sortable ? <TableCell key={sortKey} sx={{maxWidth: width, textAlign: `${alignCenter}`}}>
                     <TableSortLabel
                         onClick={toggleDirection}
                         onFocus={onActiveHandler}
@@ -39,7 +39,7 @@ export const HeadCell = ({width, headCell, sortCallback}: HeadCellPropsType) => 
                         {title}
                     </TableSortLabel>
                 </TableCell>
-                : <TableCell style={{textAlign: 'end'}} key={sortKey}>{title}</TableCell>}
+                : <TableCell  key={sortKey}  sx={{textAlign: `${alignCenter}`}}>{title}</TableCell>}
         </>
 
     );

@@ -18,3 +18,10 @@
     opacity: 0.5;
     cursor: auto;
 }
+
+@media(max-width: 576px){
+    .btnBlock{
+        flex-wrap: wrap;
+        min-width: 60px;
+    }
+}

@@ -9,6 +9,7 @@ type PaginatorPropsType = {
     rowsPerPage: number
     changePage: (newPage: number) => void
     changeRowsPerPage: (rowsPerPage: number) => void
+    width:number
 }
 
 export const Paginator = (props: PaginatorPropsType) => {
@@ -16,6 +17,7 @@ export const Paginator = (props: PaginatorPropsType) => {
     const status = useAppSelector(state=>state.app.status)
     const isLoading = status === "loading"
     const pageCount = Math.ceil(props.totalCount / props.rowsPerPage)
+    const adaptiveSize = props.width < 991 ? "small" : "large"
     return (
         <>
             {
@@ -33,20 +35,21 @@ export const Paginator = (props: PaginatorPropsType) => {
                             hideNextButton
                             hidePrevButton
                             onChange={(_, page) => props.changePage(page)}
+                            size={adaptiveSize}
                         />}
                     </Stack>
 
                     <div>
-                        Show
-                        <select style={{marginLeft: 10, marginRight: 10}}
+                        {props.width > 991 && "Show"}
+                        {props.width > 991 &&  <select style={{marginLeft: 10, marginRight: 10}}
                                 value={props.rowsPerPage}
                                 onChange={(event) => props.changeRowsPerPage(parseInt(event.target.value))}
                                 name="RowPerPage" id="RowPerPageID">
                             <option value="10">10</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
-                        </select>
-                        Rows per page
+                        </select>}
+                        {props.width > 991 && " Rows per page"}
                     </div>
 
                 </Box>

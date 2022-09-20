@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './AppBar.module.css'
-import logo from '../../../assets/images/logo.svg'
+import logo from '../../../assets/images/logo1.jpeg'
 import {useNavigate} from 'react-router-dom';
-
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {UserInfo} from "./userInfo/UserInfo";
 import Button from "@mui/material/Button";
@@ -22,8 +21,8 @@ export const AppBar = () => {
         <div className={styles.wrapper}>
             <div className={'container'}>
                 <div className={styles.inner}>
-                    <a href="#">
-                        <img src={logo} alt="logo"/>
+                    <a href="#" className={styles.logoLink}>
+                        <img src={logo} alt="logo" className={styles.logoImg}/>
                     </a>
                     <div>
                         {

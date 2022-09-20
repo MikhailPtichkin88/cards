@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {TableContainer} from '@mui/material';
 import Table from '@mui/material/Table';
 import Paper from '@mui/material/Paper';
@@ -55,14 +55,15 @@ export const CardsTable = () => {
     const dispatch = useAppDispatch()
     const myID = useAppSelector(state => state.auth.authData._id)
     const page = useAppSelector(state => state.packs.packs.page)
+    const [width, setWidth] = useState(0)
 
     const cardPacksTotalCount = useAppSelector(state => state.packs.packs.cardPacksTotalCount)
     const pageCount = useAppSelector(state => state.packs.packs.pageCount)
 
-    const onClickNameHandler = (packId: string) => {
+    const onClickNameHandler = useCallback((packId: string) => {
         dispatch(setQueryParams({cardsPack_id: packId}))
         navigate(`/cards/${packId}`)
-    }
+    },[dispatch,navigate])
 
     const tableHeadCallBack = (queryString: string) => {
         dispatch(getPacksTC({sortPacks: queryString as GetSortPacksType}))
@@ -73,15 +74,31 @@ export const CardsTable = () => {
     const changeRowsPerPage = (rowsPerPage: number) => {
         dispatch(getPacksTC({pageCount: rowsPerPage, page: 1}))
     }
+
+ const arr:Array<HeadCellType> = useMemo(()=>{
+     if(width < 576){
+         return headCells.filter(column => column.sortKey !== "user_name" && column.sortKey !== "updated")
+     }
+     if(width < 991){
+        return headCells.filter(column => column.sortKey !== "updated")
+     }
+     return headCells
+ },[width])
+
+    useEffect(() => {
+        setWidth(window.innerWidth)
+    }, [])
+
     if (!cards.length) {
         return <Loading/>
     }
+    console.log(arr)
     return (
         <>
             <TableContainer component={Paper}>
-                <Table sx={{minWidth: 650}} aria-label="simple table">
-                    <CustomTableHead sortCallback={tableHeadCallBack} headCells={headCells}/>
-                    <CustomTableBody elements={cards} myID={myID} onClickNameHandler={onClickNameHandler}/>
+                <Table  aria-label="simple table">
+                    <CustomTableHead sortCallback={tableHeadCallBack} headCells={arr}/>
+                    <CustomTableBody elements={cards} myID={myID} onClickNameHandler={onClickNameHandler} width={width}/>
                 </Table>
             </TableContainer>
             <Paginator
@@ -90,6 +107,7 @@ export const CardsTable = () => {
                 totalCount={cardPacksTotalCount}
                 changePage={changePage}
                 changeRowsPerPage={changeRowsPerPage}
+                width={width}
             />
         </>
     )

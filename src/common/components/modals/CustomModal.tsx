@@ -7,13 +7,14 @@ import CloseIcon from '@mui/icons-material/Close';
 import commonStyle from '../../style/style.module.css';
 import Button from '@mui/material/Button';
 import {useAppSelector} from '../../hooks/useAppSelector';
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
     bgcolor: 'background.paper',
     boxShadow: 24,
     padding: '20px 25px',
@@ -42,6 +43,8 @@ export const CustomModal: React.FC<CustomModalType> = (props) => {
     const status = useAppSelector(state => state.app.status)
     const [open, setOpen] = React.useState(false);
 
+
+    const matches = useMediaQuery('(min-width:991px)');
     const handleOpenClose = () => {
         setOpen(!open)
         if (props.setDataOnClose) props.setDataOnClose()
@@ -66,7 +69,7 @@ export const CustomModal: React.FC<CustomModalType> = (props) => {
                 open={open}
                 onClose={handleOpenClose}
             >
-                <Box sx={style}>
+                <Box sx={{...style, width: `${matches?"500px":"300px"}`}}>
                     <div style={headerStyle}>
                         <h3 style={{margin: '0px'}}>{props.title}</h3>
                         <IconButton aria-label="delete" onClick={handleOpenClose}>

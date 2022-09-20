@@ -19,3 +19,18 @@
     margin-right: 40px;
     border-radius: 50%;
 }
+
+@media(max-width: 991px){
+    .avatarImg{
+        margin-right: 0;
+    }
+}
+@media(max-width: 576px){
+    .userName{
+        display: inline-block;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}

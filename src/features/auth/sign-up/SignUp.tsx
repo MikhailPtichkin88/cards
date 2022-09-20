@@ -95,7 +95,7 @@ export const SignUp = () => {
                 ? <h3>You will be redirected to login page</h3>
                 : <form onSubmit={formik.handleSubmit}>
                     <FormControl>
-                        <FormGroup style={{width: '350px'}}>
+                        <FormGroup className={commonStyle.formInner}>
                             <TextField
                                 error={isEmailFieldError}
                                 helperText={formik.errors.email}

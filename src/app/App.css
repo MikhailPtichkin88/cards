@@ -1,7 +1,3 @@
-.App {
-    background-color: #F9F9FA;
-    height: 100vh;
-}
 
 .navlink a {
     margin-right: 20px;
@@ -10,6 +6,19 @@
     margin: 0 auto;
     max-width: 80%;
     padding: 0 15px;
+}
+.adaptivePadding{
+    margin-bottom: 30px;
+}
+@media(max-width: 991px){
+    .container{
+        max-width:100%;
+    }
+}
+@media(max-width: 576px){
+    .adaptivePadding{
+        margin-bottom: 10px;
+    }
 }
 
 

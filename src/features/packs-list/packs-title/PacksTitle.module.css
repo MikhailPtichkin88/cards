@@ -10,3 +10,9 @@
     overflow-wrap: break-word;
 }
 
+@media(max-width:576px){
+    .titleWrapper {
+        margin-bottom: 10px;
+    }
+}
+

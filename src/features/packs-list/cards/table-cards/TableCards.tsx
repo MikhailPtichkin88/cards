@@ -17,6 +17,7 @@ import {fetchCards, setQueryParams} from '../cards-reducer';
 import {DeleteModal} from '../../../../common/components/modals/delete-modal/DeleteModal';
 import {EditAddModalCard} from '../add-edit-modal-cards/EditAddModalCard';
 import {TableCardsBody} from './TableCardsBody';
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const headCells: Array<HeadCellType> = [
 
@@ -54,11 +55,14 @@ export const TableCards = (props: CommonTableType) => {
         dispatch(fetchCards())
     }
 
+    const matches = useMediaQuery('(min-width:991px)');
+    const filteredHeadCells = matches? headCells : headCells.filter(cell=>cell.title==="Question" || cell.title==="Answer")
+
     return (
         <TableContainer component={Paper}>
-            <Table sx={{minWidth: 650}} aria-label="simple table">
+            <Table sx={{minWidth: `${matches?650:350}`}} aria-label="simple table">
                 <CustomTableHead sortCallback={tableHeadCallBack}
-                                 headCells={headCells}
+                                 headCells={filteredHeadCells}
                                  isMy={isMy}
                                  title={'Actions'}
                                  sortKey={'actions'}
@@ -66,7 +70,8 @@ export const TableCards = (props: CommonTableType) => {
                 <TableCardsBody cards={props.cards}
                                 isMy={isMy}
                                 updateCardHandler={props.updateCardHandler}
-                                deleteCardHandler={props.deleteCardHandler}/>
+                                deleteCardHandler={props.deleteCardHandler}
+                                isDesktopWidth={matches}/>
             </Table>
         </TableContainer>
     )

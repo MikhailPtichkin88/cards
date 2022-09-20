@@ -9,6 +9,8 @@ import Button from "@mui/material/Button/Button";
 import {convertFileToBase64} from "../../../common/utils/convert-base64";
 import {setAppErrorAC} from "../../../app/app-reducer";
 import {useAppDispatch} from "../../../common/hooks/useAppDispatch";
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 
 type AddEditPackModalType = {
     title: string
@@ -27,6 +29,8 @@ export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
     const [isPrivate, setIsPrivate] = useState(false)
 
     const dispatch = useAppDispatch()
+
+    const matches = useMediaQuery('(min-width:991px)');
 
     const onChangeValueHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const value = e.currentTarget.value
@@ -67,9 +71,8 @@ export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
     }
 
     const deckCoverStyle = {
-        width: 400,
-        height: 150,
-        objectFit: "cover" as "cover"
+        maxHeight: 150,
+        objectFit: "cover" as "cover",
     }
     const wrapperStyle = {
         display: "flex",
@@ -88,7 +91,7 @@ export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
                      isClosed={isClosed}>
 
             {deckCover && <div style={wrapperStyle}>
-                <img src={deckCover} style={deckCoverStyle}/>
+                <img src={deckCover} style={{...deckCoverStyle, width:`${matches?"450px":"250px"}`}}/>
             </div>
             }
 
@@ -116,7 +119,7 @@ export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
                        helperText={error && 'Empty field'}
                        className={commonStyle.textFieldModal}/>
 
-            <FormGroup style={{marginBottom: '35px'}}>
+            <FormGroup style={{marginBottom: '15px'}}>
 
                 <FormControlLabel label="Private pack" control={
                     <Checkbox checked={isPrivate}

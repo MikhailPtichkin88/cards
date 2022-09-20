@@ -13,6 +13,7 @@ type TableCardsBodyParams = {
     isMy: boolean
     updateCardHandler: (id: string, params: CreateCardType) => void
     deleteCardHandler: (id: string) => void
+    isDesktopWidth:boolean
 }
 
 export const TableCardsBody = (props: TableCardsBodyParams) => {
@@ -38,7 +39,6 @@ export const TableCardsBody = (props: TableCardsBodyParams) => {
                             </Box>
                             : card.question
                         }
-
                     </TableCell>
 
                     <TableCell align="left"
@@ -46,18 +46,19 @@ export const TableCardsBody = (props: TableCardsBodyParams) => {
                         {card.answer}
                     </TableCell>
 
+                    {props.isDesktopWidth &&
                     <TableCell align="left">{card.updated.slice(0, 10)}</TableCell>
+                    }
 
-                    <TableCell align="right" sx={{width: '50px'}}>
-                        <Rating defaultValue={card.grade} precision={0.5} readOnly/>
-                    </TableCell>
-
+                    {props.isDesktopWidth &&
+                        <TableCell align="right" sx={{width: '50px'}}>
+                            <Rating defaultValue={card.grade} precision={0.5} readOnly/>
+                        </TableCell>
+                    }
                     {
                         props.isMy &&
                         <TableCell align="right">
-
                             <Box sx={{display: 'flex', justifyContent: 'space-between', width: '50px'}}>
-
                                 <EditAddModalCard title={'Edit card'}
                                                   valueQuestion={card.question}
                                                   valueAnswer={card.answer}
@@ -71,7 +72,6 @@ export const TableCardsBody = (props: TableCardsBodyParams) => {
                                              childrenDiv={<button className={styles.btn}
                                                                   style={{backgroundImage: `url(${deleteImg})`}}/>}
                                              deleteCallback={deleteCallback}/>
-
                             </Box>
                         </TableCell>
                     }

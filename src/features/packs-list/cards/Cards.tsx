@@ -1,23 +1,26 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../../profile/Profile.module.css';
 import {routePath} from '../../../common/constants/routePath';
-import {NavLink, useParams} from 'react-router-dom';
+import {NavLink, useNavigate, useParams} from 'react-router-dom';
 import {PacksTitle} from '../packs-title/PacksTitle';
 import {TableCards} from './table-cards/TableCards';
 import {Search} from '../settings/search/Search';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import Button from '@mui/material/Button/Button';
 import common from '../../../common/style/style.module.css';
-import {Box, Typography} from '@mui/material';
+import {Box, IconButton, Typography} from '@mui/material';
 import {fetchCards, fetchCreateCard, fetchRemoveCard, fetchUpdateCard, setQueryParams} from './cards-reducer';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {Paginator} from '../../../common/components/pagination/Paginator';
 import {EditAddModalCard} from './add-edit-modal-cards/EditAddModalCard';
 import {CreateCardType} from './cards-api';
 import {KebabLearnMenu} from "../../../common/components/learn-menu/KebabLearnMenu";
-
+import SchoolIcon from '@mui/icons-material/School';
 
 export const Cards = () => {
+    const [width, setWidth] = useState(0)
+    const navigate = useNavigate()
+
     const page = useAppSelector(state => state.cards.dateCard.page)
     const pageCount = useAppSelector(state => state.cards.dateCard.pageCount)
     const cardsTotalCount = useAppSelector(state => state.cards.dateCard.cardsTotalCount)
@@ -55,6 +58,11 @@ export const Cards = () => {
         dispatch(setQueryParams({cardQuestion}))
         dispatch(fetchCards())
     }
+    const redirectToStudy = () => {
+        if (cardsPack_id) {
+            return navigate(routePath.cards.learn + cardsPack_id)
+        }
+    }
 
     useEffect(() => {
         if (page > 1) {
@@ -73,29 +81,39 @@ export const Cards = () => {
         dispatch(fetchCards())
     }, [])
 
+    useEffect(() => {
+        setWidth(window.innerWidth)
+    }, [])
+
     return (
         <div style={{paddingBottom: '30px'}}>
             <NavLink className={styles.packsLink} to={routePath.cards.packList}>Back to Packs List</NavLink>
             {
                 cards.length > 0
-                    ? <div>
-                        <PacksTitle title={packName?packName:''}
+                    ? <div style={{position:"relative"}}>
+                        <PacksTitle title={packName ? packName : ''}
                                     packId={cardsPack_id}
                                     isMy={isMy}>
-                            <KebabLearnMenu packName={packName?packName:''} packId={cardsPack_id}/>
-                            <EditAddModalCard
-                                title="Add new card"
-                                saveCallback={onClickAddCardHandler}
-                                childrenBtn={
-                                    <Button variant="contained"
-                                            className={common.btnStyle}
-                                            sx={{maxWidth: '200px', mt: '0 !important'}}>
-                                        {'Add new card'}
-                                    </Button>
-
-                                }
-                            />
+                            {
+                                isMy && <> <KebabLearnMenu packName={packName ? packName : ''} packId={cardsPack_id}/>
+                                    <EditAddModalCard
+                                        title="Add new card"
+                                        saveCallback={onClickAddCardHandler}
+                                        childrenBtn={
+                                            <Button variant="contained"
+                                                    className={common.btnStyle}
+                                                    sx={{maxWidth: '200px', mt: '0 !important'}}>
+                                                {'Add new card'}
+                                            </Button>}/></>
+                            }
                         </PacksTitle>
+                        {
+                            !isMy && <div style={{position: "absolute", top: "5px",right:"20px"}}>
+                                <IconButton onClick={redirectToStudy} size="large">
+                                    <SchoolIcon color="primary" fontSize="large"/>
+                                </IconButton>
+                            </div>
+                        }
                         <Box sx={{mb: 4}}>
                             <Search id={'cardPacksSearch'}
                                     callback={searchHandler}
@@ -105,7 +123,8 @@ export const Cards = () => {
                                     deleteCardHandler={deleteCardHandler}
                                     updateCardHandler={updateCardHandler}
                         />
-                        <Paginator page={page}
+                        <Paginator width={width}
+                                   page={page}
                                    rowsPerPage={pageCount}
                                    totalCount={cardsTotalCount}
                                    changePage={changePage}

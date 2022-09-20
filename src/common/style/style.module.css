@@ -2,6 +2,7 @@
     border-radius: 20px !important;
     width: 100% !important;
     line-height: 1.75;
+    margin-top: 30px !important;
 }
 
 .paperStyle {
@@ -33,4 +34,19 @@
     width: 100%;
     max-height: 200px;
     object-fit: cover;
+}
+.formInner{
+    width: 350px;
+}
+
+@media(max-width: 576px){
+    .paperStyle{
+        padding: 15px;
+    }
+    .formInner{
+        width: 100%;
+    }
+    .tableCell {
+        max-width: 90px;
+    }
 }

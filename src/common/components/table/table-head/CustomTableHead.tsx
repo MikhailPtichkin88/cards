@@ -14,7 +14,7 @@ export type CustomTableHeadPropsType = {
 export const CustomTableHead = ({sortKey, title, isMy, sortCallback, headCells}: CustomTableHeadPropsType) => {
 
     return (
-        <TableHead style={{backgroundColor: 'lightgray'}}>
+        <TableHead  style={{backgroundColor: 'lightgray'}}>
             <TableRow>
                 {headCells.map((headCell) => (
                     <HeadCell key={headCell.title}
