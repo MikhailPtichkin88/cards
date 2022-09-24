@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'http://localhost:7542/2.0/',
+    baseURL: 'https://neko-back.herokuapp.com/2.0/',
     withCredentials: true
 })
 
 export const api = {
     fetchPasswordRecoveryLink: (data: DataPasswordRecoveryType) => {
-        return axios.post<ResponsePasswordRecovery>('https://neko-back.herokuapp.com/2.0/auth/forgot', data)
+        return instance.post<ResponsePasswordRecovery>('auth/forgot', data)
     },
     fetchUpdatePassword: (data: DataUpdatePassword) => {
         return instance.post<{ info: string }>('auth/set-new-password', data)

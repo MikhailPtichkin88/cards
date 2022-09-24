@@ -22,7 +22,7 @@ export const setEmail = (email: string) => ({type: 'PS/SET-EMAIL', email} as con
 export const passwordRecoveryLink = (email: string): AppThunk => async dispatch => {
     const data: DataPasswordRecoveryType = {
         email,
-        message: '<div style=\'background-color: lime; padding: 15px\'> password recovery link:<a href=\'http://localhost:3000/#/set-new-password/$token$\'>link</a></div>'
+        message: '<div style=\'background-color: lime; padding: 15px\'> password recovery link:<a href=\'https://MikhailPtichkin88.github.io/cards/#/set-new-password/$token$\'>link</a></div>'
     }
     dispatch(setAppStatusAC('loading'))
     try {
@@ -41,7 +41,6 @@ export const updatePassword = (password: string, resetPasswordToken: string): Ap
     } catch (e) {
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
     }
-
 }
 //type
 export type PasswordRecoveryType = {

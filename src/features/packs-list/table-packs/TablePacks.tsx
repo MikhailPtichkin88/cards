@@ -12,6 +12,9 @@ import {setQueryParams} from '../cards/cards-reducer';
 import {useNavigate} from 'react-router-dom';
 import {GetSortPacksType} from '../packs-api';
 import {Paginator} from '../../../common/components/pagination/Paginator';
+import pic from "../../../assets/images/404.jpg";
+import styles from './TablePack.module.css';
+import Button from "@mui/material/Button";
 
 export type HeadCellType = {
     sortKey: string
@@ -55,6 +58,7 @@ export const CardsTable = () => {
     const dispatch = useAppDispatch()
     const myID = useAppSelector(state => state.auth.authData._id)
     const page = useAppSelector(state => state.packs.packs.page)
+    const appStatus = useAppSelector(state => state.app.status)
     const [width, setWidth] = useState(0)
 
     const cardPacksTotalCount = useAppSelector(state => state.packs.packs.cardPacksTotalCount)
@@ -63,7 +67,7 @@ export const CardsTable = () => {
     const onClickNameHandler = useCallback((packId: string) => {
         dispatch(setQueryParams({cardsPack_id: packId}))
         navigate(`/cards/${packId}`)
-    },[dispatch,navigate])
+    }, [dispatch, navigate])
 
     const tableHeadCallBack = (queryString: string) => {
         dispatch(getPacksTC({sortPacks: queryString as GetSortPacksType}))
@@ -75,40 +79,51 @@ export const CardsTable = () => {
         dispatch(getPacksTC({pageCount: rowsPerPage, page: 1}))
     }
 
- const arr:Array<HeadCellType> = useMemo(()=>{
-     if(width < 576){
-         return headCells.filter(column => column.sortKey !== "user_name" && column.sortKey !== "updated")
-     }
-     if(width < 991){
-        return headCells.filter(column => column.sortKey !== "updated")
-     }
-     return headCells
- },[width])
+    const arr: Array<HeadCellType> = useMemo(() => {
+        if (width < 576) {
+            return headCells.filter(column => column.sortKey !== "user_name" && column.sortKey !== "updated")
+        }
+        if (width < 991) {
+            return headCells.filter(column => column.sortKey !== "updated")
+        }
+        return headCells
+    }, [width])
 
     useEffect(() => {
         setWidth(window.innerWidth)
     }, [])
 
-    if (!cards.length) {
-        return <Loading/>
-    }
-    console.log(arr)
     return (
         <>
-            <TableContainer component={Paper}>
-                <Table  aria-label="simple table">
-                    <CustomTableHead sortCallback={tableHeadCallBack} headCells={arr}/>
-                    <CustomTableBody elements={cards} myID={myID} onClickNameHandler={onClickNameHandler} width={width}/>
-                </Table>
-            </TableContainer>
-            <Paginator
-                page={page}
-                rowsPerPage={pageCount}
-                totalCount={cardPacksTotalCount}
-                changePage={changePage}
-                changeRowsPerPage={changeRowsPerPage}
-                width={width}
-            />
+            {
+                appStatus === "loading"
+                    ? <Loading/>
+                    : (!cards.length)
+                        ?   <div className={styles.wrapper}>
+                            <img className={styles.img} src={pic} alt="No packs"/>
+                            <div className={styles.descr}>
+                                <div className={styles.text}>No packs found!</div>
+                                <Button variant="contained" className={styles.btn}>add new pack</Button>
+                            </div>
+
+                        </div>
+                        : <> <TableContainer component={Paper}>
+                            <Table aria-label="simple table">
+                                <CustomTableHead sortCallback={tableHeadCallBack} headCells={arr}/>
+                                <CustomTableBody elements={cards} myID={myID} onClickNameHandler={onClickNameHandler}
+                                                 width={width}/>
+                            </Table>
+                        </TableContainer>
+                            <Paginator
+                                page={page}
+                                rowsPerPage={pageCount}
+                                totalCount={cardPacksTotalCount}
+                                changePage={changePage}
+                                changeRowsPerPage={changeRowsPerPage}
+                                width={width}
+                            />
+                        </>
+            }
         </>
     )
 };

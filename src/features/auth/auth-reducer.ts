@@ -75,12 +75,12 @@ export const initializeAppTC = (): AppThunk => async dispatch => {
         dispatch(setAppStatusAC("succeeded"))
     } catch (e) {
         const error = e as AxiosError<{ error: string }>
+        dispatch(setAppStatusAC("idle"))
         if (error.response?.status !== 401) {
             handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
         }
     } finally {
         dispatch(setInitializeApp(true))
-        dispatch(setAppStatusAC("succeeded"))
     }
 }
 

@@ -77,7 +77,6 @@ export const Login = () => {
                 <FormControlLabel label={'Remember me'}
                                   className={styles.checkbox}
                                   control={<Checkbox
-
                                       {...formik.getFieldProps('rememberMe')}
                                   />}/>
                 <FormLabel className={styles.forgotPassBlock}>
