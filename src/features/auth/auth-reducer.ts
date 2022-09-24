@@ -1,8 +1,9 @@
-import {authAPI, AuthResponseType, ChangeNameDataType, LoginPostDataType} from "./auth-api";
+import {authAPI, AuthResponseType, ChangeNameDataType, LoginPostDataType, UserBlockedType} from "./auth-api";
 import {AppThunk} from "../../app/store";
 import {AxiosError} from "axios";
 import {setAppStatusAC} from "../../app/app-reducer";
 import {handleServerNetworkError} from '../../common/utils/error-utils';
+import {getPacksTC} from "../packs-list/packs-reducer";
 
 const initAuthState = {
     initializeApp: false,
@@ -108,5 +109,20 @@ export const changeNameAndAvatarTC = (name: string, avatar: string): AppThunk =>
         dispatch(setAppStatusAC("succeeded"))
     } catch (e) {
         handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
+    }
+}
+export const blockUserTC = (userId: string): AppThunk => async dispatch => {
+    try {
+        dispatch(setAppStatusAC('loading'))
+        let data:UserBlockedType={
+            id:userId,
+            blockReason: "Контент ненормативного характера",
+        }
+        await authAPI.blockUser(data).then(res=>console.log(res))
+        dispatch(getPacksTC({}))
+    } catch (e) {
+        handleServerNetworkError(e as Error | AxiosError<{ error: string }>, dispatch)
+    } finally {
+        dispatch(setAppStatusAC('succeeded'))
     }
 }

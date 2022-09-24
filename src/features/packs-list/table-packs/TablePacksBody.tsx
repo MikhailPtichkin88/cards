@@ -11,7 +11,9 @@ import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {changePackNameTC, deletePackTC} from '../packs-reducer';
 import {EditAddModalPack} from '../edit-add-modal-pack/EditAddModalPack';
 import {DeleteModal} from '../../../common/components/modals/delete-modal/DeleteModal';
-
+import BlockIcon from '@mui/icons-material/Block';
+import Button from "@mui/material/Button";
+import {blockUserTC} from "../../auth/auth-reducer";
 
 type CustomTableRowPropsType = {
     el: PackType
@@ -35,7 +37,9 @@ export const TablePacksBody = ({el, myID, onClickNameHandler, width}: CustomTabl
     const deletePack = () => {
         dispatch(deletePackTC(el._id))
     }
-
+    const onBlockHandler = () => {
+        dispatch(blockUserTC(el.user_id))
+    }
     const studyBtnClasses = isNoCards ? `${styles.btn} ${styles.btnDisabled}` : `${styles.btn}`
     const alignAdaptiveRight = width < 991 ? "left" : "right"
     const alignAdaptiveCenter = width < 991 ? "center" : "left"
@@ -52,7 +56,7 @@ export const TablePacksBody = ({el, myID, onClickNameHandler, width}: CustomTabl
                            overflowWrap: 'break-word'
                        }}
             >
-                <div style={{display: "flex", alignItems: "center", gap: "8px",flexWrap: "wrap"}}>
+                <div style={{display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap"}}>
                     {
                         //Проверка на длины строки поставил, т.к. в некоторых колодах вместо адреса
                         // или base64 хардкодили текст типа "Some cover" и отображалась битая картинка
@@ -69,7 +73,14 @@ export const TablePacksBody = ({el, myID, onClickNameHandler, width}: CustomTabl
                 width > 991 && <TableCell align="left">{el.updated.toString()}</TableCell>
             }
             {
-                width > 576 && <TableCell align="left">{el.user_name}</TableCell>
+                width > 576 && <TableCell align="left">
+                    <Button size="small"
+                            className={styles.blockBtn}
+                            onClick={onBlockHandler}
+                            startIcon={<BlockIcon/>}>
+                        block
+                    </Button>
+                    {el.user_name}</TableCell>
             }
             <TableCell align={alignAdaptiveRight} style={{
                 padding: `${adaptivePadding}`
@@ -90,7 +101,6 @@ export const TablePacksBody = ({el, myID, onClickNameHandler, width}: CustomTabl
                                      deleteCallback={deletePack}
                                      childrenDiv={<button className={styles.btn}
                                                           style={{backgroundImage: `url(${deleteImg})`}}/>}
-
                         />
                     </div>
                     :

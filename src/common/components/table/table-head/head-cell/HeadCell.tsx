@@ -24,7 +24,8 @@ export const HeadCell = ({width, headCell, sortCallback}: HeadCellPropsType) => 
         setActive(!active)
     }
     const directionString = direction ? 'asc' : 'desc'
-    const alignCenter = title==="Actions" ? "center" : "left"
+    const alignCenter = (title==="Actions" || title==="Created by")  ? "center" : "left"
+
     return (
         <>
             {sortable ? <TableCell key={sortKey} sx={{maxWidth: width, textAlign: `${alignCenter}`}}>

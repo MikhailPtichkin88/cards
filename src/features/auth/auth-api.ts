@@ -17,6 +17,9 @@ export const authAPI = {
     changeName(data: ChangeNameDataType) {
         return instance.put<ChangeNameResponseType>('auth/me', data)
             .then(res => res.data)
+    },
+    blockUser(data:UserBlockedType){
+        return instance.post<ReturnUserBlockedType>('auth/block', data)
     }
 }
 
@@ -55,5 +58,13 @@ export type ChangeNameDataType = {
 export type ChangeNameResponseType = {
     updatedUser: AuthResponseType
     error?: string
+}
+export type UserBlockedType={
+    id: string
+    blockReason: string
+}
+export type ReturnUserBlockedType={
+    user: string
+    blockedCardPacksCount: number
 }
 
