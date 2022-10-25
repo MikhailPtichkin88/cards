@@ -9,7 +9,6 @@ import {SignUp} from '../../../features/auth/sign-up/SignUp';
 import {routePath} from '../../constants/routePath';
 import {PacksPage} from '../../../features/packs-list/PacksPage';
 import {Cards} from '../../../features/packs-list/cards/Cards';
-import {NewPack} from "../../../features/pack/NewPack";
 import {LearnCards} from "../../../features/learn-cards/LearnCards";
 
 
@@ -24,7 +23,6 @@ export const WhichRouting = () => {
             <Route path={routePath.auth.signUp} element={<SignUp/>}/>
             <Route path={routePath.cards.packList} element={<PacksPage/>}/>
             <Route path={routePath.cards.card} element={<Cards/>}/>
-            <Route path={routePath.cards.newPack} element={<NewPack/>}/>
             <Route path={routePath.error.notFound} element={<Page404/>}/>
             <Route path={routePath.cards.learn} element={<LearnCards/>}>
                 <Route path=":id" element={<LearnCards />} />

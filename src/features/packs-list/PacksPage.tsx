@@ -19,9 +19,8 @@ export const PacksPage = () => {
     const packName = useAppSelector(state => state.packs.queryParams.packName)
     const dispatch = useAppDispatch()
 
-    const addNewPack = (name: string, deckCover:string) => {
+    const addNewPack = (name: string, deckCover: string) => {
         dispatch(addNewPackTC({name, deckCover}))
-
     }
 
     useEffect(() => {
@@ -29,7 +28,7 @@ export const PacksPage = () => {
         const user_id = filter === 'my' ? myID : undefined
         dispatch(getPacksTC({user_id, packName, min, max}))
 
-    }, [packName, filter, min, max])
+    }, [myID, packName, filter, min, max, filter])
 
     return (
         <div className={styles.wrapper}>

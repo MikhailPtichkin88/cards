@@ -72,7 +72,7 @@ export const Cards = () => {
             }
         }
 
-    }, [cards])
+    }, [cards, page])
 
     useEffect(() => {
         if (!cardsPack_id) {
@@ -134,7 +134,7 @@ export const Cards = () => {
 
                     : <Box>
                         <h2>
-                            name pack
+                            {packName}
                         </h2>
                         <Box sx={{display: 'flex', alignItems: 'center', flexDirection: 'column', mt: 8}}>
                             <Typography sx={{mb: 4}}>

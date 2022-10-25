@@ -4,7 +4,7 @@ import Table from '@mui/material/Table';
 import Paper from '@mui/material/Paper';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import {getPacksTC} from '../packs-reducer';
+import {addNewPackTC, getPacksTC} from '../packs-reducer';
 import {CustomTableBody} from '../../../common/components/table/table-body/CustomTableBody';
 import {CustomTableHead} from '../../../common/components/table/table-head/CustomTableHead';
 import {Loading} from '../../../common/components/loading/Loading';
@@ -15,6 +15,8 @@ import {Paginator} from '../../../common/components/pagination/Paginator';
 import pic from "../../../assets/images/404.jpg";
 import styles from './TablePack.module.css';
 import Button from "@mui/material/Button";
+import {EditAddModalPack} from "../edit-add-modal-pack/EditAddModalPack";
+import common from "../../../common/style/style.module.css";
 
 export type HeadCellType = {
     sortKey: string
@@ -78,7 +80,9 @@ export const CardsTable = () => {
     const changeRowsPerPage = (rowsPerPage: number) => {
         dispatch(getPacksTC({pageCount: rowsPerPage, page: 1}))
     }
-
+    const addNewPack = (name: string, deckCover:string) => {
+        dispatch(addNewPackTC({name, deckCover}))
+    }
     const arr: Array<HeadCellType> = useMemo(() => {
         if (width < 576) {
             return headCells.filter(column => column.sortKey !== "user_name" && column.sortKey !== "updated")
@@ -103,9 +107,10 @@ export const CardsTable = () => {
                             <img className={styles.img} src={pic} alt="No packs"/>
                             <div className={styles.descr}>
                                 <div className={styles.text}>No packs found!</div>
-                                <Button variant="contained" className={styles.btn}>add new pack</Button>
+                                <EditAddModalPack title={'Add new pack'}
+                                                  saveCallback={addNewPack}
+                                                  childrenDiv={ <Button variant="contained" className={styles.btn}>add new pack</Button>}/>
                             </div>
-
                         </div>
                         : <> <TableContainer component={Paper}>
                             <Table aria-label="simple table">

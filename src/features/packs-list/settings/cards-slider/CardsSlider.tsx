@@ -58,7 +58,7 @@ export const CardsSlider = (props: CardsSliderType) => {
             setValueOwnerSwitcher(ownerSwitcher)
             setIsActiveDebounced(false)
         }
-    }, [minCardsCount, maxCardsCount,])
+    }, [min,max,ownerSwitcher,minCardsCount, maxCardsCount,])
 
     useEffect(() => {
         setValue([minCardsCount, maxCardsCount])

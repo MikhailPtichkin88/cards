@@ -1,8 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import styles from './Search.module.css';
 import {useDebounce} from '../../../../common/hooks/useDebounce';
-import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
-import {useAppSelector} from "../../../../common/hooks/useAppSelector";
 import {styleDisabled} from "../Settings";
 
 type SearchPropsType = {
@@ -15,7 +13,7 @@ type SearchPropsType = {
 
 export const Search = React.memo((props: SearchPropsType) => {
         const [value, setValue] = useState<string>(props.valueSearch ? props.valueSearch : '')
-        const debouncedValue = useDebounce<string>(value, 500)
+        const debouncedValue = useDebounce<string>(value, 1000)
 
         const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
             setValue(event.target.value)

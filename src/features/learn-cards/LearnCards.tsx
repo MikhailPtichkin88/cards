@@ -51,7 +51,6 @@ const getCard = (cards: CardType[]) => {
             } else {
                 return {sum: 0, id: 0}
             }
-
         }
         , {sum: 0, id: -1});
 
@@ -106,14 +105,11 @@ export const LearnCards = () => {
                           control={<Radio/>}
                           key={'grade-' + i}
                           label={g}/>))
-
     if (!isAuth) {
         return <Navigate to={routePath.auth.login}/>
     }
-
     return (<>
             <BackToPacksLink/>
-
             <Paper elevation={20} className={style.paperStyle}>
                 <Grid container spacing={0} direction={"column"} justifyContent={"center"} alignItems={"center"}>
                     <Grid item>
@@ -121,14 +117,18 @@ export const LearnCards = () => {
                             Learn: {packName}
                         </Typography>
                     </Grid>
-
-                    <Grid item alignSelf={"start"}>
-                        <Typography mb={5} variant="body1" sx={{alignItems: "start"}}>
-                            Question: {card.question}
-                        </Typography>
-                    </Grid>
-
-
+                    {
+                        card.questionImg
+                            ? <Grid item alignSelf={"center"} style={{marginBottom: "10px"}}>
+                                <img src={card.questionImg} alt="question picture"
+                                     style={{width: "320px", objectFit: "cover"}}/>
+                            </Grid>
+                            : <Grid item alignSelf={"start"}>
+                                <Typography mb={4} variant="body1" sx={{alignItems: "start"}}>
+                                    <b>Question:</b> {card.question}
+                                </Typography>
+                            </Grid>
+                    }
                     {
                         !isChecked &&
                         <Grid item>
@@ -138,12 +138,18 @@ export const LearnCards = () => {
                         </Grid>
                     }
                     {isChecked && (
-                        <Grid item alignSelf={"start"}>
-                            <Typography variant="body1">
-                                Answer: {card.answer}
-                            </Typography>
-                            <form>
-
+                        <>
+                            {
+                                card.answerImg
+                                    ? <img src={card.answerImg} style={{width: "320px", objectFit: "cover"}}
+                                           alt="answer"/>
+                                    : <Grid item alignSelf={"start"}>
+                                        <Typography mb={3} variant="body1" sx={{alignItems: "start"}}>
+                                            <b>Answer:</b> {card.answer}
+                                        </Typography>
+                                    </Grid>
+                            }
+                            <form style={{marginBottom:"20px"}}>
                                 <FormControl>
                                     <RadioGroup
                                         aria-labelledby="demo-radio-buttons-group-label"
@@ -152,12 +158,10 @@ export const LearnCards = () => {
                                         onChange={handleChange}
                                     >
                                         {formControlLabels}
-
                                     </RadioGroup>
                                 </FormControl>
-
                             </form>
-                        </Grid>
+                        </>
                     )}
                     {isChecked && <Button variant={"contained"} onClick={handleSubmit}>next</Button>}
                 </Grid>

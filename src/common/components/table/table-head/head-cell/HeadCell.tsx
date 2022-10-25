@@ -24,7 +24,7 @@ export const HeadCell = ({width, headCell, sortCallback}: HeadCellPropsType) => 
         setActive(!active)
     }
     const directionString = direction ? 'asc' : 'desc'
-    const alignCenter = (title==="Actions" || title==="Created by")  ? "center" : "left"
+    const alignCenter = (title==="Actions")  ? "right" : "left"
 
     return (
         <>
@@ -40,7 +40,7 @@ export const HeadCell = ({width, headCell, sortCallback}: HeadCellPropsType) => 
                         {title}
                     </TableSortLabel>
                 </TableCell>
-                : <TableCell  key={sortKey}  sx={{textAlign: `${alignCenter}`}}>{title}</TableCell>}
+                : <TableCell  key={sortKey}  sx={{textAlign: `${alignCenter}`,paddingRight:'50px'}}>{title}</TableCell>}
         </>
 
     );

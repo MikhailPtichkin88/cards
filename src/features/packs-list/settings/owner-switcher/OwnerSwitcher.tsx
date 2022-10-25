@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import styles from './OwnerSwitcher.module.css';
 import {ToggleButton, ToggleButtonGroup} from '@mui/material';
 import {useAppSelector} from '../../../../common/hooks/useAppSelector';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
-import {filterPacksWithOwnerSwitcherAC, getPacksTC, OwnerSwitcherType} from '../../packs-reducer';
+import {filterPacksWithOwnerSwitcherAC, OwnerSwitcherType} from '../../packs-reducer';
 import {styleDisabled} from "../Settings";
 
 type OwnerSwitcherPropsType={

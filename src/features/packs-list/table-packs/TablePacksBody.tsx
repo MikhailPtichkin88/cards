@@ -1,5 +1,5 @@
 import React from 'react';
-import {TableCell, TableRow} from '@mui/material';
+import {IconButton, TableCell, TableRow} from '@mui/material';
 import styles from '../../../common/components/table/Table.module.css';
 import study from '../../../assets/images/cardPackBtns/study.svg';
 import edit from '../../../assets/images/cardPackBtns/edit.svg';
@@ -14,6 +14,7 @@ import {DeleteModal} from '../../../common/components/modals/delete-modal/Delete
 import BlockIcon from '@mui/icons-material/Block';
 import Button from "@mui/material/Button";
 import {blockUserTC} from "../../auth/auth-reducer";
+import SchoolIcon from '@mui/icons-material/School';
 
 type CustomTableRowPropsType = {
     el: PackType
@@ -67,19 +68,13 @@ export const TablePacksBody = ({el, myID, onClickNameHandler, width}: CustomTabl
                 </div>
             </TableCell>
             <TableCell align={alignAdaptiveCenter} style={{
-                padding: `${adaptivePadding}`
+                padding: `${adaptivePadding}`,
             }}>{el.cardsCount}</TableCell>
             {
                 width > 991 && <TableCell align="left">{el.updated.toString()}</TableCell>
             }
             {
                 width > 576 && <TableCell align="left">
-                    <Button size="small"
-                            className={styles.blockBtn}
-                            onClick={onBlockHandler}
-                            startIcon={<BlockIcon/>}>
-                        block
-                    </Button>
                     {el.user_name}</TableCell>
             }
             <TableCell align={alignAdaptiveRight} style={{
@@ -105,8 +100,27 @@ export const TablePacksBody = ({el, myID, onClickNameHandler, width}: CustomTabl
                     </div>
                     :
                     <div className={styles.btnBlock}>
-                        <button onClick={redirectToStudy} disabled={isNoCards} className={studyBtnClasses}
-                                style={{backgroundImage: `url(${study})`}}/>
+                        {
+                            width > 551
+                            ? <>
+                                    <button onClick={redirectToStudy} disabled={isNoCards} className={studyBtnClasses}
+                                        style={{backgroundImage: `url(${study})`}}/>
+                                <Button size="small"
+                                        className={styles.blockBtn}
+                                        onClick={onBlockHandler}
+                                        startIcon={<BlockIcon />}>
+                                    {width > 576 ? "block" : null}
+                                </Button>
+                                </>
+                                :<>
+                                    <IconButton aria-label="delete">
+                                        <SchoolIcon />
+                                    </IconButton>
+                                    <IconButton aria-label="delete">
+                                        <BlockIcon />
+                                    </IconButton>
+                                </>
+                        }
 
                     </div>}
 
