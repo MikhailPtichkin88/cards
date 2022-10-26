@@ -14,13 +14,14 @@ import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {Paginator} from '../../../common/components/pagination/Paginator';
 import {EditAddModalCard} from './add-edit-modal-cards/EditAddModalCard';
 import {CreateCardType} from './cards-api';
-import {KebabLearnMenu} from "../../../common/components/learn-menu/KebabLearnMenu";
+import {LearnMenu} from "../../../common/components/learn-menu/LearnMenu";
 import SchoolIcon from '@mui/icons-material/School';
+import {Loading} from "../../../common/components/loading/Loading";
 
 export const Cards = () => {
     const [width, setWidth] = useState(0)
     const navigate = useNavigate()
-
+    const appStatus = useAppSelector(state=>state.app.status)
     const page = useAppSelector(state => state.cards.dateCard.page)
     const pageCount = useAppSelector(state => state.cards.dateCard.pageCount)
     const cardsTotalCount = useAppSelector(state => state.cards.dateCard.cardsTotalCount)
@@ -85,17 +86,22 @@ export const Cards = () => {
         setWidth(window.innerWidth)
     }, [])
 
+    if(appStatus==="loading"){
+        return <Loading/>
+    }
+
     return (
         <div style={{paddingBottom: '30px'}}>
-            <NavLink className={styles.packsLink} to={routePath.cards.packList}>Back to Packs List</NavLink>
+            <NavLink className={styles.packsLink+' '+styles.mb10} to={routePath.cards.packList}>Back to Packs List</NavLink>
             {
                 cards.length > 0
                     ? <div style={{position:"relative"}}>
+
                         <PacksTitle title={packName ? packName : ''}
                                     packId={cardsPack_id}
                                     isMy={isMy}>
                             {
-                                isMy && <> <KebabLearnMenu packName={packName ? packName : ''} packId={cardsPack_id}/>
+                                isMy && <> <LearnMenu packName={packName ? packName : ''} packId={cardsPack_id}/>
                                     <EditAddModalCard
                                         title="Add new card"
                                         saveCallback={onClickAddCardHandler}

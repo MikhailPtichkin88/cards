@@ -1,6 +1,7 @@
 import React, {ReactNode} from 'react';
 import styles from './PacksTitle.module.css';
 import {useAppSelector} from "../../../common/hooks/useAppSelector";
+import {InfoBlockActions} from "../../../common/components/info-block-actions/InfoBlockActions";
 
 type PacksTitlePropsType = {
     title: string

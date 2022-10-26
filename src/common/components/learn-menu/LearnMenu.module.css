@@ -1,0 +1,31 @@
+.wrapper{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    min-width: 200px;
+    min-height: 70px;
+    border-radius: 20px !important;
+}
+.wrapper::before{
+    position: absolute;
+    content: 'Pack actions';
+    min-width: 115px;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.btn{
+    width:50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px  solid #1976d2;
+    background-color: #fff;
+    background-position: center;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}

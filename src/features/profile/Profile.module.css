@@ -166,4 +166,11 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
-
+.noMargin{
+    margin-left: 0;
+    margin-right: 0;
+}
+.mb10{
+    display: inline-block;
+    margin-bottom: 40px;
+}

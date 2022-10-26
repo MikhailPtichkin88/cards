@@ -9,9 +9,11 @@ import {useAppSelector} from '../../common/hooks/useAppSelector';
 import {EditAddModalPack} from './edit-add-modal-pack/EditAddModalPack';
 import Button from '@mui/material/Button/Button';
 import common from '../../common/style/style.module.css';
+import {InfoBlockActions} from "../../common/components/info-block-actions/InfoBlockActions";
+import {Loading} from "../../common/components/loading/Loading";
 
 export const PacksPage = () => {
-
+    const appStatus = useAppSelector(state=>state.app.status)
     const min = useAppSelector(state => state.packs.queryParams.min)
     const max = useAppSelector(state => state.packs.queryParams.max)
     const myID = useAppSelector(state => state.auth.authData._id)
@@ -30,10 +32,16 @@ export const PacksPage = () => {
 
     }, [myID, packName, filter, min, max, filter])
 
+    if(appStatus==="loading"){
+        return <Loading/>
+    }
+
     return (
         <div className={styles.wrapper}>
-            <PacksTitle title={'Packs list'}>
-
+            <PacksTitle  title={'Packs list'}>
+                {
+                    filter === 'my' && <InfoBlockActions/>
+                }
                 <EditAddModalPack title={'Add new pack'}
                                   saveCallback={addNewPack}
                                   childrenDiv={<Button variant="contained"

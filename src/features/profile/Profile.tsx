@@ -80,7 +80,7 @@ export const Profile = () => {
             <p className={styles.infoText}>Start learning by choosing one from from existing card packs</p>
             <NavLink className={styles.packsLink} to={routePath.cards.packList}>Choose cards pack</NavLink>
         </Paper>
-        <Paper elevation={20} className={commonStyle.paperStyle}>
+        <Paper elevation={20} className={commonStyle.paperStyle+' '+styles.noMargin}>
             <div className={styles.profileWrapper}>
                 <h3 className={styles.title}>Personal Information</h3>
                 <div className={styles.avatarBlock}>
