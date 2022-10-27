@@ -17,25 +17,25 @@
 
 .forgotPassBlock {
     text-align: right;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .forgotPassLink {
-    text-decoration: none;
-    color: #000;
+
+    color: #366EFF;
+    text-decoration: underline;
 }
 
 .checkbox {
     margin: 20px 0;
 }
 
-
-
 .footer {
     text-align: center;
 }
 
 .footerLabel {
+    margin-top: 10px;
     margin-bottom: 10px;
     font-size: 14px;
     line-height: 24px;

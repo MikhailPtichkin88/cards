@@ -9,7 +9,7 @@ type DisableFilterType = {
     isLoading?:boolean
 }
 
-export const DisableFilterButton = (props: DisableFilterType) => {
+export const DisableFilterButton = React.memo((props: DisableFilterType) => {
     const dispatch = useAppDispatch()
 
     const onClickDisableFilter = () => {
@@ -27,5 +27,5 @@ export const DisableFilterButton = (props: DisableFilterType) => {
             />
         </div>
     );
-};
+});
 

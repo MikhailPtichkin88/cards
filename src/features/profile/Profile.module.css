@@ -7,7 +7,7 @@
 }
 .infoBlock{
     max-width: 250px;
-    max-height: 250px;
+    min-height: 230px;
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -20,7 +20,9 @@
     object-fit: contain;
 }
 .infoText{
+    margin-bottom: 10px;
     text-align: center;
+    font-size: 15px;
     font-weight: bold;
     line-height: 1.5;
 }

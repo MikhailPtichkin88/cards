@@ -91,7 +91,7 @@ export const Login = () => {
                     Login
                 </Button>
                 <FormLabel className={styles.footer}>
-                    <p className={styles.footerLabel}>Already have an account?</p>
+                    <p className={styles.footerLabel}>Don't have account?</p>
                     <NavLink to={routePath.auth.signUp} className={styles.footerLink}>Sign Up</NavLink>
                 </FormLabel>
             </form>

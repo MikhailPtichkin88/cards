@@ -74,7 +74,6 @@ export const Profile = () => {
     }
 
     return <div className={styles.wrapper}>
-
         <Paper className={styles.infoBlock}>
             <img className={styles.infoImg} src={studyImg} alt="study"/>
             <p className={styles.infoText}>Start learning by choosing one from from existing card packs</p>

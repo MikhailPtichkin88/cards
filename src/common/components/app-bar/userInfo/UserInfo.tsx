@@ -31,7 +31,7 @@ export const UserInfo = (props: UserInfoPropsType) => {
             <NavLink to={"/profile"} className={styles.userName}>{props.name}</NavLink>
             <img className={styles.avatarImg} src={avatarImg} alt="avatar"/>
             {
-                width > 991 &&  <Button size="small" variant="contained" onClick={onClickHandler}>Log Out</Button>
+                width > 991 &&  <Button sx={{borderRadius:'20px'}} size="small" variant="contained" onClick={onClickHandler}>Log Out</Button>
             }
         </div>
     );

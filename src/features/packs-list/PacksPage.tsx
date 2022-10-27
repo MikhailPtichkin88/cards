@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {memo, useEffect} from 'react';
 import styles from './PacksPage.module.css';
 import {PacksTitle} from './packs-title/PacksTitle';
 import {Settings} from './settings/Settings';
@@ -11,9 +11,13 @@ import Button from '@mui/material/Button/Button';
 import common from '../../common/style/style.module.css';
 import {InfoBlockActions} from "../../common/components/info-block-actions/InfoBlockActions";
 import {Loading} from "../../common/components/loading/Loading";
+import {Navigate} from "react-router-dom";
+import {routePath} from "../../common/constants/routePath";
+import {AppStatusType} from "../../app/app-reducer";
 
-export const PacksPage = () => {
-    const appStatus = useAppSelector(state=>state.app.status)
+export const PacksPage = memo(() => {
+    const isAuth = useAppSelector(state => state.auth.isAuth)
+    const appStatus: AppStatusType = useAppSelector(state => state.app.status)
     const min = useAppSelector(state => state.packs.queryParams.min)
     const max = useAppSelector(state => state.packs.queryParams.max)
     const myID = useAppSelector(state => state.auth.authData._id)
@@ -30,15 +34,16 @@ export const PacksPage = () => {
         const user_id = filter === 'my' ? myID : undefined
         dispatch(getPacksTC({user_id, packName, min, max}))
 
-    }, [myID, packName, filter, min, max, filter])
+    }, [packName, min, max, filter])
 
-    if(appStatus==="loading"){
-        return <Loading/>
+    if (!isAuth) {
+        return <Navigate to={routePath.auth.login}/>
     }
+
 
     return (
         <div className={styles.wrapper}>
-            <PacksTitle  title={'Packs list'}>
+            <PacksTitle title={'Packs list'}>
                 {
                     filter === 'my' && <InfoBlockActions/>
                 }
@@ -52,10 +57,13 @@ export const PacksPage = () => {
             </PacksTitle>
 
             <Settings/>
-
-            <CardsTable/>
-
+            {
+                appStatus === "loading"
+                    ? <Loading/>
+                    : <CardsTable/>
+            }
         </div>
     );
-};
+
+});
 

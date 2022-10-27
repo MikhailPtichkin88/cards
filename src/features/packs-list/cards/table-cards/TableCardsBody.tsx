@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Rating, TableBody, TableCell, TableRow} from '@mui/material';
+import {Box, Rating, TableBody, TableCell, TableRow, Tooltip, Zoom} from '@mui/material';
 import common from '../../../../common/style/style.module.css';
 import {EditAddModalCard} from '../add-edit-modal-cards/EditAddModalCard';
 import styles from '../../../../common/components/table/Table.module.css';
@@ -13,7 +13,7 @@ type TableCardsBodyParams = {
     isMy: boolean
     updateCardHandler: (id: string, params: CreateCardType) => void
     deleteCardHandler: (id: string) => void
-    isDesktopWidth:boolean
+    isDesktopWidth: boolean
 }
 
 export const TableCardsBody = (props: TableCardsBodyParams) => {
@@ -47,7 +47,7 @@ export const TableCardsBody = (props: TableCardsBodyParams) => {
                     </TableCell>
 
                     {props.isDesktopWidth &&
-                    <TableCell align="left">{card.updated.slice(0, 10)}</TableCell>
+                        <TableCell align="left">{card.updated.slice(0, 10)}</TableCell>
                     }
 
                     {props.isDesktopWidth &&
@@ -63,14 +63,19 @@ export const TableCardsBody = (props: TableCardsBodyParams) => {
                                                   valueQuestion={card.question}
                                                   valueAnswer={card.answer}
                                                   questionImg={card.questionImg}
-                                                  childrenBtn={<button className={styles.btn}
-                                                                       style={{backgroundImage: `url(${edit})`}}/>}
+                                                  childrenBtn={<Tooltip title="Edit card" TransitionComponent={Zoom}
+                                                                        arrow>
+                                                      <button className={styles.btn}
+                                                              style={{backgroundImage: `url(${edit})`}}/>
+                                                  </Tooltip>}
                                                   saveCallback={saveCallback}/>
 
                                 <DeleteModal title={'Delete Card'}
                                              name={card.question}
-                                             childrenDiv={<button className={styles.btn}
-                                                                  style={{backgroundImage: `url(${deleteImg})`}}/>}
+                                             childrenDiv={<Tooltip title="Delete card" TransitionComponent={Zoom} arrow>
+                                                 <button className={styles.btn}
+                                                         style={{backgroundImage: `url(${deleteImg})`}}/>
+                                             </Tooltip>}
                                              deleteCallback={deleteCallback}/>
                             </Box>
                         </TableCell>

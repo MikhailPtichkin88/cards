@@ -13,7 +13,7 @@ type CardsSliderType = {
     isLoading?: boolean
 }
 
-export const CardsSlider = (props: CardsSliderType) => {
+export const CardsSlider = React.memo((props: CardsSliderType) => {
     const maxCardsCount = useAppSelector(state => state.packs.packs.maxCardsCount)
     const minCardsCount = useAppSelector(state => state.packs.packs.minCardsCount)
     const min = useAppSelector(state => state.packs.queryParams.min)
@@ -85,4 +85,4 @@ export const CardsSlider = (props: CardsSliderType) => {
             </div>
         </div>
     );
-};
+});

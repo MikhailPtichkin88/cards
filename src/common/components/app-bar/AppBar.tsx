@@ -29,6 +29,7 @@ export const AppBar = () => {
                            isAuth
                                 ? <UserInfo name={name} avatar={avatar}/>
                                 : <Button className={styles.btn}
+                                          sx={{borderRadius:'20px'}}
                                           variant={'contained'}
                                           onClick={onClickHandler}>Sign In</Button>
                         }

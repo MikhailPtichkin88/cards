@@ -10,7 +10,7 @@ type OwnerSwitcherPropsType={
     isLoading?:boolean
 }
 
-export const OwnerSwitcher = (props:OwnerSwitcherPropsType) => {
+export const OwnerSwitcher = React.memo((props:OwnerSwitcherPropsType) => {
 
     const filter = useAppSelector(state => state.packs.filters.ownerSwitcher)
     const dispatch = useAppDispatch()
@@ -23,7 +23,7 @@ export const OwnerSwitcher = (props:OwnerSwitcherPropsType) => {
     const disabledLabelStyles = props.isLoading ? styleDisabled : {}
     return (
         <div className={styles.wrapper}>
-            <h4 className={styles.title} style={disabledLabelStyles}>Show packs cards</h4>
+            <h4 className={styles.title} style={disabledLabelStyles}>Show card packs</h4>
             <ToggleButtonGroup
                 size="small"
                 color="primary"
@@ -38,5 +38,5 @@ export const OwnerSwitcher = (props:OwnerSwitcherPropsType) => {
             </ToggleButtonGroup>
         </div>
     );
-};
+});
 

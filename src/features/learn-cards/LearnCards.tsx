@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Navigate, useParams} from "react-router-dom";
+import {Navigate, NavLink, useParams} from "react-router-dom";
 import Paper from "@mui/material/Paper/Paper";
 import {useAppSelector} from "../../common/hooks/useAppSelector";
 import {useAppDispatch} from "../../common/hooks/useAppDispatch";
@@ -13,6 +13,9 @@ import FormControl from "@mui/material/FormControl/FormControl";
 import {routePath} from "../../common/constants/routePath";
 import {setAppErrorAC} from "../../app/app-reducer";
 import {BackToPacksLink} from "../../common/components/back-to-packs-link/BackToPacksLink";
+import styles from "../profile/Profile.module.css";
+import {Loading} from "../../common/components/loading/Loading";
+import Fade from '@mui/material/Fade';
 
 const grades = ['Did not know', 'Forgot', 'A lot of thought', 'Confused', 'Knew the answer'];
 const initObj = {
@@ -67,7 +70,7 @@ export const LearnCards = () => {
     const {id} = useParams()
 
     const dispatch = useAppDispatch()
-
+    const appStatus = useAppSelector(state => state.app.status)
     const isAuth = useAppSelector(state => state.auth.isAuth)
     const cards = useAppSelector(state => state.cards.dateCard.cards)
     const packName = useAppSelector(state => state.cards.dateCard.packName)
@@ -85,8 +88,8 @@ export const LearnCards = () => {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(parseInt(event.target.value));
-
     }
+
     const handleSubmit = () => {
         if (value !== 0) {
             setIsChecked(false);
@@ -103,69 +106,77 @@ export const LearnCards = () => {
     const formControlLabels = grades.map((g, i) => (
         <FormControlLabel value={i + 1}
                           control={<Radio/>}
-                          key={'grade-' + i}
-                          label={g}/>))
+                          key={'grade-' + i} label={g}/>))
+
+
     if (!isAuth) {
         return <Navigate to={routePath.auth.login}/>
     }
-    return (<>
-            <BackToPacksLink/>
-            <Paper elevation={20} className={style.paperStyle}>
-                <Grid container spacing={0} direction={"column"} justifyContent={"center"} alignItems={"center"}>
-                    <Grid item>
-                        <Typography mb={5} variant="h5">
-                            Learn: {packName}
-                        </Typography>
-                    </Grid>
-                    {
-                        card.questionImg
-                            ? <Grid item alignSelf={"center"} style={{marginBottom: "10px"}}>
-                                <img src={card.questionImg} alt="question picture"
-                                     style={{width: "320px", objectFit: "cover"}}/>
-                            </Grid>
-                            : <Grid item alignSelf={"start"}>
-                                <Typography mb={4} variant="body1" sx={{alignItems: "start"}}>
-                                    <b>Question:</b> {card.question}
+
+    return (
+        <>
+            <NavLink className={styles.packsLink} to={routePath.cards.packList}>Back to card packs list</NavLink>
+            {
+                appStatus === "loading"
+                    ? <Loading/>
+                    : <Paper elevation={20} className={style.paperStyle}>
+                        <Grid container spacing={0} direction={"column"} justifyContent={"center"} alignItems={"center"}>
+                            <Grid item>
+                                <Typography mb={5} variant="h5">
+                                    {packName}
                                 </Typography>
                             </Grid>
-                    }
-                    {
-                        !isChecked &&
-                        <Grid item>
-                            <Button variant={"contained"} onClick={() => setIsChecked(true)}>
-                                Show answer
-                            </Button>
-                        </Grid>
-                    }
-                    {isChecked && (
-                        <>
                             {
-                                card.answerImg
-                                    ? <img src={card.answerImg} style={{width: "320px", objectFit: "cover"}}
-                                           alt="answer"/>
+                                card.questionImg
+                                    ? <Grid item alignSelf={"center"} style={{marginBottom: "10px"}}><Fade in={true}>
+                                        <img src={card.questionImg} alt="question picture"
+                                             style={{width: "320px", objectFit: "cover"}}/>
+                                    </Fade> </Grid>
                                     : <Grid item alignSelf={"start"}>
-                                        <Typography mb={3} variant="body1" sx={{alignItems: "start"}}>
-                                            <b>Answer:</b> {card.answer}
-                                        </Typography>
+                                        <Typography mb={4} variant="body1" sx={{alignItems: "start"}}>
+                                            <b>Question:</b> {card.question}
+                                         </Typography>
                                     </Grid>
                             }
-                            <form style={{marginBottom:"20px"}}>
-                                <FormControl>
-                                    <RadioGroup
-                                        aria-labelledby="demo-radio-buttons-group-label"
-                                        defaultValue="female"
-                                        name="radio-buttons-group"
-                                        onChange={handleChange}
-                                    >
-                                        {formControlLabels}
-                                    </RadioGroup>
-                                </FormControl>
-                            </form>
-                        </>
-                    )}
-                    {isChecked && <Button variant={"contained"} onClick={handleSubmit}>next</Button>}
-                </Grid>
-            </Paper>
+                            {
+                                !isChecked &&
+                                <Grid item>
+                                    <Button variant={"contained"} onClick={() => setIsChecked(true)}>
+                                        Show answer
+                                    </Button>
+                                </Grid>
+                            }
+                            {isChecked && (
+                                <>
+                                    {
+                                        card.answerImg
+                                            ? <img src={card.answerImg} style={{width: "320px", objectFit: "cover"}}
+                                                   alt="answer"/>
+                                            : <Grid item alignSelf={"start"}>
+                                                <Typography mb={3} variant="body1" sx={{alignItems: "start"}}>
+                                                    <b>Answer:</b> {card.answer}
+                                                </Typography>
+                                            </Grid>
+                                    }
+                                    <form style={{marginBottom: "20px"}}>
+                                        <FormControl>
+                                            <RadioGroup
+                                                aria-labelledby="demo-radio-buttons-group-label"
+                                                defaultValue="female"
+                                                name="radio-buttons-group"
+                                                onChange={handleChange}
+                                            >
+                                                {formControlLabels}
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </form>
+                                </>
+                            )}
+                            {isChecked && <Button variant={"contained"} onClick={handleSubmit}>next</Button>}
+                        </Grid>
+                    </Paper>
+            }
+
         </>
     );
 };
