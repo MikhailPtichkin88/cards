@@ -1,5 +1,5 @@
 import React from 'react';
-import {IconButton, TableCell, TableRow} from '@mui/material';
+import {IconButton, TableCell, TableRow, Tooltip, Zoom} from '@mui/material';
 import styles from '../../../common/components/table/Table.module.css';
 import study from '../../../assets/images/cardPackBtns/study.svg';
 import edit from '../../../assets/images/cardPackBtns/edit.svg';
@@ -44,18 +44,20 @@ export const TablePacksBody = ({el, myID, onClickNameHandler, width}: CustomTabl
     const studyBtnClasses = isNoCards ? `${styles.btn} ${styles.btnDisabled}` : `${styles.btn}`
     const alignAdaptiveRight = width < 991 ? "left" : "right"
     const alignAdaptiveCenter = width < 991 ? "center" : "left"
-    const adaptivePadding = width < 991 ? "10px 0 10px 10px" : "16px"
-
+    const adaptivePadding = width < 991 ? "10px 0 10px 10px" : "10px"
+    const tableCellStyles = {
+        padding: `${adaptivePadding}`,
+        cursor: 'pointer',
+        maxWidth: '200px',
+        overflowWrap: 'break-word',
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+    }
     return (
         <TableRow key={el._id} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
             <TableCell component="th" scope="row"
                        onClick={() => onClickNameHandler(el._id)}
-                       style={{
-                           padding: `${adaptivePadding}`,
-                           cursor: 'pointer',
-                           maxWidth: '200px',
-                           overflowWrap: 'break-word'
-                       }}
+                       sx={tableCellStyles}
             >
                 <div style={{display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap"}}>
                     {
@@ -64,7 +66,7 @@ export const TablePacksBody = ({el, myID, onClickNameHandler, width}: CustomTabl
                         el.deckCover && el.deckCover.length > 15 &&
                         <img src={el.deckCover} style={{width: "60px", height: "40px", objectFit: "contain"}}/>
                     }
-                    {el.name}
+                    {el.name.length < 28 ? el.name : el.name.slice(0, 28) + '...'}
                 </div>
             </TableCell>
             <TableCell align={alignAdaptiveCenter} style={{
@@ -74,7 +76,8 @@ export const TablePacksBody = ({el, myID, onClickNameHandler, width}: CustomTabl
                 width > 991 && <TableCell align="left">{el.updated.toString()}</TableCell>
             }
             {
-                width > 576 && <TableCell align="left">
+                width > 576 &&
+                <TableCell align="left" sx={{...tableCellStyles, overflowWrap: 'initial', maxWidth: '150px'}}>
                     {el.user_name}</TableCell>
             }
             <TableCell align={alignAdaptiveRight} style={{
@@ -82,48 +85,55 @@ export const TablePacksBody = ({el, myID, onClickNameHandler, width}: CustomTabl
             }}>{
                 myID === el.user_id
                     ? <div className={styles.btnBlock}>
-                        <button onClick={redirectToStudy} disabled={isNoCards} className={studyBtnClasses}
-                                style={{backgroundImage: `url(${study})`}}/>
+                        <Tooltip title="Study this pack" TransitionComponent={Zoom}
+                                 arrow>
+                            <button onClick={redirectToStudy} disabled={isNoCards} className={studyBtnClasses}
+                                    style={{backgroundImage: `url(${study})`}}/>
+                        </Tooltip>
                         <EditAddModalPack title="Edit pack"
                                           name={el.name}
                                           deckCover={el.deckCover}
                                           saveCallback={changePackName}
-                                          childrenDiv={<button className={styles.btn}
-                                                               style={{backgroundImage: `url(${edit})`}}/>}
+                                          childrenDiv={
+                                              <Tooltip title="Change name or cover"
+                                                       TransitionComponent={Zoom}
+                                                       arrow>
+                                                  <button className={styles.btn}
+                                                          style={{backgroundImage: `url(${edit})`}}/>
+                                              </Tooltip>}
                         />
                         <DeleteModal title="Delete Pack"
                                      name={el.name}
                                      deleteCallback={deletePack}
-                                     childrenDiv={<button className={styles.btn}
-                                                          style={{backgroundImage: `url(${deleteImg})`}}/>}
+                                     childrenDiv={
+                            <Tooltip title="Delete pack"
+                                     TransitionComponent={Zoom} arrow>
+                                         <button className={styles.btn}
+                                                 style={{backgroundImage: `url(${deleteImg})`}}/>
+                                     </Tooltip>}
                         />
+
                     </div>
                     :
                     <div className={styles.btnBlock}>
                         {
-                            width > 551
-                            ? <>
+                            <>
+                                <Tooltip title="Study this pack" TransitionComponent={Zoom}
+                                         arrow>
                                     <button onClick={redirectToStudy} disabled={isNoCards} className={studyBtnClasses}
-                                        style={{backgroundImage: `url(${study})`}}/>
-                                <Button size="small"
-                                        className={styles.blockBtn}
-                                        onClick={onBlockHandler}
-                                        startIcon={<BlockIcon />}>
-                                    {width > 576 ? "block" : null}
-                                </Button>
-                                </>
-                                :<>
-                                    <IconButton aria-label="delete">
-                                        <SchoolIcon />
+                                            style={{backgroundImage: `url(${study})`}}/>
+                                </Tooltip>
+                                <Tooltip title="Block this user" TransitionComponent={Zoom}
+                                         arrow>
+                                    <IconButton size="small"
+                                                className={styles.blockBtn}
+                                                onClick={onBlockHandler}>
+                                        <BlockIcon color='error'/>
                                     </IconButton>
-                                    <IconButton aria-label="delete">
-                                        <BlockIcon />
-                                    </IconButton>
-                                </>
+                                </Tooltip>
+                            </>
                         }
-
                     </div>}
-
             </TableCell>
         </TableRow>
     );

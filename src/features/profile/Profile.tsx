@@ -9,14 +9,12 @@ import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {changeNameAndAvatarTC, logoutTC} from '../auth/auth-reducer';
 import commonStyle from '../../common/style/style.module.css';
 import {routePath} from '../../common/constants/routePath';
-import {setAppErrorAC} from "../../app/app-reducer";
+import {setAppErrorAC, setAppStatusAC} from "../../app/app-reducer";
 import {convertFileToBase64} from "../../common/utils/convert-base64";
 import studyImg from '../../assets/images/study.svg'
 import createPackImg from '../../assets/images/createPack.svg'
-import Button from "@mui/material/Button/Button";
-import common from "../../common/style/style.module.css";
 import {EditAddModalPack} from "../packs-list/edit-add-modal-pack/EditAddModalPack";
-import {addNewPackTC, filterPacksWithOwnerSwitcherAC} from "../packs-list/packs-reducer";
+import {addNewPackFromProfileTC, filterPacksWithOwnerSwitcherAC} from "../packs-list/packs-reducer";
 import {packsAPI} from "../packs-list/packs-api";
 import {handleServerNetworkError} from "../../common/utils/error-utils";
 import {AxiosError} from "axios";
@@ -46,13 +44,14 @@ export const Profile = () => {
 
     const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length) {
-            if (e.target.files[0].size / 1024 <= 4096) {
+            if (e.target.files[0].size / 1024 <= 409) {
+                console.log(e.target.files[0].size)
                 const file = e.target.files[0]
                 convertFileToBase64(file, (file64) => {
                     dispatch(changeNameAndAvatarTC(name, file64))
                 })
             } else {
-                dispatch(setAppErrorAC("Incorrect file size"))
+                dispatch(setAppErrorAC("Incorrect file size (must be less than 410 Kb)"))
             }
         } else {
             dispatch(setAppErrorAC("Upload error"))
@@ -60,13 +59,8 @@ export const Profile = () => {
     }
 
     const addNewPack = async (name: string, deckCover: string) => {
-        try{
-            await packsAPI.addNewPack(({name, deckCover}))
-            dispatch(filterPacksWithOwnerSwitcherAC('my'))
-            navigate(routePath.cards.packList)
-        }catch(err){
-            handleServerNetworkError(err as Error | AxiosError<{ error: string }>, dispatch)
-        }
+      await  dispatch(addNewPackFromProfileTC(name,deckCover))
+        navigate(routePath.cards.packList)
     }
 
     if (!isAuth) {

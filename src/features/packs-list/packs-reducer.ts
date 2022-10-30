@@ -3,6 +3,8 @@ import {AppThunk} from '../../app/store';
 import {handleServerNetworkError} from '../../common/utils/error-utils';
 import {AxiosError} from 'axios';
 import {setAppStatusAC} from '../../app/app-reducer';
+import {routePath} from "../../common/constants/routePath";
+import {useNavigate} from "react-router-dom";
 /*---Reducer---*/
 export const initState: PacksReducerInitStateType = {
     packs: {
@@ -94,6 +96,20 @@ export const addNewPackTC = (newPack: NewPackType): AppThunk => async dispatch =
         dispatch(setAppStatusAC('succeeded'))
     }
 }
+
+export const addNewPackFromProfileTC = (name: string, deckCover: string): AppThunk => async dispatch => {
+    try{
+        dispatch(setAppStatusAC("loading"))
+        await packsAPI.addNewPack(({name, deckCover}))
+        dispatch(filterPacksWithOwnerSwitcherAC('my'))
+    }catch(err){
+        handleServerNetworkError(err as Error | AxiosError<{ error: string }>, dispatch)
+    }
+    finally {
+        dispatch(setAppStatusAC("idle"))
+    }
+}
+
 
 export const changePackNameTC = (updatedPack: UpdatePackType): AppThunk => async dispatch => {
     try {

@@ -2,26 +2,37 @@
     display: inline-flex;
     gap: 15px;
     min-width: 85px;
+    justify-content: space-between;
 }
 
 .btn{
-    width: 18px;
-    height: 18px;
+    width: 33px;
+    height: 33px;
     border: none;
+    border-radius: 50%;
     background-color: #fff;
     background-position: center;
-    background-size: cover;
+    background-size: 22px 22px;
     background-repeat: no-repeat;
+    -webkit-transition: background-color  0.3s;
+    -moz-transition: background-color 0.3s;
+    -ms-transition: background-color  0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color  0.3s;
     cursor: pointer;
 }
+.btn:hover{
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
 .btnDisabled{
     opacity: 0.5;
     cursor: auto;
+    background-color: #fff;
 }
 .blockBtn{
     font-size: 12px !important;
     line-height: 1 !important;
-
 }
 
 @media(max-width: 576px){

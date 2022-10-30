@@ -58,14 +58,15 @@ export const EditAddModalPack: React.FC<AddEditPackModalType> = (props) => {
 
     const uploadHandler = async (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length) {
-            if (e.target.files[0].size / 1024 <= 4096) {
+            if (e.target.files[0].size / 1024 <= 409) {
                 const file = e.target.files[0]
                 setNameFileImg(file.name)
                 convertFileToBase64(file, (file64) => {
                     setDeckCover(file64)
                 })
             } else {
-                dispatch(setAppErrorAC('Incorrect file size'))
+                dispatch(setAppErrorAC('Incorrect file size (must be less than 400 Kb'))
+                setDeckCover('')
             }
         }
     }

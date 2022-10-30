@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './AppBar.module.css'
-import logo from '../../../assets/images/logo1.jpeg'
+import logo from '../../../assets/images/quizLogo.png'
 import {useNavigate} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/useAppSelector';
 import {UserInfo} from "./userInfo/UserInfo";

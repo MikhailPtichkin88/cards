@@ -5,11 +5,11 @@ import Box from '@mui/material/Box/Box';
 import InputLabel from '@mui/material/InputLabel/InputLabel';
 import {MenuItem, Select, SelectChangeEvent} from '@mui/material';
 import commonStyle from '../../../../common/style/style.module.css';
+import common from '../../../../common/style/style.module.css';
 import Button from '@mui/material/Button/Button';
 import {convertFileToBase64} from '../../../../common/utils/convert-base64';
 import {CreateCardType} from '../cards-api';
 import style from './EditAddModalCard.module.css'
-import common from '../../../../common/style/style.module.css';
 import {setAppErrorAC} from '../../../../app/app-reducer';
 import {useAppDispatch} from '../../../../common/hooks/useAppDispatch';
 
@@ -67,18 +67,18 @@ export const EditAddModalCard: React.FC<EditAddModalCardType> = (props) => {
 
     const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length) {
-            if (e.target.files[0].size / 1024 <= 4096) {
+            if (e.target.files[0].size / 1024 <= 409) {
                 const file = e.target.files[0]
                 setNameFileImg(file.name)
                 convertFileToBase64(file, (file64) => {
                     setQuestionImg(file64)
                 })
             } else {
-                dispatch(setAppErrorAC('Incorrect file size'))
+                dispatch(setAppErrorAC('Incorrect file size (must be less than 400 Kb)'))
+                setQuestionImg("")
             }
         }
     };
-
 
     return (
         <>
