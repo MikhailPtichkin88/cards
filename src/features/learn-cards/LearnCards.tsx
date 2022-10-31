@@ -12,7 +12,6 @@ import {FormControlLabel, Radio, RadioGroup, Typography} from "@mui/material";
 import FormControl from "@mui/material/FormControl/FormControl";
 import {routePath} from "../../common/constants/routePath";
 import {setAppErrorAC} from "../../app/app-reducer";
-import {BackToPacksLink} from "../../common/components/back-to-packs-link/BackToPacksLink";
 import styles from "../profile/Profile.module.css";
 import {Loading} from "../../common/components/loading/Loading";
 import Fade from '@mui/material/Fade';

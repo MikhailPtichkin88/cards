@@ -9,15 +9,12 @@ import {useAppDispatch} from '../../common/hooks/useAppDispatch';
 import {changeNameAndAvatarTC, logoutTC} from '../auth/auth-reducer';
 import commonStyle from '../../common/style/style.module.css';
 import {routePath} from '../../common/constants/routePath';
-import {setAppErrorAC, setAppStatusAC} from "../../app/app-reducer";
+import {setAppErrorAC} from "../../app/app-reducer";
 import {convertFileToBase64} from "../../common/utils/convert-base64";
 import studyImg from '../../assets/images/study.svg'
 import createPackImg from '../../assets/images/createPack.svg'
 import {EditAddModalPack} from "../packs-list/edit-add-modal-pack/EditAddModalPack";
-import {addNewPackFromProfileTC, filterPacksWithOwnerSwitcherAC} from "../packs-list/packs-reducer";
-import {packsAPI} from "../packs-list/packs-api";
-import {handleServerNetworkError} from "../../common/utils/error-utils";
-import {AxiosError} from "axios";
+import {addNewPackFromProfileTC} from "../packs-list/packs-reducer";
 
 export const Profile = () => {
     const inputRef = useRef<HTMLInputElement>(null)

@@ -17,11 +17,12 @@ import {CreateCardType} from './cards-api';
 import {LearnMenu} from "../../../common/components/learn-menu/LearnMenu";
 import SchoolIcon from '@mui/icons-material/School';
 import {Loading} from "../../../common/components/loading/Loading";
+import {NoCardsInfo} from "./no-cards-info/NoCardsInfo";
 
 export const Cards = () => {
     const [width, setWidth] = useState(0)
     const navigate = useNavigate()
-    const appStatus = useAppSelector(state=>state.app.status)
+    const appStatus = useAppSelector(state => state.app.status)
     const page = useAppSelector(state => state.cards.dateCard.page)
     const pageCount = useAppSelector(state => state.cards.dateCard.pageCount)
     const cardsTotalCount = useAppSelector(state => state.cards.dateCard.cardsTotalCount)
@@ -86,16 +87,17 @@ export const Cards = () => {
         setWidth(window.innerWidth)
     }, [])
 
-    if(appStatus==="loading"){
+    if (appStatus === "loading") {
         return <Loading/>
     }
 
     return (
         <div style={{paddingBottom: '30px'}}>
-            <NavLink className={styles.packsLink+' '+styles.mb10} to={routePath.cards.packList}>Back to Packs List</NavLink>
+            <NavLink className={styles.packsLink + ' ' + styles.mb10} to={routePath.cards.packList}>Back to Packs
+                List</NavLink>
             {
                 cards.length > 0
-                    ? <div style={{position:"relative"}}>
+                    ? <div style={{position: "relative"}}>
 
                         <PacksTitle title={packName ? packName : ''}
                                     packId={cardsPack_id}
@@ -114,10 +116,10 @@ export const Cards = () => {
                             }
                         </PacksTitle>
                         {
-                            !isMy && <div style={{position: "absolute", top: "5px",right:"20px"}}>
-                                <IconButton onClick={redirectToStudy} size="large">
-                                    <SchoolIcon color="primary" fontSize="large"/>
-                                </IconButton>
+                            !isMy && <div style={{position: "absolute", top: "5px", right: "20px"}}>
+                                <Button variant="contained" sx={{borderRadius:"20px"}} startIcon={<SchoolIcon/>} onClick={redirectToStudy} size="large">
+                                   begin to learn
+                                </Button>
                             </div>
                         }
                         <Box sx={{mb: 4}}>
@@ -139,25 +141,23 @@ export const Cards = () => {
                     </div>
 
                     : <Box>
-                        <h2>
+                        <h2 style={{textAlign:"center"}}>
                             {packName}
                         </h2>
-                        <Box sx={{display: 'flex', alignItems: 'center', flexDirection: 'column', mt: 8}}>
-                            <Typography sx={{mb: 4}}>
-                                This pack is empty. {isMy && 'Click add new card to fill this pack'}
-                            </Typography>
-                            {isMy && <EditAddModalCard
-                                title="Add new card"
-                                saveCallback={onClickAddCardHandler}
-                                childrenBtn={
-                                    <Button variant="contained"
-                                            className={common.btnStyle}
-                                            sx={{maxWidth: '200px', mt: '0 !important'}}
-                                    >
-                                        Add new card
-                                    </Button>
-                                }
-                            />
+                        <Box sx={{display: 'flex', alignItems: 'center', flexDirection: 'column', mt: 4}}>
+                            <NoCardsInfo isMy={isMy}/>
+                            {isMy ? <EditAddModalCard
+                                    title="Add new card"
+                                    saveCallback={onClickAddCardHandler}
+                                    childrenBtn={
+                                        <Button variant="contained"
+                                                className={common.btnStyle}
+                                                sx={{maxWidth: '200px', mt: '0 !important'}}
+                                        >
+                                            Add new card
+                                        </Button>}/>
+                                : <NavLink className={styles.packsLink + ' ' + styles.mb10} to={routePath.cards.packList}>Back
+                                    to Packs List</NavLink>
                             }
                         </Box>
                     </Box>
